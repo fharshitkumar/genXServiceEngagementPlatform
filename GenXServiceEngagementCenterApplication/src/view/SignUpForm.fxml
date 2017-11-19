@@ -74,7 +74,7 @@
          </image>
       </ImageView>
       <Label layoutX="162.0" layoutY="354.0" text="RELATIONSHIP WITH US?" textFill="#a9a9a9" />
-      <JFXComboBox fx:id="relationship" layoutX="305.0" layoutY="348.0" prefHeight="25.0" prefWidth="300.0" style="-fx-text-fill: white;" />
+      <JFXComboBox fx:id="relationship" layoutX="305.0" layoutY="348.0" prefHeight="25.0" prefWidth="300.0" stylesheets="@../css/combobox.css" />
       <JFXTextField fx:id="secretanswer" layoutX="307.0" layoutY="264.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
       <JFXButton fx:id="backBtn" layoutX="69.0" layoutY="47.0" onAction="#back" text="BACK" textFill="#ababab">
          <graphic>

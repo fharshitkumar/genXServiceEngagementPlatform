@@ -34,19 +34,19 @@ public class LoginController {
 
 	@FXML
 	private JFXCheckBox admin;
-	
+
 	ApplicationUtilities util;
 
 	public LoginController() {
 		util = new ApplicationUtilities();
 	}
-	
+
 	@FXML
 	public void handleCloseButtonAction(ActionEvent event) {
 		util.close(event);
 	}
 
-	
+
 	public void Login(ActionEvent event) {
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
 		User guest = null;
@@ -70,7 +70,7 @@ public class LoginController {
 			String SQLQuery = "SELECT * FROM LOGIN WHERE USERNAME='"+username+"'";
 			ResultSet resultSet = DCE.getResultSet(SQLQuery);
 			ResultSet rs = resultSet;
-			
+
 
 			/*******************CREATE A GUEST ENTITIY FROM SQL RESULT******************/
 			while(rs.next())
@@ -81,7 +81,8 @@ public class LoginController {
 						(rs.getString(4).equals("Y")? true : false), 
 						rs.getString(5), 
 						rs.getString(6), 
-						rs.getString(7) 
+						rs.getString(7),
+						rs.getInt(8)
 						);
 
 			/******Check if  is user name exists or not*******/
@@ -98,7 +99,7 @@ public class LoginController {
 			try {
 				Stage primaryStage = new Stage();
 				Parent root = null;
-				
+
 				if(guest.getAdmin() && admin.isSelected()) {
 					System.out.println("Opening Admin view");
 					/*****************If user is admin, inflate admin view*****************************/
@@ -116,6 +117,8 @@ public class LoginController {
 					/*****************If user is customer, inflate customer view***********************/
 					((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 					root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/Customer.fxml"));
+					primaryStage.initStyle(StageStyle.UNDECORATED);
+					primaryStage.centerOnScreen();
 				}
 				Scene scene = new Scene(root);
 				primaryStage.setScene(scene);
@@ -129,26 +132,26 @@ public class LoginController {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	@FXML
 	public void signup(ActionEvent event){
 		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 		try {
-	Stage primaryStage = new Stage();
-	Parent root = FXMLLoader.load(getClass().getResource("/View/SignUpForm.fxml"));
-	Scene scene = new Scene(root);
-	primaryStage.setScene(scene);
-	primaryStage.initStyle(StageStyle.UNDECORATED);
-	primaryStage.centerOnScreen();
-	primaryStage.show();
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
+			Stage primaryStage = new Stage();
+			Parent root = FXMLLoader.load(getClass().getResource("/View/SignUpForm.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.centerOnScreen();
+			primaryStage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	
-	
-	
+
+
+
+
 }

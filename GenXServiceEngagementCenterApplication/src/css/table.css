@@ -1,0 +1,5 @@
+.table-row-cell:selected {
+   -fx-background-color: #2A363B; 
+-fx-blend-mode:difference ;
+   -fx-text-background-color: #000000;
+}

@@ -8,22 +8,22 @@ import javax.sql.rowset.CachedRowSet;
 import com.sun.rowset.*;
 
 public class A_DatabaseCommunicationEngine {
-	
+
 	DatabaseConnector DBConnectionHandler;
-	
+
 	public A_DatabaseCommunicationEngine() {
 		DBConnectionHandler = null;	
 	}
 
-/**
- * Thsi function is used to do INSERT queries.
- * @param SQLQuery
- * @throws SQLException
- */
+	/**
+	 * This function is used to do INSERT queries.
+	 * @param SQLQuery
+	 * @throws SQLException
+	 */
 	public void DDLCommandDatabase(String SQLQuery) throws SQLException {
 
 		DBConnectionHandler = new DatabaseConnector();
-		
+
 		try {
 			Connection connection = DBConnectionHandler.DBConnectionManager();
 			Statement transaction = connection.createStatement();
@@ -44,12 +44,12 @@ public class A_DatabaseCommunicationEngine {
 	 * @throws SQLException
 	 */
 	public ResultSet getResultSet(String SQLQuery) throws SQLException {
-		
+
 		ResultSet retrivedResultSet = null;
 		CachedRowSet rowset = null;
 
 		DBConnectionHandler = new DatabaseConnector();
-		
+
 		try {
 			Connection connection = DBConnectionHandler.DBConnectionManager();
 			Statement transaction = connection.createStatement();
@@ -65,8 +65,36 @@ public class A_DatabaseCommunicationEngine {
 			System.out.println(e.getMessage());	
 		}
 		ResultSet rs = rowset;
-		
+
 		return rs;
 	}
-	
+
+
+	/***************This Function is used to SET the Database columns(String type) to new values*****************/
+	public void CommitChanges(String columnname, String columnvalue, int personid)
+	{
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		String SQLQuery = "UPDATE LOGIN " + 
+				"SET "+columnname+ "='" + columnvalue+"'" + 
+				" WHERE PERSONID="+personid;
+		try {
+			DCE.DDLCommandDatabase(SQLQuery);
+		} catch (SQLException e) {
+			System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
+		}		
+	}
+
+	/***************This Function is used to SET the Database columns(Numeric type) to new values*****************/
+	public void CommitChanges(String columnname, Integer columnvalue, int personid)
+	{
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		String SQLQuery = "UPDATE LOGIN " + 
+				"SET "+columnname+ "=" + (int)columnvalue+" " + 
+				" WHERE PERSONID="+personid;
+		try {
+			DCE.DDLCommandDatabase(SQLQuery);
+		} catch (SQLException e) {
+			System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
+		}		
+	}	
 }

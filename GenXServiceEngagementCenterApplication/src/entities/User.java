@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class User {
 	
-
 	private Integer personid;
 	private SimpleStringProperty username;
 	private SimpleStringProperty password;
@@ -13,10 +12,10 @@ public class User {
 	private SimpleStringProperty secretquestion;
 	private SimpleStringProperty secretanswer;
 	private SimpleStringProperty email;
-	
+	private Integer roleid;
 	
 	public User(Integer personid, String username, String password, Boolean admin, String secretquestion,
-			String secretanswer, String email) {
+			String secretanswer, String email,Integer roleid) {
 		super();
 		this.personid = personid;
 		this.username = new SimpleStringProperty(username);
@@ -25,18 +24,23 @@ public class User {
 		this.secretquestion = new SimpleStringProperty(secretquestion);
 		this.secretanswer = new SimpleStringProperty(secretanswer);
 		this.email = new SimpleStringProperty(email);
+		this.roleid = roleid;
 	}
 
 
 
 
+	public Integer getRoleid() {
+		return roleid;
+	}
+	public void setRoleid(Integer roleid) {
+		this.roleid = roleid;
+	}
+
+	
 	public Integer getPersonid() {
 		return personid;
 	}
-
-
-
-
 	public void setPersonid(Integer personid) {
 		this.personid = personid;
 	}
@@ -47,8 +51,6 @@ public class User {
 	public String getUsername() {
 		return username.get();
 	}
-
-
 	public void setUserName(String username) {
 		this.username = new SimpleStringProperty(username);
 	}
@@ -57,8 +59,6 @@ public class User {
 	public String getPassword() {
 		return password.get();
 	}
-
-
 	public void setPassword(String password) {
 		this.password = new SimpleStringProperty(password);
 	}
@@ -67,8 +67,6 @@ public class User {
 	public Boolean getAdmin() {
 		return admin.getValue();
 	}
-
-
 	public void setAdmin(Boolean admin) {
 		this.admin = new SimpleBooleanProperty(admin);
 	}
@@ -77,8 +75,6 @@ public class User {
 	public String getSecretquestion() {
 		return secretquestion.get();
 	}
-
-
 	public void setSecretquestion(String secretquestion) {
 		this.secretquestion = new SimpleStringProperty(secretquestion);
 	}
@@ -87,8 +83,6 @@ public class User {
 	public String getSecretanswer() {
 		return secretanswer.get();
 	}
-
-
 	public void setSecretanswer(String secretanswer) {
 		this.secretanswer = new SimpleStringProperty(secretanswer);
 	}
@@ -97,8 +91,6 @@ public class User {
 	public String getEmail() {
 		return email.get();
 	}
-
-
 	public void setEmail(String email) {
 		this.email = new SimpleStringProperty(email);
 	}
