@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #29292D;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignupController">
+   <children>
+      <ImageView blendMode="SCREEN" fitHeight="150.0" fitWidth="200.0" layoutX="591.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/Illinois_Institute_of_Technology_(emblem).svg.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="closeBtn" contentDisplay="GRAPHIC_ONLY" layoutX="767.0" layoutY="2.0" onAction="#handleCloseButtonAction" prefHeight="25.0" prefWidth="29.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;">
+         <graphic>
+            <MaterialDesignIconView fill="#c5c4c4" glyphName="CLOSE" size="15" />
+         </graphic>
+      </JFXButton>
+      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="6.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/iitlogo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="129.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/userloginicon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="161.0" layoutY="108.0" text="USERNAME" textFill="#a9a9a9" />
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="129.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/passwordKey.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="161.0" layoutY="152.0" text="PASSWORD" textFill="#a9a9a9" />
+      <JFXTextField fx:id="username" layoutX="306.0" layoutY="96.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
+      <JFXPasswordField fx:id="password" layoutX="306.0" layoutY="142.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
+      <JFXButton layoutX="372.0" layoutY="415.0" onAction="#signup" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #2195F5;" text="SIGNUP" textFill="#fdfdfd" />
+      <Label layoutX="10.0" layoutY="473.0" text="All rights reserved to Information Technology &amp; Management Department , Illinois Institute of Technology.&#10;Designed By: Harshit Kumar" textFill="#a9a9a9">
+         <font>
+            <Font size="6.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/repasswordicon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="162.0" layoutY="192.0" text="CONFIRM PASSWORD" textFill="#a9a9a9" />
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/securequestion.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="162.0" layoutY="236.0" text="SECRET QUESTION" textFill="#a9a9a9" />
+      <JFXPasswordField fx:id="confirmpassword" layoutX="307.0" layoutY="185.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
+      <JFXTextField fx:id="secretquestion" layoutX="307.0" layoutY="224.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/answer.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="162.0" layoutY="276.0" text="SECRET ANSWER" textFill="#a9a9a9" />
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/securequestion.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="162.0" layoutY="354.0" text="RELATIONSHIP WITH US?" textFill="#a9a9a9" />
+      <JFXComboBox fx:id="relationship" layoutX="305.0" layoutY="348.0" prefHeight="25.0" prefWidth="300.0" style="-fx-text-fill: white;" />
+      <JFXTextField fx:id="secretanswer" layoutX="307.0" layoutY="264.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
+      <JFXButton fx:id="backBtn" layoutX="69.0" layoutY="47.0" onAction="#back" text="BACK" textFill="#ababab">
+         <graphic>
+            <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
+         </graphic>
+      </JFXButton>
+      <Label fx:id="lblStatus" layoutX="131.0" layoutY="389.0" prefHeight="17.0" prefWidth="469.0" textFill="WHITE" />
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/emailicon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="163.0" layoutY="315.0" text="EMAIL" textFill="#a9a9a9" />
+      <JFXTextField fx:id="email" layoutX="308.0" layoutY="303.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
+   </children>
+</AnchorPane>

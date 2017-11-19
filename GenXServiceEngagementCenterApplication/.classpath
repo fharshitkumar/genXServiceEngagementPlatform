@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/HARSHIT KUMAR/Desktop/ITM Content/Object Oriented App Develop ITMD 510/Java Project/fontawesomefx-8.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HARSHIT KUMAR/Desktop/ITM Content/Object Oriented App Develop ITMD 510/Java Project/jfoenix.jar"/>
+	<classpathentry kind="lib" path="GenXEngagementCenterLibrary/ojdbc7.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/HARSHIT KUMAR/Desktop/ITM Content/Object Oriented App Develop ITMD 510/Java Project/scenic-view-8.7.0/scenicView.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
