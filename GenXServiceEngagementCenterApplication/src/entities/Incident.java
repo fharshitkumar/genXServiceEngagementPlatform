@@ -15,7 +15,7 @@ public class Incident {
 	private Integer serviceid;
 	private SimpleStringProperty shorttext;
 	private SimpleStringProperty problem;
-	private Integer priority;
+	private SimpleStringProperty priority;
 	private Date createdon;
 	private SimpleStringProperty status;
 	private SimpleStringProperty solution;
@@ -28,7 +28,7 @@ public class Incident {
 	
 	public Incident(Integer incidentid, Integer processorid, Integer customerid, Integer departmentid,
 			Integer channelid, Integer serviceid, String shorttext, String problem,
-			Integer priority, Date createdon, String status, String solution,
+			String priority, Date createdon, String status, String solution,
 			Date lastupdate, Date closedate, String tag, String notes,
 			boolean escalatedstatus, Integer sentiment) {
 		super();
@@ -40,7 +40,7 @@ public class Incident {
 		this.serviceid = serviceid;
 		this.shorttext = new SimpleStringProperty(shorttext);
 		this.problem = new SimpleStringProperty(problem);
-		this.priority = priority;
+		this.priority = new SimpleStringProperty(priority);
 		this.createdon = createdon;
 		this.status = new SimpleStringProperty(status);
 		this.solution = new SimpleStringProperty(solution);
@@ -167,15 +167,15 @@ public class Incident {
 	/**
 	 * @return the priority
 	 */
-	public Integer getPriority() {
-		return priority;
+	public String getPriority() {
+		return priority.get();
 	}
 
 	/**
 	 * @param priority the priority to set
 	 */
-	public void setPriority(Integer priority) {
-		this.priority = priority;
+	public void setPriority(String priority) {
+		this.priority = new SimpleStringProperty(priority);
 	}
 
 	/**

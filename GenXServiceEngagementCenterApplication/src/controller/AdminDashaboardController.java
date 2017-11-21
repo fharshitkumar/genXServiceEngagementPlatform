@@ -136,6 +136,7 @@ public class AdminDashaboardController implements Initializable{
 
 		System.out.println("Welcome to Admin screen Initialization");
 
+		
 		iID.setCellValueFactory(new PropertyValueFactory<User,Integer>("Personid"));
 
 		iusername.setCellValueFactory(new PropertyValueFactory<User,String>("Username"));
@@ -195,8 +196,6 @@ public class AdminDashaboardController implements Initializable{
 		ResultSet rs = null;
 
 		try {
-
-
 			resultSet = DCE.getResultSet(SQLQuery);
 			rs = resultSet;
 			Integer personid;

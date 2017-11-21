@@ -1,34 +1,58 @@
 package controller;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import com.sun.javafx.collections.ObservableListWrapper;
+
+import entities.Incident;
+import entities.User;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.converter.BooleanStringConverter;
+import javafx.util.converter.IntegerStringConverter;
+import models.A_DatabaseCommunicationEngine;
+import models.A_IncidentManagementEngine;
 import utility.ApplicationUtilities;
 
 public class CustomerDashaboardController implements Initializable {
-	
+
 	@FXML
 	private Pane homepanel;
-	
+
 	@FXML
 	private Pane personalinfopane;
-	
+
 	@FXML
 	private Pane servicepane;
-	
+
 	@FXML
 	private Pane twitterpane;
-	
+
 	@FXML
 	private Pane facebookpanel;
-		
+
 	@FXML
 	public void OpenCustomerHomePanel(ActionEvent event) {
 		System.out.println("You clicked Home button");
@@ -38,19 +62,19 @@ public class CustomerDashaboardController implements Initializable {
 		twitterpane.setVisible(false);
 		facebookpanel.setVisible(false);
 	}
-	
+
 	@FXML
 	public void OpenFacebookPanel(ActionEvent event) {
 		System.out.println("You clicked Facebook button");
 		facebookpanel.setVisible(true);
 	}
-	
+
 	@FXML
 	public void OpenTwitterPanel(ActionEvent event) {
 		System.out.println("You clicked Twitter button");
 		twitterpane.setVisible(true);
 	}
-	
+
 	@FXML
 	public void handleCloseButtonAction(ActionEvent event) {
 		util.close(event);
@@ -60,25 +84,25 @@ public class CustomerDashaboardController implements Initializable {
 	public void PersonalInfoOpen(ActionEvent event) {
 		personalinfopane.setVisible(true);
 	}
-	
+
 	@FXML
 	public void serviceOpen(ActionEvent event) {
 		servicepane.setVisible(true);
 	}
-	
 
-	
+
+
 	@FXML
 	private JFXTextArea wallpost;
-	
+
 	@FXML
 	public void FacebookPost(ActionEvent event) {
-			
+
 		System.out.println("You Posted "+ wallpost.getText());
 		wallpost.setText("");
 	}
-	
-	
+
+
 
 	@FXML
 	private JFXTextArea tweetwall;
@@ -88,10 +112,10 @@ public class CustomerDashaboardController implements Initializable {
 
 	@FXML
 	private JFXButton tweet;
-	
+
 	@FXML
 	private JFXButton closetwitter;
-	
+
 	@FXML
 	public void TwitterPost(ActionEvent event) {
 		System.out.println("You Posted "+ tweetwall.getText());
@@ -99,18 +123,18 @@ public class CustomerDashaboardController implements Initializable {
 	}	
 	@FXML
 	public void createTwitterPost(ActionEvent event) {
-			
+
 		System.out.println("You clicked to create new twitter post, opening the dialog");
 		tweetwall.setVisible(true);
 		popuptweet.setVisible(true);
 		tweet.setVisible(true);
 		closetwitter.setVisible(false);
-		
+
 	}
-	
+
 	@FXML
 	public void closeTwitterPost(ActionEvent event) {
-		
+
 		System.out.println("You clicked to close twitter post, closing the dialog");
 		tweetwall.setText("");
 		tweetwall.setVisible(false);
@@ -118,10 +142,10 @@ public class CustomerDashaboardController implements Initializable {
 		tweet.setVisible(false);
 		closetwitter.setVisible(false);
 	}
-	
-	
-	
-	
+
+
+
+
 	@FXML
 	public void back(ActionEvent event) {
 		personalinfopane.setVisible(false);
@@ -145,55 +169,115 @@ public class CustomerDashaboardController implements Initializable {
 		facebookpanel.setVisible(false);
 		homepanel.setVisible(true);
 	}
+
 	
 	
+	@FXML
+	public void RefreshServiceHistory(ActionEvent event) {
+		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
+		ObservableList<Incident> incidentdata = IME.displayTickets();
+		customerservicehistory.setItems(incidentdata);
+	}
+
+	
 	@FXML 
-	private JFXButton	serviceWord;
-	@FXML 
-	private JFXButton serviceExcel;
-	@FXML 
-	private JFXButton servicePowerPoint;
-	@FXML 
-	private JFXButton serviceOutlook;
-	@FXML 
-	private JFXButton serviceOneNote;
-	@FXML 
-	private JFXButton serviceOneDrive;
-	@FXML 
-	private JFXButton servicePublisher;
-	@FXML 
-	private JFXButton serviceAccess;
-	@FXML 
-	private JFXButton servicePictureMgr;
-	@FXML 
-	private JFXButton serviceSharePoint;
-	@FXML 
-	private JFXButton serviceSkype;
-	@FXML 
-	private JFXButton serviceExchange;
-	@FXML 
-	private JFXButton serviceYammer;
-	@FXML 
-	private JFXButton serviceSway;
-	@FXML 
-	private JFXButton servicePowerBI;
-	@FXML 
-	private JFXButton serviceVisio;
-	@FXML 
-	private JFXButton serviceProject;
+	private JFXButton createincidentbtn;
+
+	@FXML
+	public void OnCreateIncident (ActionEvent event) {
+
+	}
 
 	@FXML
 	public void serviceselected(ActionEvent event) {
 		Button service = new Button();
 		service = (Button)event.getSource();
 		System.out.println("You pressed : "+ service.getId());
-		
 	}
-	
+
 	ApplicationUtilities util;
+	@FXML
+	private JFXComboBox<String> service;
+	@FXML
+	private JFXComboBox<String> priority;
+
+	@FXML
+	private TableView<Incident> customerservicehistory;
 	
+	@FXML
+	private TableColumn<Incident,Integer> iincidentid;
+
+	@FXML
+	private TableColumn<Incident,String> ishorttext;
+
+	@FXML
+	private TableColumn<Incident,String> iproblem;
+
+	@FXML
+	private TableColumn<Incident,String> isolution;
+
+	@FXML
+	private TableColumn<Incident,Integer> ichannelid;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		util = new ApplicationUtilities();	
+
+		util = new ApplicationUtilities();
+		
+		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
+		
+		/**************************Bind the Data Type to the javaFX Table **************************/
+		
+		iincidentid.setCellValueFactory(new PropertyValueFactory<Incident,Integer>("TicketNumber"));
+
+		iincidentid.setCellValueFactory( c ->
+		new ReadOnlyObjectWrapper<Integer>(c.getValue().getIncidentid()));
+				
+		ishorttext.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getShorttext())));
+
+		iproblem.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getProblem())));
+
+		isolution.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getSolution())));
+
+
+		ichannelid.setCellValueFactory( c ->
+		new ReadOnlyObjectWrapper<Integer>(c.getValue().getChannelid()));		
+
+
+		
+		/**************************Bind the Ticket Data to the javaFX Table **************************/
+	
+		ObservableList<Incident> incidentdata = IME.displayTickets();
+		customerservicehistory.setItems(incidentdata);
+
+
+		/***************SHOW THE SERVICES OPTIONS ON CREATE INCIDENT SCREEN *******************/
+		List<String> services = new ArrayList<>();
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		String SQLQuery = "SELECT * FROM SERVICE";
+		ResultSet resultSet = null;
+		try {
+			resultSet = DCE.getResultSet(SQLQuery);
+			ResultSet rs = resultSet;
+			while(rs.next())
+				services.add(rs.getString(2));
+			service.setItems(FXCollections.observableArrayList(services));
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("Failed to get Services");
+		}
+
+
+
+		/***************SHOW THE PRIORITY OPTIONS ON CREATE INCIDENT SCREEN *******************/
+		List<String> priorities = new ArrayList<>();
+		priorities.add("LOW");
+		priorities.add("MEDIUM");
+		priorities.add("HIGH");
+		priorities.add("VERY HIGH");
+		priority.setItems(FXCollections.observableArrayList(priorities));
 	}
 }
