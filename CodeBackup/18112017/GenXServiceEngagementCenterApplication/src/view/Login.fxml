@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loginwindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #29292D;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <ImageView blendMode="SCREEN" fitHeight="150.0" fitWidth="200.0" layoutX="591.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/Illinois_Institute_of_Technology_(emblem).svg.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="closeBtn" contentDisplay="GRAPHIC_ONLY" layoutX="767.0" layoutY="2.0" onAction="#handleCloseButtonAction" prefHeight="25.0" prefWidth="29.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;">
+         <graphic>
+            <MaterialDesignIconView fill="#c5c4c4" glyphName="CLOSE" size="15" />
+         </graphic>
+      </JFXButton>
+      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="6.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Pictures/iitlogo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="234.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/userloginicon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="266.0" layoutY="168.0" text="USERNAME" textFill="#acaaaa" />
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="234.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../../images/passwordKey.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="266.0" layoutY="212.0" text="PASSWORD" textFill="#acaaaa" />
+      <JFXTextField fx:id="username" layoutX="340.0" layoutY="164.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" unFocusColor="#bcbcbc" />
+      <JFXPasswordField fx:id="password" layoutX="340.0" layoutY="207.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
+      <JFXCheckBox fx:id="admin" layoutX="298.0" layoutY="291.0" text="Login as administrator" textFill="#acaaaa" />
+      <JFXButton layoutX="555.0" layoutY="288.0" onAction="#Login" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #2195F5;" text="LOGIN" textFill="#fdfdfd" />
+      <Label layoutX="10.0" layoutY="473.0" text="All rights reserved to Information Technology &amp; Management Department , Illinois Institute of Technology.&#10;Designed By: Harshit Kumar" textFill="#acaaaa">
+         <font>
+            <Font size="6.0" />
+         </font>
+      </Label>
+      <Label layoutX="580.0" layoutY="9.0" text="Not member?" textFill="#acaaaa" />
+      <Label fx:id="error" layoutX="224.0" layoutY="253.0" prefHeight="17.0" prefWidth="418.0" textFill="#cd1717" />
+      <JFXButton layoutX="665.0" layoutY="6.0" onAction="#signup" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #000000;" text="SIGNUP" textFill="#fdfdfd" />
+   </children>
+</AnchorPane>
