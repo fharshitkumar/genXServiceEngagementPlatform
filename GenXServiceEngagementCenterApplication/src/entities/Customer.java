@@ -4,7 +4,6 @@ public class Customer extends User{
 
 	private Integer customerid;
 	private Integer serviceid;
-	private Integer roleid;
 	private Integer contractid;
 	
 	public Customer(Integer personid, String username, String password, Boolean admin, String secretquestion,
@@ -13,7 +12,6 @@ public class Customer extends User{
 		super(personid, username, password, admin, secretquestion, secretanswer, email, roleid);
 		this.customerid = customerid;
 		this.serviceid = serviceid;
-		this.roleid = roleid;
 		this.contractid = contractid;
 	}
 
@@ -44,21 +42,6 @@ public class Customer extends User{
 	public void setServiceid(Integer serviceid) {
 		this.serviceid = serviceid;
 	}
-
-	/**
-	 * @return the roleid
-	 */
-	public Integer getRoleid() {
-		return roleid;
-	}
-
-	/**
-	 * @param roleid the roleid to set
-	 */
-	public void setRoleid(Integer roleid) {
-		this.roleid = roleid;
-	}
-
 	/**
 	 * @return the contractid
 	 */

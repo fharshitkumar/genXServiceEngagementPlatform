@@ -12,6 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
 			Image anotherIcon = new Image("http://mypages.iit.edu/~segre/iit-icon.png");
 			Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
 			Scene scene = new Scene(root);

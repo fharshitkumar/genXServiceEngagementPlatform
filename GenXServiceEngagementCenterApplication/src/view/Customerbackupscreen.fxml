@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerDashaboardController">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="1200.0">
+         <children>
+            <Pane fx:id="homepanel" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #F8F8F8;">
+               <children>
+                  <JFXButton fx:id="personalinfobtn" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="251.0" layoutY="200.0" onAction="#PersonalInfoOpen" opacity="0.77" prefHeight="240.0" prefWidth="240.0" ripplerFill="WHITE" style="-fx-border-radius: 0em; -fx-background-color: #19BCD6;" stylesheets="@../css/tiles.css" text="PERSONALINFO" textFill="WHITE">
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="INFORMATION" size="40" strokeType="INSIDE" styleClass="button" text="" wrappingWidth="30.6666259765625" />
+                     </graphic>
+                  </JFXButton>
+                  <Label fx:id="personalinfolabel" layoutX="277.0" layoutY="389.0" prefHeight="48.0" prefWidth="281.0" text="PERSONAL INFORMATION" textFill="WHITE">
+                     <font>
+                        <Font name="Raleway" size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="servicehistorybtn" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="631.0" layoutY="201.0" onAction="#serviceOpen" opacity="0.77" prefHeight="240.0" prefWidth="240.0" ripplerFill="WHITE" style="-fx-border-radius: 0em; -fx-background-color: #19BCD6;" stylesheets="@../css/tiles.css" text="SERVICE">
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="TEXTURE" size="40" styleClass="button" wrappingWidth="30.6666259765625" />
+                     </graphic>
+                  </JFXButton>
+                  <Label fx:id="servicehistorylabel" layoutX="782.0" layoutY="388.0" prefHeight="48.0" prefWidth="72.0" text="SERVICE" textFill="#fdfdfd">
+                     <font>
+                        <Font name="Raleway" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="539.0" layoutY="388.0" prefHeight="48.0" prefWidth="153.0" text="CHANNEL" textFill="#fdfdfd">
+                     <font>
+                        <Font name="Raleway" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="51.0" fitWidth="53.0" layoutX="319.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../../images/female.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="85.0" layoutY="44.0" text="WELCOME" textFill="#d2d0d0">
+                     <font>
+                        <Font name="MS Outlook" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="88.0" layoutY="70.0" text="HARSHIT KUMAR" textFill="#ff6b6b">
+                     <font>
+                        <Font name="Material Icons" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="74.0" layoutY="464.0" text="All rights reserved to Information Technology &amp; Management Department , Illinois Institute of Technology.&#10;Designed By: Harshit Kumar" textFill="#acaaaa">
+                     <font>
+                        <Font size="6.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="personalinfopane" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #2E3B42;" visible="false">
+                     <children>
+                        <Label layoutX="101.0" layoutY="131.0" text="First Name" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="101.0" layoutY="175.0" prefHeight="48.0" prefWidth="98.0" text="Last Name" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="123.0" layoutY="241.0" text="Contact" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="123.0" layoutY="292.0" text="Gender" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="74.0" layoutY="345.0" text="Date OF Birth" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="486.0" layoutY="132.0" text="Address" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="520.0" layoutY="180.0" text="City" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="506.0" layoutY="235.0" text="State" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="480.0" layoutY="287.0" text="Zipcode" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField focusColor="BLACK" layoutX="215.0" layoutY="120.0" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField focusColor="BLACK" layoutX="214.0" layoutY="175.0" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField focusColor="BLACK" layoutX="213.0" layoutY="230.0" promptText="(___)-___-____" style="-fx-prompt-text-fill: #6F6F6F;" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField focusColor="BLACK" layoutX="211.0" layoutY="338.0" promptText="DD/MM/YYYYY" style="-fx-prompt-text-fill: #6F6F6F;" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXComboBox focusColor="BLACK" layoutX="219.0" layoutY="298.0" unFocusColor="WHITE" />
+                        <JFXTextField focusColor="BLACK" layoutX="567.0" layoutY="124.0" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField focusColor="BLACK" layoutX="566.0" layoutY="177.0" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField focusColor="BLACK" layoutX="567.0" layoutY="226.0" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField focusColor="BLACK" layoutX="568.0" layoutY="281.0" promptText="XXXXX" style="-fx-prompt-text-fill: #6F6F6F;" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Raleway" size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <ImageView fitHeight="280.0" fitWidth="356.0" layoutX="824.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/office-suite-material-design-preview.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="serviceOffice" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="841.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Office">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagOffice" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceWord" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="894.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Word">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagWord" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceExcel" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Excel">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedExcel" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="servicePowerPoint" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PowerPoint">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagPowerPoint" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceOutlook" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Outlook">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagOutlook" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceOneNote" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="143.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="OneNote">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagOneNote" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceOneDrive" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="841.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="OneDrive">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagOneDrive" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="servicePublisher" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="898.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Publisher">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagPublisher" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceAccess" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Access">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagAccess" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="servicePictureMgr" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PictureMgr">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagPictureMgr" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceSharePoint" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="216.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="SharePoint">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagSharePoint" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceSkype" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Skype">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagSkype" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceExchange" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="298.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Exchange">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagExchange" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceYammer" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="298.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Yammer">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagYammer" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceSway" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="294.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Sway">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagSway" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="servicePowerBI" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="297.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PowerBI">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagPowerBI" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceVisio" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="896.0" layoutY="297.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Visio">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagVisio" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="serviceProject" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="842.0" layoutY="294.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Project">
+                           <graphic>
+                              <MaterialDesignIconView fx:id="selectedflagProject" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <Label layoutX="850.0" layoutY="103.0" text="SERVICES" textFill="#cecece">
+                           <font>
+                              <Font name="Raleway Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="851.0" layoutY="122.0" text="Select the services you want to use:" textFill="#cecece">
+                           <font>
+                              <Font name="Tahoma" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="101.0" layoutY="87.0" text="PERSONAL DETAILS" textFill="#cecece">
+                           <font>
+                              <Font name="Raleway Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="backBtn" layoutX="65.0" layoutY="40.0" onAction="#back" text="BACK" textFill="#ababab">
+                           <graphic>
+                              <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton layoutX="496.0" layoutY="424.0" prefHeight="29.0" prefWidth="223.0" style="-fx-background-color: #2195F5;" text="SUBMIT" textFill="WHITE" />
+                        <Label layoutX="63.0" layoutY="473.0" text="All rights reserved to Information Technology &amp; Management Department , Illinois Institute of Technology.&#10;Designed By: Harshit Kumar" textFill="#acaaaa">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="101.0" layoutY="107.0" text="Enter your personal details" textFill="#cecece">
+                           <font>
+                              <Font name="Tahoma" size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="servicepane" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: F8F8F8;" visible="false">
+                     <children>
+                        <TableView fx:id="customerservicehistory" layoutX="97.0" layoutY="264.0" prefHeight="200.0" prefWidth="1080.0" style="-fx-background-color: #EfEfEf; -fx-text-background-color: #2F2F2F;" stylesheets="@../../bin/css/table.css">
+                          <columns>
+                            <TableColumn fx:id="iincidentid" prefWidth="95.22221374511719" style="-fx-background-color: #EfEfEf;" text="Incidentid" />
+                            <TableColumn fx:id="ishorttext" prefWidth="195.7777862548828" style="-fx-background-color: #EfEfEf;" text="Subject" />
+                              <TableColumn fx:id="iproblem" prefWidth="345.44439697265625" style="-fx-background-color: #EfEfEf;" text="ProblemDescription" />
+                              <TableColumn fx:id="isolution" minWidth="0.0" prefWidth="345.55560302734375" style="-fx-background-color: #EfEfEf;" text="Solution" />
+                              <TableColumn fx:id="ichannelid" prefWidth="96.0" style="-fx-background-color: #EfEfEf;" text="Channel" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="101.0" layoutY="234.0" text="SERVICE HISTORY">
+                           <font>
+                              <Font name="Raleway Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="106.0" layoutY="44.0" text="SERVICE INCIDENT">
+                           <font>
+                              <Font name="Raleway Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="106.0" layoutY="60.0" text="Report an issue for the your services" />
+                        <Label layoutX="102.0" layoutY="106.0" text="SERVICE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="94.0" layoutY="134.0" text="PRIORITY">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXComboBox fx:id="service" focusColor="BLACK" layoutX="166.0" layoutY="100.0" prefHeight="25.0" prefWidth="212.0" />
+                        <JFXComboBox fx:id="priority" focusColor="BLACK" layoutX="167.0" layoutY="128.0" prefHeight="25.0" prefWidth="212.0" />
+                        <Label layoutX="458.0" layoutY="104.0" text="SUBJECT" />
+                        <JFXTextField fx:id="shorttext" focusColor="BLACK" layoutX="526.0" layoutY="99.0" prefHeight="25.0" prefWidth="616.0" />
+                        <Label layoutX="410.0" layoutY="139.0" prefHeight="17.0" prefWidth="112.0" text="PROBLEM DETAILS" />
+                        <JFXButton fx:id="backBtn1" layoutX="70.0" layoutY="8.0" onAction="#backService" text="BACK" textFill="#525252">
+                           <graphic>
+                              <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
+                           </graphic>
+                        </JFXButton>
+                        <Label layoutX="64.0" layoutY="469.0" text="All rights reserved to Information Technology &amp; Management Department , Illinois Institute of Technology.&#10;Designed By: Harshit Kumar" textFill="#a9a9a9">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="createincidentbtn" layoutX="962.0" layoutY="197.0" onAction="#OnCreateIncident" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #2FBFBF;" stylesheets="@../css/tiles.css" text="CREATE INCIDENT" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway ExtraBold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="refreshbtn" layoutX="273.0" layoutY="228.0" onAction="#RefreshServiceHistory" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #1F3F3F;" stylesheets="@../css/tiles.css" text="REFRESH" textFill="WHITE">
+                           <font>
+                              <Font name="Raleway ExtraBold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXTextField fx:id="problem" focusColor="BLACK" layoutX="522.0" layoutY="141.0" prefHeight="25.0" prefWidth="616.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="twitterpane" layoutX="55.0" prefHeight="500.0" prefWidth="1145.0" style="-fx-background-color: F8F8F8;" visible="false">
+                     <children>
+                        <JFXButton fx:id="backBtn11" layoutX="8.0" layoutY="15.0" onAction="#backsocialmedia" text="BACK" textFill="#525252">
+                           <graphic>
+                              <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
+                           </graphic>
+                        </JFXButton>
+                        <ImageView fitHeight="502.0" fitWidth="1108.0" layoutX="81.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/twitter.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="createtweet" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="2.0" layoutX="1008.0" layoutY="3.0" onAction="#createTwitterPost" opacity="0.77" prefHeight="29.0" prefWidth="66.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" text="CreateTweet" textFill="WHITE">
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../../bin/css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <ImageView fx:id="popuptweet" fitHeight="251.0" fitWidth="733.0" layoutX="357.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../../images/tweet.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="tweet" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="2.0" layoutX="944.0" layoutY="219.0" onAction="#TwitterPost" opacity="0.77" prefHeight="55.0" prefWidth="106.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" text="Tweet" textFill="WHITE" visible="false">
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../../bin/css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXTextArea fx:id="tweetwall" focusColor="WHITE" layoutX="378.0" layoutY="130.0" prefHeight="73.0" prefWidth="620.0" unFocusColor="WHITE" visible="false" />
+                        <JFXButton fx:id="closetwitter" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="2.0" layoutX="1023.0" layoutY="51.0" onAction="#closeTwitterPost" opacity="0.77" prefHeight="36.0" prefWidth="27.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" text="Close" textFill="WHITE" visible="false">
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../../bin/css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="facebookpanel" layoutX="51.0" prefHeight="500.0" prefWidth="1145.0" style="-fx-background-color: white;" visible="false">
+                     <children>
+                        <ImageView fitHeight="500.0" fitWidth="1136.0" layoutX="72.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/facebook.png" />
+                           </image>
+                        </ImageView>
+                        <JFXTextArea fx:id="wallpost" focusColor="WHITE" layoutX="320.0" layoutY="298.0" prefHeight="39.0" prefWidth="308.0" promptText="write something on this page..." style="-fx-prompt-text-fill: #8F8F8F;" unFocusColor="WHITE">
+                           <font>
+                              <Font size="10.0" />
+                           </font></JFXTextArea>
+                        <JFXButton fx:id="Post" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="2.0" layoutX="582.0" layoutY="340.0" onAction="#FacebookPost" opacity="0.77" prefHeight="10.0" prefWidth="44.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" textFill="WHITE">
+                           <stylesheets>
+                              <URL value="@../css/tiles.css" />
+                              <URL value="@../../bin/css/services.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="backBtn111" onAction="#backfacebook" text="BACK" textFill="#525252">
+                           <graphic>
+                              <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
+            <AnchorPane prefHeight="500.0" prefWidth="55.0" style="-fx-background-color: #2C2C31; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="CustomerHome" contentDisplay="GRAPHIC_ONLY" layoutX="2.0" layoutY="100.0" onAction="#OpenCustomerHomePanel" prefHeight="48.0" prefWidth="52.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" stylesheets="@../css/navigationbutton.css" text="Home">
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="15" styleClass="button" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="Facebook" contentDisplay="GRAPHIC_ONLY" layoutX="2.0" layoutY="150.0" onAction="#OpenFacebookPanel" prefHeight="48.0" prefWidth="52.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" stylesheets="@../css/navigationbutton.css" text="Facebook">
+                     <graphic>
+                        <MaterialDesignIconView fill="#c5c4c4" glyphName="FACEBOOK" size="15" styleClass="button" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="Twitter" contentDisplay="GRAPHIC_ONLY" layoutX="2.0" layoutY="200.0" onAction="#OpenTwitterPanel" prefHeight="48.0" prefWidth="52.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" stylesheets="@../css/navigationbutton.css" text="Twitter">
+                     <graphic>
+                        <MaterialDesignIconView fill="#c5c4c4" glyphName="TWITTER" size="15" styleClass="button" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="closeBtn" contentDisplay="GRAPHIC_ONLY" layoutX="2.0" layoutY="250.0" onAction="#handleCloseButtonAction" prefHeight="48.0" prefWidth="52.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" stylesheets="@../css/navigationbutton.css" text="Exit">
+                     <graphic>
+                        <MaterialDesignIconView fill="#c5c4c4" glyphName="CLOSE" size="15" styleClass="button" />
+                     </graphic>
+                  </JFXButton>
+                  <Pane prefHeight="55.0" prefWidth="55.0" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="9.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/genXLogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

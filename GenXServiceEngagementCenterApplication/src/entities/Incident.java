@@ -9,7 +9,6 @@ public class Incident {
 	private Integer incidentid;
 	private Integer processorid;
 	private Integer customerid;
-	private Integer departmentid;
 	private Integer channelid;
 	private Integer serviceid;
 	private SimpleStringProperty shorttext;
@@ -25,7 +24,7 @@ public class Incident {
 	private SimpleBooleanProperty escalatedstatus;
 	private Integer sentiment;
 	
-	public Incident(Integer incidentid, Integer processorid, Integer customerid, Integer departmentid,
+	public Incident(Integer incidentid, Integer processorid, Integer customerid,
 			Integer channelid, Integer serviceid, String shorttext, String problem,
 			String priority, Timestamp createdon, String status, String solution,
 			Timestamp lastupdate, Timestamp closedate, String tag, String notes,
@@ -34,7 +33,6 @@ public class Incident {
 		this.incidentid = incidentid;
 		this.processorid = processorid;
 		this.customerid = customerid;
-		this.departmentid = departmentid;
 		this.channelid = channelid;
 		this.serviceid = serviceid;
 		this.shorttext = new SimpleStringProperty(shorttext);
@@ -91,20 +89,6 @@ public class Incident {
 	 */
 	public void setCustomerid(Integer customerid) {
 		this.customerid = customerid;
-	}
-
-	/**
-	 * @return the departmentid
-	 */
-	public Integer getDepartmentid() {
-		return departmentid;
-	}
-
-	/**
-	 * @param departmentid the departmentid to set
-	 */
-	public void setDepartmentid(Integer departmentid) {
-		this.departmentid = departmentid;
 	}
 
 	/**

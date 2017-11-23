@@ -1,43 +1,31 @@
 package controller;
 
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.javafx.collections.ObservableListWrapper;
 
 import entities.Incident;
-import entities.User;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.util.converter.BooleanStringConverter;
-import javafx.util.converter.IntegerStringConverter;
-import models.A_DatabaseCommunicationEngine;
 import models.A_IncidentManagementEngine;
+import models.ApplicationUser;
 import utility.ApplicationUtilities;
-import javafx.scene.control.Label;
 
 public class CustomerDashaboardController implements Initializable {
 
@@ -173,15 +161,15 @@ public class CustomerDashaboardController implements Initializable {
 		homepanel.setVisible(true);
 	}
 
-	
-	
+
+
 	@FXML
 	public void RefreshServiceHistory(ActionEvent event) {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 		ObservableList<Incident> incidentdata = IME.displayTickets();
 		customerservicehistory.setItems(incidentdata);
 	}
-	
+
 	@FXML 
 	private JFXButton createincidentbtn;
 
@@ -192,38 +180,51 @@ public class CustomerDashaboardController implements Initializable {
 	private JFXTextField problem;
 
 
-	
+
+
 	@FXML
 	public void OnCreateIncident (ActionEvent event) {
-				A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
+		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 
-/***************************FOR REFERENCE TO CREATE TICKET***************************************/
-//				IME.createIncidentCustomer(
-//						customerid,  
-//						channelid, 
-//						serviceid, 
-//						shorttext, 
-//						problem, 
-//						priority, 
-//						createdon, 
-//						status, );
-/***********************************************************************************************/
-				
-				String Subject = shorttext.getText();
-				String Problem = problem.getText();
-				IME.createIncidentCustomer(
-						1, 
-						3, 
-						service.getSelectionModel().getSelectedIndex()+1, 
-						Subject, 
-						Problem, 
-						priority.getValue(), 
-						new Timestamp(System.currentTimeMillis()), 
-						"OPEN",
-						false);
+		/***************************FOR REFERENCE TO CREATE TICKET***************************************/
+		//				IME.createIncidentCustomer(
+		//						customerid,  
+		//						channelid, 
+		//						serviceid, 
+		//						shorttext, 
+		//						problem, 
+		//						priority, 
+		//						createdon, 
+		//						status, );
+		/***********************************************************************************************/
 
+		String Subject = shorttext.getText();
+		String Problem = problem.getText();
+
+		IME.createIncident(
+				null, 
+				ApplicationUser.applicationUser.getPersonid(), 
+				300, 
+				service.getSelectionModel().getSelectedIndex()+1, 
+				Subject, 
+				Problem, 
+				priority.getValue(), 
+				new Timestamp(System.currentTimeMillis()), 
+				"OPEN", 
+				"", 
+				null, 
+				null, 
+				"", 
+				"", 
+				false, 
+				3);
+
+		shorttext.setText("");
+		problem.setText("");
+		service.getSelectionModel().clearSelection();
+		priority.getSelectionModel().clearSelection();
 	}
-	
+
 	@FXML
 	public void serviceselected(ActionEvent event) {
 		Button service = new Button();
@@ -239,7 +240,7 @@ public class CustomerDashaboardController implements Initializable {
 
 	@FXML
 	private TableView<Incident> customerservicehistory;
-	
+
 	@FXML
 	private TableColumn<Incident,Integer> iincidentid;
 
@@ -261,15 +262,16 @@ public class CustomerDashaboardController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		System.out.println("Testing: Control came to Customer Dashboard Controller");
 
 		util = new ApplicationUtilities();
-		
+
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
-		
+
 		/**************************Bind the Data Type to the javaFX Table **************************/
 		iincidentid.setCellValueFactory( c ->
 		new ReadOnlyObjectWrapper<Integer>(c.getValue().getIncidentid()));
-				
+
 		ishorttext.setCellValueFactory(c -> 
 		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getShorttext())));
 
@@ -281,11 +283,11 @@ public class CustomerDashaboardController implements Initializable {
 
 		ichannelid.setCellValueFactory( c ->
 		new ReadOnlyObjectWrapper<Integer>(c.getValue().getChannelid()));		
-		
-		/**************************Bind the Ticket Data to the javaFX Table **************************/	
-		ObservableList<Incident> incidentdata = IME.displayTickets();
-		customerservicehistory.setItems(incidentdata);
 
+		//		/**************************Bind the Ticket Data to the javaFX Table **************************/	
+		//		ObservableList<Incident> incidentdata = IME.displayTickets();
+		//		customerservicehistory.setItems(incidentdata);
+		//
 		/***************SHOW THE SERVICES OPTIONS ON CREATE INCIDENT SCREEN *******************/
 		service.setItems(FXCollections.observableArrayList(IME.getServices()));
 

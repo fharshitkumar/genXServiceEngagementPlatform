@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class DatabaseConnector implements AutoCloseable{
 
 
@@ -11,7 +12,6 @@ public class DatabaseConnector implements AutoCloseable{
 	private final static String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 	private final static String user ="SYSTEM";
 	private final static String password ="8Innovation8";
-
 
 	/**
 	 *   DatabaseConnector() : Constructor will create a connection to Oracle 12C Database 
@@ -34,9 +34,10 @@ public class DatabaseConnector implements AutoCloseable{
 		/************************************************************************/
 		try {
 			this.connection = DriverManager.getConnection(url, user, password);
-
+			System.getProperties().setProperty("oracle.jdbc.J2EE13Compliant", "true");
 		} catch (SQLException e) {
 			System.out.println("Creation of Database connection failed. Kindly check output console ");
+
 			e.printStackTrace();
 			return;
 		}

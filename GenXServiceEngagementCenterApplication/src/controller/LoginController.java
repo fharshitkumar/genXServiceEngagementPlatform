@@ -1,8 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -11,6 +14,7 @@ import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,10 +23,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.A_DatabaseCommunicationEngine;
+import models.ApplicationUser;
 import utility.ApplicationUtilities;
 
-public class LoginController {
+public class LoginController  implements Initializable {
 
+	
 	@FXML
 	private JFXTextField username;
 
@@ -67,6 +73,7 @@ public class LoginController {
 				return;
 			}
 
+
 			String SQLQuery = "SELECT * FROM LOGIN WHERE USERNAME='"+username+"'";
 			ResultSet resultSet = DCE.getResultSet(SQLQuery);
 			ResultSet rs = resultSet;
@@ -99,7 +106,7 @@ public class LoginController {
 			try {
 				Stage primaryStage = new Stage();
 				Parent root = null;
-
+				new ApplicationUser(guest);
 				if(guest.getAdmin() && admin.isSelected()) {
 					System.out.println("Opening Admin view");
 					/*****************If user is admin, inflate admin view*****************************/
@@ -126,6 +133,7 @@ public class LoginController {
 				primaryStage.show();
 			} catch(Exception e) {
 				System.out.println("Error occured while inflating view: " + e);
+
 			}
 
 		} catch (SQLException e) {
@@ -146,9 +154,15 @@ public class LoginController {
 			primaryStage.centerOnScreen();
 			primaryStage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		System.out.println("Testing: Control came to Login Dashboard Controller");
+		
 	}
 
 

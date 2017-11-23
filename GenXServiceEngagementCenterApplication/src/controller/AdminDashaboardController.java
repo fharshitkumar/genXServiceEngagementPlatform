@@ -17,15 +17,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.util.converter.BooleanStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import models.A_DatabaseCommunicationEngine;
@@ -74,7 +72,7 @@ public class AdminDashaboardController implements Initializable{
 	JFXTextField searchemail;
 	
 	@FXML
-	JFXComboBox searchrole;
+	JFXComboBox<String> searchrole;
 	
 	ApplicationUtilities util;
 
@@ -127,10 +125,6 @@ public class AdminDashaboardController implements Initializable{
 
 	}
 
-	
-	
-	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
