@@ -10,7 +10,7 @@ public class DatabaseConnector implements AutoCloseable{
 	private  Connection connection; 
 	private final static String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 	private final static String user ="SYSTEM";
-	private final static String password ="8Innovation8";
+	private final static String password ="";
 	
 
 	//Constructor will create a connection to Oracle 12C Database

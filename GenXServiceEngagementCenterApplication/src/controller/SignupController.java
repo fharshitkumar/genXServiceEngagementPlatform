@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import models.A_DatabaseCommunicationEngine;
 import utility.ApplicationUtilities;
 
@@ -51,6 +53,19 @@ public class SignupController implements 	Initializable{
 	
 	@FXML
 	private JFXComboBox<String> relationship;
+	
+	@FXML 
+	private Label contractlabel;
+	
+	@FXML 
+	private ImageView contractimage;
+	
+	@FXML
+	private JFXTextField contractnumber;
+	
+	
+	
+	
 
 	ApplicationUtilities util;
 	
@@ -69,6 +84,26 @@ public class SignupController implements 	Initializable{
 		util.close(event);
 	}
 
+	@FXML
+	public void checkifpremiumcustomer(ActionEvent event) {
+		contractnumber.setText("0");
+
+		System.out.println(relationship.getSelectionModel().getSelectedIndex());
+		if((relationship.getSelectionModel().getSelectedItem()).contains("PREMIUM")) {
+			contractlabel.setVisible(true);
+			contractimage.setVisible(true);
+			contractnumber.setVisible(true);
+		}
+		else
+		{
+			contractlabel.setVisible(false);
+			contractimage.setVisible(false);
+			contractnumber.setVisible(false);
+			
+		}
+
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		List<String> relationships = new ArrayList<>();
@@ -79,8 +114,10 @@ public class SignupController implements 	Initializable{
 		try {
 			resultSet = DCE.getResultSet(SQLQuery);
 			ResultSet rs = resultSet;
-			while(rs.next())
+			while(rs.next()) {
+				if(!rs.getString(2).contains("ADMIN"))
 			relationships.add(rs.getString(2));
+			}
 			relationship.setItems(FXCollections.observableArrayList(relationships));
 			rs.close();
 		} catch (SQLException e) {
@@ -155,15 +192,15 @@ public class SignupController implements 	Initializable{
 		}
 		
 		
-		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
-		
-		
+		A_DatabaseCommunicationEngine DCE_LOGIN = new A_DatabaseCommunicationEngine();
+		A_DatabaseCommunicationEngine DCE_CUSTOMER = new A_DatabaseCommunicationEngine();
+		A_DatabaseCommunicationEngine DCE_PERSON = new A_DatabaseCommunicationEngine();
 		boolean SignupFlag = true;  
 		try {
 			
 		/************************Check if user with same email id already exists or not*******************************/		
 		String CheckIfUserExistSQL = "SELECT COUNT(*) FROM LOGIN WHERE EMAIL='"+email+"'";
-		ResultSet resultSetUserExist = DCE.getResultSet(CheckIfUserExistSQL);
+		ResultSet resultSetUserExist = DCE_LOGIN.getResultSet(CheckIfUserExistSQL);
 		ResultSet rsUserExist = resultSetUserExist;
 		int UserExist = 0;
 		while(rsUserExist.next())
@@ -171,12 +208,15 @@ public class SignupController implements 	Initializable{
 		rsUserExist.close();
 		/************************Check if username already exists  or not *******************************************/
 		String CheckIfUserNameExistSQL = "SELECT COUNT(*) FROM LOGIN WHERE USERNAME='"+username+"'";
-		ResultSet resultSetUserNameExist = DCE.getResultSet(CheckIfUserNameExistSQL);
+		ResultSet resultSetUserNameExist = DCE_LOGIN.getResultSet(CheckIfUserNameExistSQL);
 		ResultSet rsUserNameExist = resultSetUserNameExist;
 		int UserNameExist = 0;
 		while(rsUserNameExist.next())
 			UserNameExist = rsUserNameExist.getInt(1);
 		rsUserNameExist.close();
+		
+		/***************Check if the Contract number entered is a proper 10 digit number and is unique*****************/
+		
 		
 		if(UserExist!=0) {
 			lblStatus.setText("user with email: "+email+ " already exists. Kindly login with your credentials");
@@ -190,12 +230,16 @@ public class SignupController implements 	Initializable{
 		}		
 		else {
 		String SQLQuery = "SELECT COUNT(PERSONID) FROM LOGIN";
-		ResultSet resultSet = DCE.getResultSet(SQLQuery);
+		ResultSet resultSet = DCE_LOGIN.getResultSet(SQLQuery);
 		ResultSet rs = resultSet;
 		int personID = 0;
 		while(rs.next())
 			personID = rs.getInt(1)+1;
 		rs.close();
+		
+		
+		
+		/***********************INSERT INTO THE LOGIN TABLE THE DETAILS FOR NEXT TIME LOGIN CREDENTIALS**************************/
 		String sql = "INSERT INTO LOGIN" + 
 				" VALUES('"
 				+ personID + "', '"
@@ -207,7 +251,55 @@ public class SignupController implements 	Initializable{
 				+ email + "', '"
 				+ (relationship.getSelectionModel().getSelectedIndex() + 1) +"'"
 				+ ")";
-			DCE.DDLCommandDatabase(sql);
+		
+	
+		String FNAME = null;
+		String LNAME = null;
+		Integer CONTACT = null;
+		String ADDRESS = null;
+		String GENDER = null;
+		Date DATEOFBIRTH = null;
+		String CITY = null;
+		String STATE = null;
+		String ZIPCODE = null;
+		String sqlPERSONINFO = "INSERT INTO PERSONINFO" + 
+				" VALUES("
+				+ personID + ", "
+				+ FNAME + ", "
+				+ LNAME + ", "
+				+ CONTACT + ", "
+				+ ADDRESS + ", "
+				+ GENDER + ", "
+				+ DATEOFBIRTH + ", "
+				+ CITY + ", "
+				+ STATE + ", "
+				+ ZIPCODE
+				+ ")";
+	
+		
+		if((relationship.getSelectionModel().getSelectedItem()).contains("CUSTOMER")) {
+			int relationshipID = relationship.getSelectionModel().getSelectedIndex()+1;
+			Integer contractID =0;
+			if(contractnumber.getText() != null)
+			contractID = Integer.getInteger(contractnumber.getText());
+			
+			
+			
+			String sqlCONTRACT = "INSERT INTO CUSTOMER" + 
+				" VALUES("
+				+ personID + ", "
+				+ 0 + ", "
+				+ relationshipID + ", "
+				+ contractID
+				+ ")";
+			DCE_PERSON.DDLCommandDatabase(sqlPERSONINFO);
+			DCE_CUSTOMER.DDLCommandDatabase(sqlCONTRACT);
+			DCE_LOGIN.DDLCommandDatabase(sql);
+		}
+		else if (!(relationship.getSelectionModel().getSelectedItem()).contains("ADMIN")) {	
+		}
+		
+		
 		}
 		}catch (SQLException e) {
 			System.out.println("There is an issue in inserting into the backend during signup");

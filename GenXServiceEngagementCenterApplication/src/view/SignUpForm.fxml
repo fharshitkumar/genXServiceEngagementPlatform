@@ -42,7 +42,7 @@
       <Label layoutX="161.0" layoutY="152.0" text="PASSWORD" textFill="#a9a9a9" />
       <JFXTextField fx:id="username" layoutX="306.0" layoutY="96.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
       <JFXPasswordField fx:id="password" layoutX="306.0" layoutY="142.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
-      <JFXButton layoutX="372.0" layoutY="415.0" onAction="#signup" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #2195F5;" text="SIGNUP" textFill="#fdfdfd" />
+      <JFXButton layoutX="372.0" layoutY="438.0" onAction="#signup" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #2195F5;" text="SIGNUP" textFill="#fdfdfd" />
       <Label layoutX="10.0" layoutY="473.0" text="All rights reserved to Information Technology &amp; Management Department , Illinois Institute of Technology.&#10;Designed By: Harshit Kumar" textFill="#a9a9a9">
          <font>
             <Font size="6.0" />
@@ -74,14 +74,14 @@
          </image>
       </ImageView>
       <Label layoutX="162.0" layoutY="354.0" text="RELATIONSHIP WITH US?" textFill="#a9a9a9" />
-      <JFXComboBox fx:id="relationship" layoutX="305.0" layoutY="348.0" prefHeight="25.0" prefWidth="300.0" stylesheets="@../css/combobox.css" />
+      <JFXComboBox fx:id="relationship" layoutX="305.0" layoutY="348.0" onAction="#checkifpremiumcustomer" prefHeight="25.0" prefWidth="300.0" stylesheets="@../css/combobox.css" />
       <JFXTextField fx:id="secretanswer" layoutX="307.0" layoutY="264.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
       <JFXButton fx:id="backBtn" layoutX="69.0" layoutY="47.0" onAction="#back" text="BACK" textFill="#ababab">
          <graphic>
             <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
          </graphic>
       </JFXButton>
-      <Label fx:id="lblStatus" layoutX="131.0" layoutY="389.0" prefHeight="17.0" prefWidth="469.0" textFill="WHITE" />
+      <Label fx:id="lblStatus" layoutX="131.0" layoutY="413.0" prefHeight="17.0" prefWidth="469.0" textFill="WHITE" />
       <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
          <image>
             <Image url="@../../images/emailicon.png" />
@@ -89,5 +89,12 @@
       </ImageView>
       <Label layoutX="163.0" layoutY="315.0" text="EMAIL" textFill="#a9a9a9" />
       <JFXTextField fx:id="email" layoutX="308.0" layoutY="303.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
+      <Label fx:id="contractlabel" layoutX="161.0" layoutY="391.0" text="CONTRACT NUMBER" textFill="#a9a9a9" visible="false" />
+      <ImageView fx:id="contractimage" fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;" visible="false">
+         <image>
+            <Image url="@../../images/contract.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="contractnumber" layoutX="305.0" layoutY="387.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" visible="false" />
    </children>
 </AnchorPane>

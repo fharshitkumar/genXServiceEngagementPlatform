@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import com.sun.javafx.collections.ObservableListWrapper;
 
 import entities.Incident;
@@ -35,6 +37,7 @@ import javafx.util.converter.IntegerStringConverter;
 import models.A_DatabaseCommunicationEngine;
 import models.A_IncidentManagementEngine;
 import utility.ApplicationUtilities;
+import javafx.scene.control.Label;
 
 public class CustomerDashaboardController implements Initializable {
 
@@ -178,16 +181,49 @@ public class CustomerDashaboardController implements Initializable {
 		ObservableList<Incident> incidentdata = IME.displayTickets();
 		customerservicehistory.setItems(incidentdata);
 	}
-
 	
 	@FXML 
 	private JFXButton createincidentbtn;
 
+	@FXML 
+	private JFXTextField shorttext;
+
+	@FXML 
+	private JFXTextField problem;
+
+
+	
 	@FXML
 	public void OnCreateIncident (ActionEvent event) {
+				A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
+
+/***************************FOR REFERENCE TO CREATE TICKET***************************************/
+//				IME.createIncidentCustomer(
+//						customerid,  
+//						channelid, 
+//						serviceid, 
+//						shorttext, 
+//						problem, 
+//						priority, 
+//						createdon, 
+//						status, );
+/***********************************************************************************************/
+				
+				String Subject = shorttext.getText();
+				String Problem = problem.getText();
+				IME.createIncidentCustomer(
+						1, 
+						3, 
+						service.getSelectionModel().getSelectedIndex()+1, 
+						Subject, 
+						Problem, 
+						priority.getValue(), 
+						new Timestamp(System.currentTimeMillis()), 
+						"OPEN",
+						false);
 
 	}
-
+	
 	@FXML
 	public void serviceselected(ActionEvent event) {
 		Button service = new Button();
@@ -219,6 +255,10 @@ public class CustomerDashaboardController implements Initializable {
 	@FXML
 	private TableColumn<Incident,Integer> ichannelid;
 
+	@FXML JFXButton personalinfobtn;
+
+	@FXML Label personalinfolabel;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -227,9 +267,6 @@ public class CustomerDashaboardController implements Initializable {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 		
 		/**************************Bind the Data Type to the javaFX Table **************************/
-		
-		iincidentid.setCellValueFactory(new PropertyValueFactory<Incident,Integer>("TicketNumber"));
-
 		iincidentid.setCellValueFactory( c ->
 		new ReadOnlyObjectWrapper<Integer>(c.getValue().getIncidentid()));
 				
@@ -242,42 +279,17 @@ public class CustomerDashaboardController implements Initializable {
 		isolution.setCellValueFactory(c -> 
 		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getSolution())));
 
-
 		ichannelid.setCellValueFactory( c ->
 		new ReadOnlyObjectWrapper<Integer>(c.getValue().getChannelid()));		
-
-
 		
-		/**************************Bind the Ticket Data to the javaFX Table **************************/
-	
+		/**************************Bind the Ticket Data to the javaFX Table **************************/	
 		ObservableList<Incident> incidentdata = IME.displayTickets();
 		customerservicehistory.setItems(incidentdata);
 
-
 		/***************SHOW THE SERVICES OPTIONS ON CREATE INCIDENT SCREEN *******************/
-		List<String> services = new ArrayList<>();
-		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
-		String SQLQuery = "SELECT * FROM SERVICE";
-		ResultSet resultSet = null;
-		try {
-			resultSet = DCE.getResultSet(SQLQuery);
-			ResultSet rs = resultSet;
-			while(rs.next())
-				services.add(rs.getString(2));
-			service.setItems(FXCollections.observableArrayList(services));
-			rs.close();
-		} catch (SQLException e) {
-			System.out.println("Failed to get Services");
-		}
-
-
+		service.setItems(FXCollections.observableArrayList(IME.getServices()));
 
 		/***************SHOW THE PRIORITY OPTIONS ON CREATE INCIDENT SCREEN *******************/
-		List<String> priorities = new ArrayList<>();
-		priorities.add("LOW");
-		priorities.add("MEDIUM");
-		priorities.add("HIGH");
-		priorities.add("VERY HIGH");
-		priority.setItems(FXCollections.observableArrayList(priorities));
+		priority.setItems(FXCollections.observableArrayList(IME.getPriority()));
 	}
 }

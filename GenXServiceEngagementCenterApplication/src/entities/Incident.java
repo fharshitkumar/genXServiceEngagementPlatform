@@ -1,7 +1,6 @@
 package entities;
 
-import java.sql.Date;
-
+import java.sql.Timestamp;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -16,11 +15,11 @@ public class Incident {
 	private SimpleStringProperty shorttext;
 	private SimpleStringProperty problem;
 	private SimpleStringProperty priority;
-	private Date createdon;
+	private Timestamp createdon;
 	private SimpleStringProperty status;
 	private SimpleStringProperty solution;
-	private Date lastupdate;
-	private Date closedate;
+	private Timestamp lastupdate;
+	private Timestamp closedate;
 	private SimpleStringProperty tag;
 	private SimpleStringProperty notes;
 	private SimpleBooleanProperty escalatedstatus;
@@ -28,8 +27,8 @@ public class Incident {
 	
 	public Incident(Integer incidentid, Integer processorid, Integer customerid, Integer departmentid,
 			Integer channelid, Integer serviceid, String shorttext, String problem,
-			String priority, Date createdon, String status, String solution,
-			Date lastupdate, Date closedate, String tag, String notes,
+			String priority, Timestamp createdon, String status, String solution,
+			Timestamp lastupdate, Timestamp closedate, String tag, String notes,
 			boolean escalatedstatus, Integer sentiment) {
 		super();
 		this.incidentid = incidentid;
@@ -181,14 +180,14 @@ public class Incident {
 	/**
 	 * @return the createdon
 	 */
-	public Date getCreatedon() {
+	public Timestamp getCreatedon() {
 		return createdon;
 	}
 
 	/**
 	 * @param createdon the createdon to set
 	 */
-	public void setCreatedon(Date createdon) {
+	public void setCreatedon(Timestamp createdon) {
 		this.createdon = createdon;
 	}
 
@@ -223,28 +222,28 @@ public class Incident {
 	/**
 	 * @return the lastupdate
 	 */
-	public Date getLastupdate() {
+	public Timestamp getLastupdate() {
 		return lastupdate;
 	}
 
 	/**
 	 * @param lastupdate the lastupdate to set
 	 */
-	public void setLastupdate(Date lastupdate) {
+	public void setLastupdate(Timestamp lastupdate) {
 		this.lastupdate = lastupdate;
 	}
 
 	/**
 	 * @return the closedate
 	 */
-	public Date getClosedate() {
+	public Timestamp getClosedate() {
 		return closedate;
 	}
 
 	/**
 	 * @param closedate the closedate to set
 	 */
-	public void setClosedate(Date closedate) {
+	public void setClosedate(Timestamp closedate) {
 		this.closedate = closedate;
 	}
 

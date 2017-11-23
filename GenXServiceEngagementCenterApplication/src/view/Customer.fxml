@@ -354,7 +354,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="servicepane" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: F8F8F8;">
+                  <AnchorPane fx:id="servicepane" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: F8F8F8;" visible="false">
                      <children>
                         <TableView fx:id="customerservicehistory" layoutX="97.0" layoutY="264.0" prefHeight="200.0" prefWidth="1080.0" style="-fx-background-color: #EfEfEf; -fx-text-background-color: #2F2F2F;" stylesheets="@../../bin/css/table.css">
                           <columns>
@@ -389,9 +389,8 @@
                         <JFXComboBox fx:id="service" focusColor="BLACK" layoutX="166.0" layoutY="100.0" prefHeight="25.0" prefWidth="212.0" />
                         <JFXComboBox fx:id="priority" focusColor="BLACK" layoutX="167.0" layoutY="128.0" prefHeight="25.0" prefWidth="212.0" />
                         <Label layoutX="458.0" layoutY="104.0" text="SUBJECT" />
-                        <JFXTextField focusColor="BLACK" layoutX="526.0" layoutY="99.0" prefHeight="25.0" prefWidth="616.0" />
+                        <JFXTextField fx:id="shorttext" focusColor="BLACK" layoutX="526.0" layoutY="99.0" prefHeight="25.0" prefWidth="616.0" />
                         <Label layoutX="410.0" layoutY="139.0" prefHeight="17.0" prefWidth="112.0" text="PROBLEM DETAILS" />
-                        <JFXTextArea focusColor="BLACK" layoutX="525.0" layoutY="131.0" prefHeight="60.0" prefWidth="616.0" style="-fx-background-color: #F2FBF2;" unFocusColor="WHITE" />
                         <JFXButton fx:id="backBtn1" layoutX="70.0" layoutY="8.0" onAction="#backService" text="BACK" textFill="#525252">
                            <graphic>
                               <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
@@ -412,6 +411,7 @@
                               <Font name="Raleway ExtraBold" size="12.0" />
                            </font>
                         </JFXButton>
+                        <JFXTextField fx:id="problem" focusColor="BLACK" layoutX="522.0" layoutY="141.0" prefHeight="25.0" prefWidth="616.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="twitterpane" layoutX="55.0" prefHeight="500.0" prefWidth="1145.0" style="-fx-background-color: F8F8F8;" visible="false">
