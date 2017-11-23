@@ -74,7 +74,7 @@ public class A_DatabaseCommunicationEngine {
 	public void CommitChanges(String columnname, String columnvalue, int personid)
 	{
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
-		String SQLQuery = "UPDATE LOGIN " + 
+		String SQLQuery = "UPDATE " + columnname +
 				"SET "+columnname+ "='" + columnvalue+"'" + 
 				" WHERE PERSONID="+personid;
 		try {
@@ -88,7 +88,7 @@ public class A_DatabaseCommunicationEngine {
 	public void CommitChanges(String columnname, Integer columnvalue, int personid)
 	{
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
-		String SQLQuery = "UPDATE LOGIN " + 
+		String SQLQuery = "UPDATE " + columnname + 
 				"SET "+columnname+ "=" + (int)columnvalue+" " + 
 				" WHERE PERSONID="+personid;
 		try {

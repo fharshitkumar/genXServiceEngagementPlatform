@@ -5,17 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnector implements AutoCloseable{
-	
-	
+
+
 	private  Connection connection; 
 	private final static String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 	private final static String user ="SYSTEM";
-	private final static String password ="";
-	
+	private final static String password ="8Innovation8";
 
-	//Constructor will create a connection to Oracle 12C Database
+
+	/**
+	 *   DatabaseConnector() : Constructor will create a connection to Oracle 12C Database 
+	 */
 	public DatabaseConnector() {
+
+		/************************************************************************/
 		/***********CHECK IF ORACLE 12C DRIVER IS INSTALLED OR NOT***************/
+		/************************************************************************/
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
@@ -23,7 +28,10 @@ public class DatabaseConnector implements AutoCloseable{
 			return;
 		}
 		System.out.println("Oracle JDBC Driver is successfully Registered!");
-		/***********CREATE A CONNECTION TO ORACLE DATABASE***************/
+
+		/************************************************************************/
+		/******************CREATE A CONNECTION TO ORACLE DATABASE****************/
+		/************************************************************************/
 		try {
 			this.connection = DriverManager.getConnection(url, user, password);
 
@@ -40,21 +48,28 @@ public class DatabaseConnector implements AutoCloseable{
 		}
 	}
 
-/**
- * This method is used to establish connection to Oracle Database used for this GenX Engagement Center
- * @return Connection object
- */
+	/**
+	 * This method is used to establish connection to Oracle Database 
+	 * and will be used for  GenX Engagement Center application
+	 * @return Connection object
+	 */
 	public Connection DBConnectionManager()
 	{
 		return this.connection;
 	}
 
-/**
- * Overriding the close connection to implement user defined close connection actions. 
- */
+	/**
+	 * ************************************************************************************
+	 * Overriding the close connection to implement user defined close connection actions. 
+	 * ************************************************************************************
+	 */
+	
 	@Override
 	public void close() throws Exception {
-		/**********MAKE SURE THE CONNECTION IS CLOSED WHEN NOT IN USE*************/
+		/************************************************************************************/
+		/******************MAKE SURE THE CONNECTION IS CLOSED WHEN NOT IN USE****************/
+		/************************************************************************************/
+		
 		try{
 			this.connection.close();
 			this.connection= null;
@@ -63,5 +78,4 @@ public class DatabaseConnector implements AutoCloseable{
 			System.out.println("Closure of Database connection failed :" + e);
 		}
 	}
-
 }

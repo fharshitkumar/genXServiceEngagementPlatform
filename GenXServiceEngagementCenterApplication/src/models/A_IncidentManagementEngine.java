@@ -257,18 +257,24 @@ public class A_IncidentManagementEngine {
 		return services;
 	}
 
-					/*******************FOR REFERENCE TO HAVE TIMESTAMP AND DATE*****************************/
-/************************************************************************************************************************************/
-	//INSERT INTO DEMOTIMESTAMP VALUES(2, to_timestamp('2017-11-21 20:52:22.887', 'yyyy/mm/dd hh24:mi.ss.ff'),  TO_DATE('2017-11-17', 'yyyy/mm/dd'));
-	int personid = 1 ;
-	Date dob = new Date(System.currentTimeMillis());
-	Timestamp ticketcreated = new Timestamp(System.currentTimeMillis());
-	//System.out.println(dob + "  "+ ticketcreated);
-	private String sqlinsert = "INSERT INTO DEMOTIMESTAMP" + 
-			" VALUES("
-			+ personid + ", "
-			+"to_timestamp('"+ticketcreated+"', 'yyyy/mm/dd hh24:mi.ss.ff'), "
-			+ "TO_DATE('"+dob + "', 'yyyy/mm/dd') "
-			+ ")";
- /************************************************************************************************************************************/
+	
+	
+//
+//					/*******************FOR REFERENCE TO HAVE TIMESTAMP AND DATE*****************************/
+///************************************************************************************************************************************/
+//	//INSERT INTO DEMOTIMESTAMP VALUES(2, to_timestamp('2017-11-21 20:52:22.887', 'yyyy/mm/dd hh24:mi.ss.ff'),  TO_DATE('2017-11-17', 'yyyy/mm/dd'));
+//	int personid = 1 ;
+//	Date dob = new Date(System.currentTimeMillis());
+//	Timestamp ticketcreated = new Timestamp(System.currentTimeMillis());
+//	//System.out.println(dob + "  "+ ticketcreated);
+//	private String sqlinsert = "INSERT INTO DEMOTIMESTAMP" + 
+//			" VALUES("
+//			+ personid + ", "
+//			+"to_timestamp('"+ticketcreated+"', 'yyyy/mm/dd hh24:mi.ss.ff'), "
+//			+ "TO_DATE('"+dob + "', 'yyyy/mm/dd') "
+//			+ ")";
+// /************************************************************************************************************************************/
+
+	
+	
 }
