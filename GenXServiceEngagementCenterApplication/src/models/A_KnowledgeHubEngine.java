@@ -62,7 +62,8 @@ public class A_KnowledgeHubEngine {
 			resultSet.close();
 
 		} catch (SQLException e) {
-			System.out.println("Failed to get Knowledge Hub data");
+			System.out.println("Failed to get Knowledge Hub data. More Details:");
+			System.out.println(e.getMessage());
 		}	
 
 		return knowledgebaseincidentdata;
