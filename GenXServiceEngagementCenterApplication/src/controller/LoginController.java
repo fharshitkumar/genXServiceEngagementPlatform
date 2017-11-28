@@ -28,7 +28,7 @@ import utility.ApplicationUtilities;
 
 public class LoginController  implements Initializable {
 
-	
+
 	@FXML
 	private JFXTextField username;
 
@@ -120,12 +120,24 @@ public class LoginController  implements Initializable {
 						error.setText( username + "does not have admin authorization. Please login as normal user.");
 						return;
 					}
-					System.out.println("Opening Customer view");
-					/*****************If user is customer, inflate customer view***********************/
-					((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-					root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/Customer.fxml"));
-					primaryStage.initStyle(StageStyle.UNDECORATED);
-					primaryStage.centerOnScreen();
+
+					if(guest.getRoleid()==4)
+					{
+						System.out.println("Opening CSR view");
+						/*****************If user is CSR, inflate CSR view***********************/
+						((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+						root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/CSRScreen.fxml"));
+						primaryStage.initStyle(StageStyle.UNDECORATED);
+						primaryStage.centerOnScreen();
+					}
+					else {
+						System.out.println("Opening Customer view");
+						/*****************If user is customer, inflate customer view***********************/
+						((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+						root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/Customer.fxml"));
+						primaryStage.initStyle(StageStyle.UNDECORATED);
+						primaryStage.centerOnScreen();
+					}
 				}
 				Scene scene = new Scene(root);
 				primaryStage.setScene(scene);
@@ -160,9 +172,9 @@ public class LoginController  implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		System.out.println("Testing: Control came to Login Dashboard Controller");
-		
+
 	}
 
 

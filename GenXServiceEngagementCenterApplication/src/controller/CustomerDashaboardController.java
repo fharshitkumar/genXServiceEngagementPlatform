@@ -54,11 +54,7 @@ public class CustomerDashaboardController implements Initializable {
 		facebookpanel.setVisible(false);
 	}
 
-	@FXML
-	public void OpenFacebookPanel(ActionEvent event) {
-		System.out.println("You clicked Facebook button");
-		facebookpanel.setVisible(true);
-	}
+
 
 	@FXML
 	public void OpenTwitterPanel(ActionEvent event) {
@@ -166,6 +162,8 @@ public class CustomerDashaboardController implements Initializable {
 	@FXML
 	public void RefreshServiceHistory(ActionEvent event) {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
+		/***Facebook API call****/
+		
 		ObservableList<Incident> incidentdata = IME.displayTickets();
 		customerservicehistory.setItems(incidentdata);
 	}
@@ -180,7 +178,12 @@ public class CustomerDashaboardController implements Initializable {
 	private JFXTextField problem;
 
 
-
+	@FXML
+	public void OpenFacebookPanel(ActionEvent event) {
+		System.out.println("You clicked Facebook button");
+		facebookpanel.setVisible(true);
+	}
+	
 
 	@FXML
 	public void OnCreateIncident (ActionEvent event) {
