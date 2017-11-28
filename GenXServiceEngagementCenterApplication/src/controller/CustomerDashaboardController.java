@@ -63,8 +63,8 @@ public class CustomerDashaboardController implements Initializable {
 	@FXML
 	public void handleCloseButtonAction(ActionEvent event) {
 		util.close(event);
-		if(util.windowclosestatus)
-		util.back("/view/Login.fxml",event);
+		if(util.isWindowclosestatus())
+			util.back("/view/Login.fxml",event);
 	}
 
 	@FXML
@@ -163,7 +163,7 @@ public class CustomerDashaboardController implements Initializable {
 	public void RefreshServiceHistory(ActionEvent event) {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 		/***Facebook API call****/
-		
+
 		ObservableList<Incident> incidentdata = IME.displayTickets();
 		customerservicehistory.setItems(incidentdata);
 	}
@@ -183,7 +183,7 @@ public class CustomerDashaboardController implements Initializable {
 		System.out.println("You clicked Facebook button");
 		facebookpanel.setVisible(true);
 	}
-	
+
 
 	@FXML
 	public void OnCreateIncident (ActionEvent event) {
@@ -206,7 +206,7 @@ public class CustomerDashaboardController implements Initializable {
 
 		IME.createIncident(
 				null, 
-				ApplicationUser.applicationUser.getPersonid(), 
+				ApplicationUser.getApplicationUser().getPersonid(), 
 				300, 
 				service.getSelectionModel().getSelectedIndex()+1, 
 				Subject, 

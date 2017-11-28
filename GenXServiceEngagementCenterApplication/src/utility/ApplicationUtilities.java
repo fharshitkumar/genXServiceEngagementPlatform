@@ -98,8 +98,8 @@ public class ApplicationUtilities {
 			primaryStage.centerOnScreen();
 			primaryStage.show();
 		} catch (IOException e) {
-			// 
-			e.printStackTrace();
+			System.out.println("Unable to navigate back. More information");
+			System.out.println(e.getMessage());
 		}
 	}
 

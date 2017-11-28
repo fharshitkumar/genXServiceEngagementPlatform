@@ -4,7 +4,31 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
+/**
+ * Class		: DatabaseConnector		
+ * Description	: Allows the application components to access the Oracle Database
+ *                 
+ *
+ *	.....................................................................
+ *	....+-----------------------------------------------------------+....						
+ *	....|            DatabaseConnector Class                        |....						
+ *	....|             << concrete class >>                          |....	                    
+ *	....+-----------------------------------------------------------+....						
+ *	....| [-] url           : string  <<static>>                    |....						
+ *	....| [-] user          : string  <<static>>                    |....						
+ *	....| [-] password      : string  <<static>>                    |....						
+ *	....+-----------------------------------------------------------+....						
+ *	....| [+] DatabaseConnector()                                   |....						
+ *	....| [+] Connection: DBConnectionManager()                     |....							
+ *	....+-----------------------------------------------------------+....						
+ *	.....................................................................																				
+ * 																								
+ * @author HARSHIT KUMAR 			
+ * Date			    : 28 November, 2017
+ * Source File name	: DatabaseConnector.java       	
+ * 
+ *
+*/
 public class DatabaseConnector implements AutoCloseable{
 
 
@@ -18,7 +42,7 @@ public class DatabaseConnector implements AutoCloseable{
 	 */
 	public DatabaseConnector() {
 
-		/************************************************************************/
+		/************************ STEP 1 ******************************************/
 		/***********CHECK IF ORACLE 12C DRIVER IS INSTALLED OR NOT***************/
 		/************************************************************************/
 		try {
@@ -29,7 +53,7 @@ public class DatabaseConnector implements AutoCloseable{
 		}
 		System.out.println("Oracle JDBC Driver is successfully Registered!");
 
-		/************************************************************************/
+		/***************************** STEP 2 ************************************/
 		/******************CREATE A CONNECTION TO ORACLE DATABASE****************/
 		/************************************************************************/
 		try {
@@ -60,7 +84,7 @@ public class DatabaseConnector implements AutoCloseable{
 	}
 
 	/**
-	 * ************************************************************************************
+	 * *********************************** STEP 3 *****************************************
 	 * Overriding the close connection to implement user defined close connection actions. 
 	 * ************************************************************************************
 	 */

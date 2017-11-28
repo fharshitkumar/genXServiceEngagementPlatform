@@ -118,7 +118,7 @@ public class CSRDashboardController implements Initializable{
 	public void handleCloseButtonAction(ActionEvent event) {
 		
 		util.close(event);
-		if(util.windowclosestatus)
+		if(util.isWindowclosestatus())
 		util.back("/view/Login.fxml",event);
 	}
 
@@ -214,7 +214,7 @@ public class CSRDashboardController implements Initializable{
 		ObservableList<KnowledgeBase> knowledgebaseincidentdata = KHE.displayKnowledgeHub();
 		knowledgebasetable.setItems(knowledgebaseincidentdata);
 
-		System.out.println("Welcome CSR : "+ApplicationUser.applicationUser.getPersonid());
+		System.out.println("Welcome CSR : "+ApplicationUser.getApplicationUser().getPersonid());
 		
 		
 				

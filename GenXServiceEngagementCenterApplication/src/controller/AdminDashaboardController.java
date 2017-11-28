@@ -31,34 +31,27 @@ import utility.ApplicationUtilities;
 
 public class AdminDashaboardController implements Initializable{
 
-
+	/*******************      LOGIN TABLE IDENTIFIERS     ******************************************/
 	@FXML
 	private TableView<User> tableID;
-
 	@FXML
 	private TableColumn<User,Integer> iID;
-
 	@FXML
 	private TableColumn<User,String> iusername;
-
 	@FXML
 	TableColumn<User,String> ipassword;
-
 	@FXML
 	TableColumn<User,Boolean> iadmin;
-
 	@FXML
 	TableColumn<User,String> iquestion;
-
 	@FXML
 	TableColumn<User,String> ianswer;
-
 	@FXML
 	TableColumn<User,String> iemail;
-
 	@FXML
 	private TableColumn<User,Integer> irole;
 
+	/*******************        ADMIN PAGE NAVIGATORS    ******************************************/
 	@FXML
 	Pane FavouritePanel;
 	
@@ -71,29 +64,52 @@ public class AdminDashaboardController implements Initializable{
 	@FXML
 	JFXTextField searchemail;
 	
+	/*******************        ADMIN SEARCH ENABLERS    ******************************************/
 	@FXML
 	JFXComboBox<String> searchrole;
 	
+	/*********************************************************************************************************
+	 *****This is the helper utility to perform various UI level common tasks like go back, close window, etc.
+	 *********************************************************************************************************
+	 */
 	ApplicationUtilities util;
 
+	/*********************************************************************************************************
+	 * This is will initialize the helper application UI utility.
+	 *********************************************************************************************************
+	 */
 	public AdminDashaboardController() {
 		util = new ApplicationUtilities();
 	}
 
+	/******************************************************************************************************
+	 *  To close the Admin window and return to Login window.
+	 * ****************************************************************************************************
+	 * @param event
+	 */
 	@FXML
 	public void handleCloseButtonAction(ActionEvent event) {
 		util.close(event);
-		if(util.windowclosestatus)
+		if(util.isWindowclosestatus())
 		util.back("/view/Login.fxml",event);
 	}
 	
+	/******************************************************************************************************
+	 *  To open the Admin Home panel. 
+	 * ****************************************************************************************************
+	 * @param event
+	 */
 	@FXML
 	public void OpenLoginTablePanel(ActionEvent event) {
 		System.out.println("You clicked Admin Home button");
 		FavouritePanel.setVisible(false);
 		LoginTablePanel.setVisible(true);		
 	}
-	
+	/******************************************************************************************************
+	 *  To open the Admin Favorite panel. | Future enhancements can be performed.
+	 * ****************************************************************************************************
+	 * @param event
+	 */
 	@FXML
 	public void OpenFavoritePanel(ActionEvent event) {
 		System.out.println("You clicked Favourite Home button");
@@ -102,6 +118,11 @@ public class AdminDashaboardController implements Initializable{
 	}
 	
 
+	/**********************************************************************************
+	 * This function is responsible to help the admin search the Login table data.
+	 **********************************************************************************
+	 * @param event
+	 */
 	@FXML
 	public void Search(ActionEvent event) {
 		String username = this.searchusername.getText();
@@ -126,6 +147,11 @@ public class AdminDashaboardController implements Initializable{
 
 	}
 
+	/****************************************************************************************************************
+	 * This function will be used to initialize the Admin console with the initial load of the complete Login Details
+	 * of all the users accessing this application. Admin will have all access rights to delete/update and records.
+	 ***************************************************************************************************************
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -183,7 +209,10 @@ public class AdminDashaboardController implements Initializable{
 	}
 
 	private ObservableList<User> getData(){
-		/*********************get table data*****************************************/
+		/****************************************************************************************************
+		 *********************************get table data*****************************************************
+		 ****************************************************************************************************
+		 ***/
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
 		ObservableList<User> logindata = FXCollections.observableArrayList();
 		String SQLQuery = "SELECT * FROM LOGIN";
@@ -232,7 +261,10 @@ public class AdminDashaboardController implements Initializable{
 	}
 
 
-	/***This function will allow the admin to double click the User name Cell and update the same**/
+	/*****************************************************************************************************
+	 * This function will allow the admin to double click the User name Cell and update the same
+	 ***************************************************************************************************** 
+	 * */
 	@SuppressWarnings("rawtypes")
 	public void changeUserUsernameCellEvent(CellEditEvent edittedCell)
 	{
@@ -268,7 +300,10 @@ public class AdminDashaboardController implements Initializable{
 		tableID.setItems(getData());
 
 	}
-	/***This function will allow the admin to double click the Password Cell and update the same**/
+	/*****************************************************************************************************
+	 * This function will allow the admin to double click the Password Cell and update the same
+	 ***************************************************************************************************** 
+	 * */
 	@SuppressWarnings("rawtypes")
 	public void changeUserPasswordCellEvent(CellEditEvent edittedCell)
 	{
@@ -282,7 +317,10 @@ public class AdminDashaboardController implements Initializable{
 		}
 	}
 
-	/***This function will allow the admin to double click the User name Cell and update the same**/
+	/****************************************************************************************************
+	 * This function will allow the admin to double click the User name Cell and update the same
+	 ****************************************************************************************************
+	 */
 	@SuppressWarnings("rawtypes")
 	public void changeUseremailCellEvent(CellEditEvent edittedCell)
 	{
@@ -317,7 +355,10 @@ public class AdminDashaboardController implements Initializable{
 		tableID.setItems(getData());
 	}
 
-	/***This function will allow the admin to double click the Password Cell and update the same**/
+	/*****************************************************************************************************
+	 * This function will allow the admin to double click the Password Cell and update the same
+	 ***************************************************************************************************** 
+	 * **/
 	@SuppressWarnings("rawtypes")
 	public void changeUserSecretQuestionCellEvent(CellEditEvent edittedCell)
 	{
@@ -331,7 +372,10 @@ public class AdminDashaboardController implements Initializable{
 		}
 	}
 
-	/***This function will allow the admin to double click the User name Cell and update the same**/
+	/*****************************************************************************************************
+	 * This function will allow the admin to double click the User name Cell and update the same
+	 *****************************************************************************************************
+	 */
 	@SuppressWarnings("rawtypes")
 	public void changeUserSecretAnswerCellEvent(CellEditEvent edittedCell)
 	{
@@ -345,7 +389,10 @@ public class AdminDashaboardController implements Initializable{
 		}
 	}
 
-	/***This function will allow the admin to double click the Password Cell and update the same**/
+	/*****************************************************************************************************
+	 * This function will allow the admin to double click the Password Cell and update the same
+	 *****************************************************************************************************
+	 * */
 	@SuppressWarnings("rawtypes")
 	public void changeUserisAdminCellEvent(CellEditEvent edittedCell)
 	{
@@ -359,7 +406,10 @@ public class AdminDashaboardController implements Initializable{
 		}
 	}	
 
-	/***This function will allow the admin to double click the role Cell and update the same**/
+	/****************************************************************************************************
+	 **This function will allow the admin to double click the role Cell and update the same
+	 ****************************************************************************************************
+	 */
 	@SuppressWarnings("rawtypes")
 	public void changeUserroleCellEvent(CellEditEvent edittedCell)
 	{
@@ -367,7 +417,7 @@ public class AdminDashaboardController implements Initializable{
 		User personselected = tableID.getSelectionModel().getSelectedItem();
 		if(util.Commit()){
 			personselected.setRoleid(Integer.valueOf(edittedCell.getNewValue().toString()));
-			DCE.CommitChanges("ROLE", personselected.getRoleid(), personselected.getPersonid());
+			DCE.CommitChanges("LOGIN","ROLE", personselected.getRoleid(), personselected.getPersonid());
 		}else{
 			tableID.setItems(getData());
 		}

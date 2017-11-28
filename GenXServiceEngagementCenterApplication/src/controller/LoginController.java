@@ -52,7 +52,14 @@ public class LoginController  implements Initializable {
 		util.close(event);
 	}
 
-
+/**
+ ************************************************************************************************
+ * This Login Function is used to allow access to user to enter the application.
+ * It checks from the Database if the user credentials are correct or not.
+ * Moreover it controls which screen to populate for the guest user based on its assigned roles.
+ * **********************************************************************************************
+ * @param event
+ */
 	public void Login(ActionEvent event) {
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
 		User guest = null;
@@ -61,13 +68,13 @@ public class LoginController  implements Initializable {
 			String username = this.username.getText();
 			String password = this.password.getText();
 
-			/******Check if user name is left blank or empty*******/
+			/*********************Check if user name is left blank or empty*************************/
 			if(username == null || username.trim().equals("")) {
 				error.setText("Username Cannot be empty or spaces");
 				return;
 			}
 
-			/******Check if password is left blank or empty*******/
+			/**********************Check if password is left blank or empty*************************/
 			if(password == null || password.trim().equals("")) {
 				error.setText("Password Cannot be empty or spaces");
 				return;
@@ -79,7 +86,7 @@ public class LoginController  implements Initializable {
 			ResultSet rs = resultSet;
 
 
-			/*******************CREATE A GUEST ENTITIY FROM SQL RESULT******************/
+			/************************CREATE A GUEST ENTITIY FROM SQL RESULT************************/
 			while(rs.next())
 				guest = new User(
 						rs.getInt(1),
@@ -153,7 +160,11 @@ public class LoginController  implements Initializable {
 		}
 	}
 
-
+/***************************************************************************************************
+ * This function is called to naviage user to Sign up Form on the Login Page. 
+ * *************************************************************************************************
+ * @param event
+ */
 	@FXML
 	public void signup(ActionEvent event){
 		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
@@ -166,18 +177,17 @@ public class LoginController  implements Initializable {
 			primaryStage.centerOnScreen();
 			primaryStage.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Unable to open the Sign up Page. More Details:");
+			System.out.println(e.getMessage());
 		}
 	}
 
+/**************************************************************************************************
+ * 	To initialize any screen elements (if any)
+ **************************************************************************************************
+ */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		System.out.println("Testing: Control came to Login Dashboard Controller");
-
 	}
-
-
-
 
 }

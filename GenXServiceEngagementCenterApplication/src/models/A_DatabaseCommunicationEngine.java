@@ -85,11 +85,11 @@ public class A_DatabaseCommunicationEngine {
 	}
 
 	/***************This Function is used to SET the Database columns(Numeric type) to new values*****************/
-	public void CommitChanges(String columnname, Integer columnvalue, int personid)
+	public void CommitChanges(String tablename, String columnname, Integer columnvalue, int personid)
 	{
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
-		String SQLQuery = "UPDATE " + columnname + 
-				"SET "+columnname+ "=" + (int)columnvalue+" " + 
+		String SQLQuery = "UPDATE " + tablename + 
+				" SET "+columnname+ "=" + (int)columnvalue+" " + 
 				" WHERE PERSONID="+personid;
 		try {
 			DCE.DDLCommandDatabase(SQLQuery);
