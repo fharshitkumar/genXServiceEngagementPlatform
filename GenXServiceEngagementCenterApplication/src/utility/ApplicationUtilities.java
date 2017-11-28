@@ -16,6 +16,9 @@ import javafx.stage.StageStyle;
 
 public class ApplicationUtilities {
 
+	//To keep a track of Window Close Action Status for any window
+	public boolean windowclosestatus = false;
+	
 	public void close(ActionEvent event)
 	{
 	Alert alert =  new  Alert(AlertType.CONFIRMATION);
@@ -24,9 +27,16 @@ public class ApplicationUtilities {
 	alert.setContentText("Do you really want to exit the application?");
 	Optional<javafx.scene.control.ButtonType> result = alert.showAndWait();
 	if(result.get()==javafx.scene.control.ButtonType.OK)
-	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+	{
+		windowclosestatus=true;
+		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 	}
-	
+	else
+	{
+		windowclosestatus=false;
+	}
+	}
+
 	public Boolean Commit()
 	{
 	Alert alert =  new  Alert(AlertType.CONFIRMATION);

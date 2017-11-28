@@ -83,6 +83,8 @@ public class AdminDashaboardController implements Initializable{
 	@FXML
 	public void handleCloseButtonAction(ActionEvent event) {
 		util.close(event);
+		if(util.windowclosestatus)
+		util.back("/view/Login.fxml",event);
 	}
 	
 	@FXML
@@ -97,7 +99,6 @@ public class AdminDashaboardController implements Initializable{
 		System.out.println("You clicked Favourite Home button");
 		FavouritePanel.setVisible(true);
 		LoginTablePanel.setVisible(false);
-
 	}
 	
 
@@ -261,7 +262,7 @@ public class AdminDashaboardController implements Initializable{
 			if(util.Commit()){
 				A_DatabaseCommunicationEngine DCE2 = new A_DatabaseCommunicationEngine();
 				personselected.setUserName(edittedCell.getNewValue().toString());
-				DCE2.CommitChanges("USERNAME", personselected.getUsername(), personselected.getPersonid());
+				DCE2.CommitChanges("LOGIN", "USERNAME", personselected.getUsername(), personselected.getPersonid());
 			}
 		}
 		tableID.setItems(getData());
@@ -275,7 +276,7 @@ public class AdminDashaboardController implements Initializable{
 		User personselected = tableID.getSelectionModel().getSelectedItem();
 		if(util.Commit()){
 			personselected.setPassword(edittedCell.getNewValue().toString());
-			DCE.CommitChanges("PASSWORD", personselected.getPassword(), personselected.getPersonid());
+			DCE.CommitChanges("LOGIN","PASSWORD", personselected.getPassword(), personselected.getPersonid());
 		}else{
 			tableID.setItems(getData());
 		}
@@ -310,7 +311,7 @@ public class AdminDashaboardController implements Initializable{
 			if(util.Commit()){
 				A_DatabaseCommunicationEngine DCE2 = new A_DatabaseCommunicationEngine();
 				personselected.setEmail(edittedCell.getNewValue().toString());
-				DCE2.CommitChanges("EMAIL",personselected.getEmail(), personselected.getPersonid());
+				DCE2.CommitChanges("LOGIN","EMAIL",personselected.getEmail(), personselected.getPersonid());
 			}
 		}
 		tableID.setItems(getData());
@@ -324,7 +325,7 @@ public class AdminDashaboardController implements Initializable{
 		User personselected = tableID.getSelectionModel().getSelectedItem();
 		if(util.Commit()){
 			personselected.setSecretquestion(edittedCell.getNewValue().toString());
-			DCE.CommitChanges("SECRETQUESTION",personselected.getSecretquestion(), personselected.getPersonid());
+			DCE.CommitChanges("LOGIN","SECRETQUESTION",personselected.getSecretquestion(), personselected.getPersonid());
 		}else{
 			tableID.setItems(getData());
 		}
@@ -338,7 +339,7 @@ public class AdminDashaboardController implements Initializable{
 		User personselected = tableID.getSelectionModel().getSelectedItem();
 		if(util.Commit()){
 			personselected.setSecretanswer(edittedCell.getNewValue().toString());
-			DCE.CommitChanges("SECRETANSWER",personselected.getSecretanswer(), personselected.getPersonid());
+			DCE.CommitChanges("LOGIN","SECRETANSWER",personselected.getSecretanswer(), personselected.getPersonid());
 		}else{
 			tableID.setItems(getData());
 		}
@@ -352,7 +353,7 @@ public class AdminDashaboardController implements Initializable{
 		User personselected = tableID.getSelectionModel().getSelectedItem();
 		if(util.Commit()){
 			personselected.setAdmin(Boolean.valueOf(edittedCell.getNewValue().toString()));
-			DCE.CommitChanges("ADMIN", (personselected.getAdmin()?"Y":"N"), personselected.getPersonid());
+			DCE.CommitChanges("LOGIN","ADMIN", (personselected.getAdmin()?"Y":"N"), personselected.getPersonid());
 		}else{
 			tableID.setItems(getData());
 		}

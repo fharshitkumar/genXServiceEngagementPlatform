@@ -54,8 +54,6 @@ public class CustomerDashaboardController implements Initializable {
 		facebookpanel.setVisible(false);
 	}
 
-
-
 	@FXML
 	public void OpenTwitterPanel(ActionEvent event) {
 		System.out.println("You clicked Twitter button");
@@ -65,6 +63,8 @@ public class CustomerDashaboardController implements Initializable {
 	@FXML
 	public void handleCloseButtonAction(ActionEvent event) {
 		util.close(event);
+		if(util.windowclosestatus)
+		util.back("/view/Login.fxml",event);
 	}
 
 	@FXML
