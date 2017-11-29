@@ -1,7 +1,10 @@
 package controller;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -9,7 +12,9 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import entities.Incident;
+import entities.PersonalInfo;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -24,6 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import models.A_IncidentManagementEngine;
+import models.A_PersonInformationEngine;
 import models.ApplicationUser;
 import utility.ApplicationUtilities;
 
@@ -70,6 +76,7 @@ public class CustomerDashaboardController implements Initializable {
 	@FXML
 	public void PersonalInfoOpen(ActionEvent event) {
 		personalinfopane.setVisible(true);
+		displayCustomer();
 	}
 
 	@FXML
@@ -189,18 +196,6 @@ public class CustomerDashaboardController implements Initializable {
 	public void OnCreateIncident (ActionEvent event) {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 
-		/***************************FOR REFERENCE TO CREATE TICKET***************************************/
-		//				IME.createIncidentCustomer(
-		//						customerid,  
-		//						channelid, 
-		//						serviceid, 
-		//						shorttext, 
-		//						problem, 
-		//						priority, 
-		//						createdon, 
-		//						status, );
-		/***********************************************************************************************/
-
 		String Subject = shorttext.getText();
 		String Problem = problem.getText();
 
@@ -288,13 +283,359 @@ public class CustomerDashaboardController implements Initializable {
 		new ReadOnlyObjectWrapper<Integer>(c.getValue().getChannelid()));		
 
 		//		/**************************Bind the Ticket Data to the javaFX Table **************************/	
-		//		ObservableList<Incident> incidentdata = IME.displayTickets();
-		//		customerservicehistory.setItems(incidentdata);
-		//
+				ObservableList<Incident> incidentdata = IME.displayTickets();
+				customerservicehistory.setItems(incidentdata);
+		
 		/***************SHOW THE SERVICES OPTIONS ON CREATE INCIDENT SCREEN *******************/
 		service.setItems(FXCollections.observableArrayList(IME.getServices()));
 
 		/***************SHOW THE PRIORITY OPTIONS ON CREATE INCIDENT SCREEN *******************/
 		priority.setItems(FXCollections.observableArrayList(IME.getPriority()));
+		
+		
+		
+		
+		List<String> genderoption = new ArrayList<>();
+		genderoption.add("M");
+		genderoption.add("F");
+		gender.setItems(FXCollections.observableArrayList(genderoption));	
+
+		displayCustomer();
 	}
+
+	void displayCustomer() {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
+		PersonalInfo customerinfo = PIE.displayPersonalInfo(ApplicationUser.getApplicationUser().getPersonid());
+		
+		 this.fname.setText(customerinfo.getFname());
+		 this.lname.setText(customerinfo.getLname());
+		 this.contact.setText(customerinfo.getContact());
+		 this.address.setText(customerinfo.getAddress());
+		 this.gender.getSelectionModel().select(customerinfo.getGender());
+		 dateofbirth.setText(customerinfo.getDateofbirth().toString());
+		 city.setText(customerinfo.getCity());
+		 state.setText(customerinfo.getState());
+		 zipcode.setText(customerinfo.getZipcode());
+	}
+	
+	
+	@FXML
+	private JFXTextField fname;
+	
+	@FXML
+	private JFXTextField lname;
+	
+	@FXML
+	private JFXTextField contact;
+	
+	@FXML
+	private JFXTextField dateofbirth;
+	
+	@FXML
+	private JFXTextField address;
+	
+	@FXML
+	private JFXTextField city;
+	
+	@FXML
+	private JFXTextField state;
+	
+	@FXML
+	private JFXTextField zipcode;
+	
+	@FXML
+	private JFXComboBox<String> gender;
+	
+	@FXML
+	private JFXButton serviceOffice;
+	
+	@FXML
+	public void updatePersonalInfo(ActionEvent event) {
+		
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
+		
+
+		Date sqlDate ;
+		
+		try {
+			
+			sqlDate = java.sql.Date.valueOf(dateofbirth.getText() );
+			PIE.updatePerson(
+					ApplicationUser.getApplicationUser().getPersonid(), 
+					fname.getText(), 
+					lname.getText(), 
+					contact.getText(), 
+					address.getText(), 
+					gender.getSelectionModel().getSelectedItem(), 
+					sqlDate, 
+					city.getText(), 
+					state.getText(), 
+					zipcode.getText());
+
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+	
+		
+	}
+
+	/***********************************************************************************/
+	/********************ALL THE SERVICES SELECTIONS FLAGS ON UI************************/
+    /***********************************************************************************/
+	@FXML
+	private MaterialDesignIconView selectedflagWord;
+	@FXML
+	private MaterialDesignIconView selectedflagExcel;
+	@FXML
+	private MaterialDesignIconView selectedflagPowerPoint;
+	@FXML
+	private MaterialDesignIconView selectedflagOutlook;
+	@FXML
+	private MaterialDesignIconView selectedflagOneNote;
+	@FXML
+	private MaterialDesignIconView selectedflagOneDrive;
+	@FXML
+	private MaterialDesignIconView selectedflagPublisher;
+	@FXML
+	private MaterialDesignIconView selectedflagAccess;
+	@FXML
+	private MaterialDesignIconView selectedflagPictureMgr;
+	@FXML
+	private MaterialDesignIconView selectedflagSharePoint;
+	@FXML
+	private MaterialDesignIconView selectedflagSkype;
+	@FXML
+	private MaterialDesignIconView selectedflagExchange;
+	@FXML
+	private MaterialDesignIconView selectedflagYammer;
+	@FXML
+	private MaterialDesignIconView selectedflagSway;
+	@FXML
+	private MaterialDesignIconView selectedflagPowerBI;
+	@FXML
+	private MaterialDesignIconView selectedflagVisio;
+	@FXML
+	private MaterialDesignIconView selectedflagProject;
+
+	
+	
+	/**
+	 * ******************Microsoft Project*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceProject(ActionEvent event) {
+		
+		if(selectedflagProject.isVisible()) {
+			selectedflagProject.setVisible(false);
+		}else {
+			selectedflagProject.setVisible(true);
+		}
+		
+	}
+
+	/**
+	 * ******************Microsoft Visio*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceVisio(ActionEvent event) {
+		if(selectedflagVisio.isVisible()) {
+			selectedflagVisio.setVisible(false);
+		}else {
+			selectedflagVisio.setVisible(true);
+		}
+
+	}
+
+	/**
+	 * ******************Microsoft PowerBI*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedservicePowerBI(ActionEvent event) {
+		
+	}
+
+	/**
+	 * ******************Microsoft Sway*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceSway(ActionEvent event) {
+		
+		if(selectedflagSway.isVisible()) {
+			selectedflagSway.setVisible(false);
+		}else {
+			selectedflagSway.setVisible(true);
+		}
+	}
+
+	/**
+	 * ******************Microsoft Yammer*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceYammer(ActionEvent event) {
+		
+		if(selectedflagYammer.isVisible()) {
+			selectedflagYammer.setVisible(false);
+		}else {
+			selectedflagYammer.setVisible(true);
+		}
+	}
+
+	/**
+	 * ******************Microsoft Exchange*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceExchange(ActionEvent event) {
+		if(selectedflagExchange.isVisible()) {
+			selectedflagExchange.setVisible(false);
+		}else {
+			selectedflagExchange.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft Skype*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceSkype(ActionEvent event) {
+		if(selectedflagSkype.isVisible()) {
+			selectedflagSkype.setVisible(false);
+		}else {
+			selectedflagSkype.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft SharePoint*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceSharePoint(ActionEvent event) {
+		if(selectedflagSharePoint.isVisible()) {
+			selectedflagSharePoint.setVisible(false);
+		}else {
+			selectedflagSharePoint.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft PictureMgr*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedservicePictureMgr(ActionEvent event) {
+		if(selectedflagPictureMgr.isVisible()) {
+			selectedflagPictureMgr.setVisible(false);
+		}else {
+			selectedflagPictureMgr.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft Access*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceAccess(ActionEvent event) {
+		if(selectedflagAccess.isVisible()) {
+			selectedflagAccess.setVisible(false);
+		}else {
+			selectedflagAccess.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft Publisher*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedservicePublisher(ActionEvent event) {
+		if(selectedflagPublisher.isVisible()) {
+			selectedflagPublisher.setVisible(false);
+		}else {
+			selectedflagPublisher.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft OneDrive*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceOneDrive(ActionEvent event) {
+		if(selectedflagOneDrive.isVisible()) {
+			selectedflagOneDrive.setVisible(false);
+		}else {
+			selectedflagOneDrive.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft OneNote*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceOneNote(ActionEvent event) {
+		if(selectedflagOneNote.isVisible()) {
+			selectedflagOneNote.setVisible(false);
+		}else {
+			selectedflagOneNote.setVisible(true);
+		}
+	}
+
+	/**
+	 * ******************Microsoft Outlook*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceOutlook(ActionEvent event) {
+		if(selectedflagOutlook.isVisible()) {
+			selectedflagOutlook.setVisible(false);
+		}else {
+			selectedflagOutlook.setVisible(true);
+		}
+	}
+
+
+	/**
+	 * ******************Microsoft PowerPoint*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedservicePowerPoint(ActionEvent event) {
+		if(selectedflagPowerPoint.isVisible()) {
+			selectedflagPowerPoint.setVisible(false);
+		}else {
+			selectedflagPowerPoint.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft Excel*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceExcel(ActionEvent event) {
+		if(selectedflagExcel.isVisible()) {
+			selectedflagExcel.setVisible(false);
+		}else {
+			selectedflagExcel.setVisible(true);
+		}
+	}
+	/**
+	 * ******************Microsoft Word*******************************	
+	 * @param event
+	 */
+	@FXML
+	public void serviceselectedserviceWord(ActionEvent event) {
+		if(selectedflagWord.isVisible()) {
+			selectedflagWord.setVisible(false);
+		}else {
+			selectedflagWord.setVisible(true);
+		}
+	}
+
+
+	
+	
 }

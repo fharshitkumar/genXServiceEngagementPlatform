@@ -8,7 +8,6 @@ public class Employee extends User{
 	private Integer channelid;
 	private Integer serviceid;
 	private Integer roleid;
-	private Boolean availables;
 	public Employee(Integer personid, String username, String password, Boolean admin, String secretquestion,
 			String secretanswer, String email, Integer employeeid, Integer departmentid, Integer managerid,
 			Integer channelid, Integer serviceid, Integer roleid, Boolean availables) {
@@ -19,7 +18,7 @@ public class Employee extends User{
 		this.channelid = channelid;
 		this.serviceid = serviceid;
 		this.roleid = roleid;
-		this.availables = availables;
+
 	}
 	/**
 	 * @return the employeeid
@@ -93,18 +92,7 @@ public class Employee extends User{
 	public void setRoleid(Integer roleid) {
 		this.roleid = roleid;
 	}
-	/**
-	 * @return the availables
-	 */
-	public Boolean getAvailables() {
-		return availables;
-	}
-	/**
-	 * @param availables the availables to set
-	 */
-	public void setAvailables(Boolean availables) {
-		this.availables = availables;
-	}
+
 
 	
 	

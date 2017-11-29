@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
+import entities.Incident;
 import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.converter.BooleanStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import models.A_DatabaseCommunicationEngine;
+import models.A_IncidentManagementEngine;
 import utility.ApplicationUtilities;
 
 public class AdminDashaboardController implements Initializable{
@@ -147,6 +149,19 @@ public class AdminDashaboardController implements Initializable{
 
 	}
 
+	
+	/************************************************************************************8
+	 * This function will allow to refresh the view. 
+	 * @param event
+	 */
+	@FXML
+	public void RefreshLogininfo(ActionEvent event) {
+		this.searchrole.getSelectionModel().clearSelection();
+		 this.searchusername.setText("");
+		 this.searchemail.setText("");
+		tableID.setItems(getData());
+	}
+	
 	/****************************************************************************************************************
 	 * This function will be used to initialize the Admin console with the initial load of the complete Login Details
 	 * of all the users accessing this application. Admin will have all access rights to delete/update and records.
@@ -423,5 +438,6 @@ public class AdminDashaboardController implements Initializable{
 		}
 	}	
 
+	
 }
 

@@ -66,7 +66,7 @@
                         <Font size="6.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="personalinfopane" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #2E3B42;" visible="false">
+                  <AnchorPane fx:id="personalinfopane" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #2E3B42;">
                      <children>
                         <Label layoutX="101.0" layoutY="131.0" text="First Name" textFill="WHITE">
                            <font>
@@ -113,43 +113,43 @@
                               <Font name="Raleway" size="18.0" />
                            </font>
                         </Label>
-                        <JFXTextField focusColor="BLACK" layoutX="215.0" layoutY="120.0" unFocusColor="WHITE">
+                        <JFXTextField fx:id="fname" focusColor="WHITE" layoutX="215.0" layoutY="120.0" style="-fx-text-fill: white;" unFocusColor="#303e45">
                            <font>
                               <Font name="Raleway" size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField focusColor="BLACK" layoutX="214.0" layoutY="175.0" unFocusColor="WHITE">
+                        <JFXTextField fx:id="lname" focusColor="WHITE" layoutX="214.0" layoutY="175.0" style="-fx-text-fill: white;" unFocusColor="#303e45">
                            <font>
                               <Font name="Raleway" size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField focusColor="BLACK" layoutX="213.0" layoutY="230.0" promptText="(___)-___-____" style="-fx-prompt-text-fill: #6F6F6F;" unFocusColor="WHITE">
+                        <JFXTextField fx:id="contact" focusColor="WHITE" layoutX="213.0" layoutY="230.0" promptText="(___)-___-____" style="-fx-prompt-text-fill: #6F6F6F; -fx-text-fill: white;" unFocusColor="#303e45">
                            <font>
                               <Font name="Raleway" size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField focusColor="BLACK" layoutX="211.0" layoutY="338.0" promptText="DD/MM/YYYYY" style="-fx-prompt-text-fill: #6F6F6F;" unFocusColor="WHITE">
+                        <JFXTextField fx:id="dateofbirth" focusColor="WHITE" layoutX="211.0" layoutY="338.0" promptText="DD/MM/YYYYY" style="-fx-prompt-text-fill: #6F6F6F; -fx-text-fill: white;" unFocusColor="#303e45">
                            <font>
                               <Font name="Raleway" size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXComboBox focusColor="BLACK" layoutX="219.0" layoutY="298.0" unFocusColor="WHITE" />
-                        <JFXTextField focusColor="BLACK" layoutX="567.0" layoutY="124.0" unFocusColor="WHITE">
+                        <JFXComboBox fx:id="gender" focusColor="#2e3b42" layoutX="219.0" layoutY="298.0" style="-fx-text-fill: white;" stylesheets="@../css/combobox.css" unFocusColor="#303e45" />
+                        <JFXTextField fx:id="address" focusColor="WHITE" layoutX="567.0" layoutY="124.0" style="-fx-text-fill: white;" unFocusColor="#303e45">
                            <font>
                               <Font name="Raleway" size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField focusColor="BLACK" layoutX="566.0" layoutY="177.0" unFocusColor="WHITE">
+                        <JFXTextField fx:id="city" focusColor="WHITE" layoutX="566.0" layoutY="177.0" style="-fx-text-fill: white;" unFocusColor="#303e45">
                            <font>
                               <Font name="Raleway" size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField focusColor="BLACK" layoutX="567.0" layoutY="226.0" unFocusColor="WHITE">
+                        <JFXTextField fx:id="state" focusColor="WHITE" layoutX="567.0" layoutY="226.0" style="-fx-text-fill: white;" unFocusColor="#303e45">
                            <font>
                               <Font name="Raleway" size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField focusColor="BLACK" layoutX="568.0" layoutY="281.0" promptText="XXXXX" style="-fx-prompt-text-fill: #6F6F6F;" unFocusColor="WHITE">
+                        <JFXTextField fx:id="zipcode" focusColor="WHITE" layoutX="568.0" layoutY="281.0" promptText="XXXXX" style="-fx-prompt-text-fill: #6F6F6F; -fx-text-fill: white;" unFocusColor="#303e45">
                            <font>
                               <Font name="Raleway" size="18.0" />
                            </font>
@@ -159,16 +159,7 @@
                               <Image url="@../../images/office-suite-material-design-preview.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="serviceOffice" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="841.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Office">
-                           <graphic>
-                              <MaterialDesignIconView fx:id="selectedflagOffice" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" wrappingWidth="30.6666259765625" />
-                           </graphic>
-                           <stylesheets>
-                              <URL value="@../css/tiles.css" />
-                              <URL value="@../css/services.css" />
-                           </stylesheets>
-                        </JFXButton>
-                        <JFXButton fx:id="serviceWord" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="894.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Word">
+                        <JFXButton fx:id="serviceWord" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="894.0" layoutY="145.0" onAction="#serviceselectedserviceWord" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Word">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagWord" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -177,16 +168,16 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceExcel" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Excel">
+                        <JFXButton fx:id="serviceExcel" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="145.0" onAction="#serviceselectedserviceExcel" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Excel">
                            <graphic>
-                              <MaterialDesignIconView fx:id="selectedExcel" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
+                              <MaterialDesignIconView fx:id="selectedflagExcel" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
                            <stylesheets>
                               <URL value="@../css/tiles.css" />
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="servicePowerPoint" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PowerPoint">
+                        <JFXButton fx:id="servicePowerPoint" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="145.0" onAction="#serviceselectedservicePowerPoint" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PowerPoint">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagPowerPoint" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -195,7 +186,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceOutlook" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="145.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Outlook">
+                        <JFXButton fx:id="serviceOutlook" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="145.0" onAction="#serviceselectedserviceOutlook" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Outlook">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagOutlook" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -204,7 +195,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceOneNote" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="143.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="OneNote">
+                        <JFXButton fx:id="serviceOneNote" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="143.0" onAction="#serviceselectedserviceOneNote" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="OneNote">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagOneNote" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -213,7 +204,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceOneDrive" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="841.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="OneDrive">
+                        <JFXButton fx:id="serviceOneDrive" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="841.0" layoutY="219.0" onAction="#serviceselectedserviceOneDrive" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="OneDrive">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagOneDrive" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -222,7 +213,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="servicePublisher" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="898.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Publisher">
+                        <JFXButton fx:id="servicePublisher" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="898.0" layoutY="219.0" onAction="#serviceselectedservicePublisher" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Publisher">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagPublisher" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -231,7 +222,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceAccess" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Access">
+                        <JFXButton fx:id="serviceAccess" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="219.0" onAction="#serviceselectedserviceAccess" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Access">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagAccess" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -240,7 +231,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="servicePictureMgr" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PictureMgr">
+                        <JFXButton fx:id="servicePictureMgr" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="219.0" onAction="#serviceselectedservicePictureMgr" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PictureMgr">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagPictureMgr" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -249,7 +240,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceSharePoint" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="216.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="SharePoint">
+                        <JFXButton fx:id="serviceSharePoint" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="216.0" onAction="#serviceselectedserviceSharePoint" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="SharePoint">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagSharePoint" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -258,7 +249,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceSkype" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="219.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Skype">
+                        <JFXButton fx:id="serviceSkype" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="219.0" onAction="#serviceselectedserviceSkype" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Skype">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagSkype" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -267,7 +258,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceExchange" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="298.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Exchange">
+                        <JFXButton fx:id="serviceExchange" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1110.0" layoutY="298.0" onAction="#serviceselectedserviceExchange" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Exchange">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagExchange" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -276,7 +267,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceYammer" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="298.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Yammer">
+                        <JFXButton fx:id="serviceYammer" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1057.0" layoutY="298.0" onAction="#serviceselectedserviceYammer" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Yammer">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagYammer" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -285,7 +276,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceSway" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="294.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Sway">
+                        <JFXButton fx:id="serviceSway" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="1002.0" layoutY="294.0" onAction="#serviceselectedserviceSway" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Sway">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagSway" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -294,7 +285,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="servicePowerBI" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="297.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PowerBI">
+                        <JFXButton fx:id="servicePowerBI" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="950.0" layoutY="297.0" onAction="#serviceselectedservicePowerBI" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="PowerBI">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagPowerBI" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -303,7 +294,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceVisio" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="896.0" layoutY="297.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Visio">
+                        <JFXButton fx:id="serviceVisio" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="896.0" layoutY="297.0" onAction="#serviceselectedserviceVisio" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Visio">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagVisio" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -312,7 +303,7 @@
                               <URL value="@../css/services.css" />
                            </stylesheets>
                         </JFXButton>
-                        <JFXButton fx:id="serviceProject" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="842.0" layoutY="294.0" onAction="#serviceselected" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Project">
+                        <JFXButton fx:id="serviceProject" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="842.0" layoutY="294.0" onAction="#serviceselectedserviceProject" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Project">
                            <graphic>
                               <MaterialDesignIconView fx:id="selectedflagProject" fill="#2e3b42" glyphName="CHECK" size="40" styleClass="button" visible="false" wrappingWidth="30.6666259765625" />
                            </graphic>
@@ -341,7 +332,7 @@
                               <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
                            </graphic>
                         </JFXButton>
-                        <JFXButton layoutX="496.0" layoutY="424.0" prefHeight="29.0" prefWidth="223.0" style="-fx-background-color: #2195F5;" text="SUBMIT" textFill="WHITE" />
+                        <JFXButton layoutX="496.0" layoutY="424.0" onAction="#updatePersonalInfo" prefHeight="29.0" prefWidth="223.0" style="-fx-background-color: #2195F5;" text="SUBMIT" textFill="WHITE" />
                         <Label layoutX="63.0" layoutY="473.0" text="All rights reserved to Information Technology &amp; Management Department , Illinois Institute of Technology.&#10;Designed By: Harshit Kumar" textFill="#acaaaa">
                            <font>
                               <Font size="6.0" />

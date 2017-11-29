@@ -92,6 +92,12 @@
                      </font>
                   </Label>
                   <JFXComboBox fx:id="searchrole" blendMode="LIGHTEN" layoutX="799.0" layoutY="195.0" onAction="#Search" prefHeight="25.0" prefWidth="311.0" stylesheets="@../css/combobox.css" />
+                  <Label layoutX="34.0" layoutY="657.0" text="All rights reserved to Information Technology &amp; Management Department , Illinois Institute of Technology.&#10;Designed By: Harshit Kumar" textFill="#acaaaa">
+                     <font>
+                        <Font size="6.0" />
+                     </font>
+                  </Label>
+                  <JFXButton layoutX="1136.0" layoutY="195.0" onAction="#RefreshLogininfo" style="-fx-background-color: #0099FF;" text="REFRESH" textFill="WHITE" />
 					</children>
 				</Pane>
 			</children>

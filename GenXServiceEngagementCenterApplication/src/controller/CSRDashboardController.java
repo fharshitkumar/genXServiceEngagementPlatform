@@ -142,6 +142,8 @@ public class CSRDashboardController implements Initializable{
 		email.setText("");
 		CustomerType.setText("");
    		customerServicesList.setItems(null);
+   		knowledgebasetable.setItems(null);
+   		
 	}
 
 	@Override
@@ -181,14 +183,39 @@ public class CSRDashboardController implements Initializable{
 		ObservableList<Incident> incidentdata = IME.displayTickets();
 		iincidentQueue.setItems(incidentdata);
 		
-		
-		
-		
-		
 
+		System.out.println("Welcome CSR : "+ApplicationUser.getApplicationUser().getPersonid());
+				
+	}
 
-
-		
+	
+	@FXML
+	private Label firstname; 
+	
+	@FXML
+	private Label lastname; 
+	
+	@FXML
+	private Label phone; 
+	
+	@FXML
+	private Label email; 
+	
+	@FXML
+	private Label CustomerType; 
+	
+	@FXML
+	private ImageView customertypeimage;
+	
+    @FXML
+    void TableAccessLevel(MouseEvent event) {
+    	Incident selectedincident = iincidentQueue.getSelectionModel().getSelectedItem();
+    	V_ViewManagementEngine VME = new V_ViewManagementEngine();
+    	ObservableList<CustomerInfoView> customerinfoview = VME.customerinfoviewer(selectedincident.getCustomerid());
+    
+    	knowledgebasetable.setItems(null);
+		String selectedcustomerincident= null;
+		selectedcustomerincident = selectedincident.getProblem();
 
 		/**************************Bind the Data Type to the javaFX Table **************************/
 
@@ -211,53 +238,11 @@ public class CSRDashboardController implements Initializable{
 		
 		
 		/**************************Bind the Ticket Data to the javaFX Table **************************/	
-		ObservableList<KnowledgeBase> knowledgebaseincidentdata = KHE.displayKnowledgeHub();
+		ObservableList<KnowledgeBase> knowledgebaseincidentdata = KHE.displayKnowledgeHub(selectedcustomerincident);
 		knowledgebasetable.setItems(knowledgebaseincidentdata);
 
-		System.out.println("Welcome CSR : "+ApplicationUser.getApplicationUser().getPersonid());
-		
-		
-				
-		ObservableList<String> items =FXCollections.observableArrayList (
-				"Word",
-				"Excel",
-				"PowerPoint",
-				"Outlook",
-				"OneNote",
-				"OneDrive",
-				"Publisher",
-				"Access",
-				"PictureMgr",
-				"SharePoint");
-		customerServicesList.setItems(items);
-		
-	}
-
-	
-	@FXML
-	private Label firstname; 
-	
-	@FXML
-	private Label lastname; 
-	
-	@FXML
-	private Label phone; 
-	
-	@FXML
-	private Label email; 
-	
-	
-	@FXML
-	private Label CustomerType; 
-	
-	@FXML
-	private ImageView customertypeimage;
-	
-    @FXML
-    void TableAccessLevel(MouseEvent event) {
-    	Incident selectedincident = iincidentQueue.getSelectionModel().getSelectedItem();
-    	V_ViewManagementEngine VME = new V_ViewManagementEngine();
-    	ObservableList<CustomerInfoView> customerinfoview = VME.customerinfoviewer(selectedincident.getCustomerid());
+    	
+    	
     	ObservableList<String> items =FXCollections.observableArrayList ();
     	try {
     	if(customerinfoview!=null)
