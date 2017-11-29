@@ -31,6 +31,8 @@ import javafx.scene.layout.Pane;
 import models.A_IncidentManagementEngine;
 import models.A_PersonInformationEngine;
 import models.ApplicationUser;
+import models.V_ViewManagementEngine;
+import tableviews.CustomerInfoView;
 import utility.ApplicationUtilities;
 
 public class CustomerDashaboardController implements Initializable {
@@ -292,6 +294,69 @@ public class CustomerDashaboardController implements Initializable {
 		/***************SHOW THE PRIORITY OPTIONS ON CREATE INCIDENT SCREEN *******************/
 		priority.setItems(FXCollections.observableArrayList(IME.getPriority()));
 		
+		V_ViewManagementEngine VME = new V_ViewManagementEngine();
+		
+		ObservableList<CustomerInfoView> customerserviceinfo = VME.customerinfoviewer(ApplicationUser.getApplicationUser().getPersonid());
+		if(customerserviceinfo!= null) {
+			for(CustomerInfoView service : customerserviceinfo ) {
+				switch (service.getServiceid()) {
+				case 1:
+					selectedflagWord.setVisible(true);
+					break;
+				case 2:
+					selectedflagExcel.setVisible(true);
+					break;
+				case 3:
+					selectedflagPowerPoint.setVisible(true);
+					break;
+				case 4:
+					selectedflagOutlook.setVisible(true);
+					break;
+				case 5:
+					selectedflagOneNote.setVisible(true);
+					break;
+				case 6:
+					selectedflagOneDrive.setVisible(true);
+					break;
+				case 7:
+					selectedflagPublisher.setVisible(true);
+					break;
+				case 8:
+					selectedflagAccess.setVisible(true);
+					break;
+				case 9:
+					selectedflagPictureMgr.setVisible(true);
+					break;
+				case 10:
+					selectedflagSharePoint.setVisible(true);
+					break;
+				case 11:
+					selectedflagSkype.setVisible(true);
+					break;
+				case 12:
+					selectedflagExchange.setVisible(true);
+					break;
+				case 13:
+					selectedflagYammer.setVisible(true);
+					break;
+				case 14:
+					selectedflagSway.setVisible(true);
+					break;
+				case 15:
+					selectedflagPowerBI.setVisible(true);
+					break;
+				case 16:
+					selectedflagVisio.setVisible(true);
+					break;
+				case 17:
+					selectedflagProject.setVisible(true);
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
 		
 		
 		
@@ -352,11 +417,12 @@ public class CustomerDashaboardController implements Initializable {
 	@FXML
 	public void updatePersonalInfo(ActionEvent event) {
 		
+		/******************************************************************************
+		 * ---------------------| PART 1: Update the personal information
+		 * ****************************************************************************
+		 */
 		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
-		
-
 		Date sqlDate ;
-		
 		try {
 			
 			sqlDate = java.sql.Date.valueOf(dateofbirth.getText() );
@@ -374,10 +440,17 @@ public class CustomerDashaboardController implements Initializable {
 
 			
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			System.out.println("Couldn't update the personal information.");
+			System.out.println(e.getMessage());
 		}
 	
+		/******************************************************************************
+		 * ---------------------| PART 2: Update the customer services information
+		 * ****************************************************************************
+		 */
+		
+		
+		
 		
 	}
 
@@ -427,11 +500,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceProject(ActionEvent event) {
-		
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagProject.isVisible()) {
 			selectedflagProject.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 17, false);
 		}else {
 			selectedflagProject.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 17, true);
 		}
 		
 	}
@@ -442,10 +517,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceVisio(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagVisio.isVisible()) {
 			selectedflagVisio.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 16, false);
 		}else {
 			selectedflagVisio.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 16, true);
 		}
 
 	}
@@ -456,7 +534,15 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedservicePowerBI(ActionEvent event) {
-		
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
+		if(selectedflagPowerBI.isVisible()) {
+			selectedflagPowerBI.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 15, false);
+		}else {
+			selectedflagPowerBI.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 15, true);
+		}
+
 	}
 
 	/**
@@ -465,11 +551,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceSway(ActionEvent event) {
-		
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagSway.isVisible()) {
 			selectedflagSway.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 14, false);
 		}else {
 			selectedflagSway.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 14, true);
 		}
 	}
 
@@ -479,11 +567,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceYammer(ActionEvent event) {
-		
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagYammer.isVisible()) {
 			selectedflagYammer.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 13, false);
 		}else {
 			selectedflagYammer.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 13, true);
 		}
 	}
 
@@ -493,10 +583,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceExchange(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagExchange.isVisible()) {
 			selectedflagExchange.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 12, false);
 		}else {
 			selectedflagExchange.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 12, true);
 		}
 	}
 	/**
@@ -505,10 +598,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceSkype(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagSkype.isVisible()) {
 			selectedflagSkype.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 11, false);
 		}else {
 			selectedflagSkype.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 11, true);
 		}
 	}
 	/**
@@ -517,10 +613,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceSharePoint(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagSharePoint.isVisible()) {
 			selectedflagSharePoint.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 10, false);
 		}else {
 			selectedflagSharePoint.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 10, true);
 		}
 	}
 	/**
@@ -529,10 +628,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedservicePictureMgr(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagPictureMgr.isVisible()) {
 			selectedflagPictureMgr.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 9, false);
 		}else {
 			selectedflagPictureMgr.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 9, true);
 		}
 	}
 	/**
@@ -541,10 +643,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceAccess(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagAccess.isVisible()) {
 			selectedflagAccess.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 8, false);
 		}else {
 			selectedflagAccess.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 8, true);
 		}
 	}
 	/**
@@ -553,10 +658,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedservicePublisher(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagPublisher.isVisible()) {
 			selectedflagPublisher.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 7, false);
 		}else {
 			selectedflagPublisher.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 7, true);
 		}
 	}
 	/**
@@ -565,10 +673,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceOneDrive(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagOneDrive.isVisible()) {
 			selectedflagOneDrive.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 6, false);
 		}else {
 			selectedflagOneDrive.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 6, true);
 		}
 	}
 	/**
@@ -577,10 +688,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceOneNote(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagOneNote.isVisible()) {
 			selectedflagOneNote.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 5, false);
 		}else {
 			selectedflagOneNote.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 5, true);
 		}
 	}
 
@@ -590,10 +704,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceOutlook(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagOutlook.isVisible()) {
 			selectedflagOutlook.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 4, false);
 		}else {
 			selectedflagOutlook.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 4, true);
 		}
 	}
 
@@ -604,10 +721,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedservicePowerPoint(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagPowerPoint.isVisible()) {
 			selectedflagPowerPoint.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 3, false);
 		}else {
 			selectedflagPowerPoint.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 3, true);
 		}
 	}
 	/**
@@ -616,10 +736,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceExcel(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagExcel.isVisible()) {
 			selectedflagExcel.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 2, false);
 		}else {
 			selectedflagExcel.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 2, true);
 		}
 	}
 	/**
@@ -628,10 +751,13 @@ public class CustomerDashaboardController implements Initializable {
 	 */
 	@FXML
 	public void serviceselectedserviceWord(ActionEvent event) {
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
 		if(selectedflagWord.isVisible()) {
 			selectedflagWord.setVisible(false);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 1, false);
 		}else {
 			selectedflagWord.setVisible(true);
+			PIE.updateCustomerServices(ApplicationUser.getApplicationUser().getPersonid(), 1, true);
 		}
 	}
 

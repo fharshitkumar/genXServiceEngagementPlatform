@@ -107,5 +107,43 @@ public class A_PersonInformationEngine {
 	}
 
 	
+	
+	public void updateCustomerServices(Integer customerid, Integer serviceid, Boolean insert) {
+
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		
+		if(insert) {
+			try {
+
+				/*****First time a user is subscribing to the service ***********/
+				String SQLQuery = "INSERT INTO  " + "CUSTOMERSERVICES VALUES (" +
+						 + customerid +" , " 	+
+						 + serviceid +")" ;
+				DCE.DDLCommandDatabase(SQLQuery);			
+			}
+
+			catch (SQLException e) {
+				System.out.println("There is an issue in updating personal information into the backend . More Details");
+				System.out.println(e.getMessage());
+			}
+		}
+		else {
+			try {
+				/*******************Delete the subscribed service*********************/
+				String SQLQueryDeleteService = "DELETE FROM " + "CUSTOMERSERVICES" +
+						" WHERE CUSTOMERID =  " + customerid + 
+						" AND SERVICEID = " + serviceid;
+
+				DCE.DDLCommandDatabase(SQLQueryDeleteService);
+			} catch (SQLException e) {
+				System.out.println("Cannot remove the service id: "+ serviceid +" from customer id : "+customerid);
+				System.out.println(e.getMessage());
+
+			}
+		}
+	}
+
+
+	
 
 }
