@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.Channel;
 import entities.Incident;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,7 +77,7 @@ public class A_IncidentManagementEngine {
 	 * To get all the required incidents as per the requirements from the Database.
 	 * @return ObservableList<Incident>
 	 */
-	public ObservableList<Incident> displayTickets(){
+	public ObservableList<Incident> displayTickets(int dasboardcustomerid, boolean getallstatus){
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
 		ObservableList<Incident> incidentdata = FXCollections.observableArrayList();
 		String SQLQuery = "SELECT * FROM INCIDENT";
@@ -122,6 +123,27 @@ public class A_IncidentManagementEngine {
 				notes = (String)rs.getString(15);
 				escalatedstatus = (Boolean)(rs.getString(16).equals("Y")? true : false);
 				sentiment = rs.getInt(17);
+				if(getallstatus)
+					incidentdata.add(new Incident(
+							incidentid,
+							processorid,
+							customerid,
+							channelid,
+							serviceid,
+							shorttext,
+							problem,
+							priority,
+							createdon,
+							status,
+							solution,
+							lastupdate,
+							closedate,
+							tag,
+							notes,
+							escalatedstatus,
+							sentiment
+							));
+				else if(customerid == dasboardcustomerid)
 				incidentdata.add(new Incident(
 						incidentid,
 						processorid,
@@ -141,9 +163,10 @@ public class A_IncidentManagementEngine {
 						escalatedstatus,
 						sentiment
 						));
+				
 			}
 			resultSet.close();
-
+			rs.close();
 		} catch (SQLException e) {
 			System.out.println("Failed to get Application Login Data");
 		}	
@@ -171,6 +194,7 @@ public class A_IncidentManagementEngine {
 			while(rs.next())
 				services.add(rs.getString(2));
 			rs.close();
+			resultSet.close();
 		} catch (SQLException e) {
 			System.out.println("Failed to get Services");
 		}
@@ -178,6 +202,69 @@ public class A_IncidentManagementEngine {
 	}
 
 
+	public String getServices(int customerserviceid) {
+
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		String SQLQuery = "SELECT * FROM SERVICE";
+		ResultSet resultSet = null;
+		try {
+			resultSet = DCE.getResultSet(SQLQuery);
+			ResultSet rs = resultSet;
+			while(rs.next()) {
+			if(customerserviceid==rs.getInt(1))	
+				return(rs.getString(2));
+			}
+			rs.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			System.out.println("Failed to get Services");
+		}
+		return "";
+	}
+	
+	
+	
+	public Channel displayChannel(Integer checkChannelid){
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		Channel channeldata = null;
+		String SQLQuery = "SELECT * FROM CHANNEL";
+		ResultSet resultSet = null;
+		ResultSet rs = null;
+		System.out.println("Inside A_IncidentManagementEngine: Function ---> displayChannel");
+		try {
+			resultSet = DCE.getResultSet(SQLQuery);
+			rs = resultSet;
+			Integer channelid;
+			String channelname;
+			String channeldesc;
+
+			while(rs.next())
+			{
+				channelid = rs.getInt(1);
+				channelname = (String)rs.getString(2);
+				channeldesc = (String)rs.getString(3);
+				if((int)checkChannelid == (int)channelid )
+				{
+				channeldata  = new Channel(
+						channelid,
+						channelname,
+						channeldesc
+						);
+				}
+			}
+			resultSet.close();
+			rs.close();
+
+		} catch (SQLException e) {
+			System.out.println("Failed to get Application Channel Data");
+		}	
+
+		return channeldata;
+	}
+	
+	
+	
+	
 
 	//
 	//					/*******************FOR REFERENCE TO HAVE TIMESTAMP AND DATE*****************************/

@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import entities.Channel;
 import entities.Incident;
 import entities.PersonalInfo;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -173,7 +174,7 @@ public class CustomerDashaboardController implements Initializable {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 		/***Facebook API call****/
 
-		ObservableList<Incident> incidentdata = IME.displayTickets();
+		ObservableList<Incident> incidentdata = IME.displayTickets(ApplicationUser.getApplicationUser().getPersonid(),false);
 		customerservicehistory.setItems(incidentdata);
 	}
 
@@ -254,20 +255,41 @@ public class CustomerDashaboardController implements Initializable {
 	private TableColumn<Incident,String> isolution;
 
 	@FXML
-	private TableColumn<Incident,Integer> ichannelid;
+	private TableColumn<Incident,String> ichannelid;
 
 	@FXML JFXButton personalinfobtn;
 
 	@FXML Label personalinfolabel;
 
+	private String getChannelName(Integer channelid)
+	{
+		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
+		Channel Channelname = IME.displayChannel(channelid);
+		return Channelname.getChannelname();
+	}
+	
+	private String changenulltoblank(String stringobject)
+	{
+		if(stringobject==null)
+		return "";
+		else
+			return stringobject;
+	}
+	
+	@FXML
+	private Label customernamewelcomescreen;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		System.out.println("Testing: Control came to Customer Dashboard Controller");
-
+		V_ViewManagementEngine VME = new V_ViewManagementEngine();
 		util = new ApplicationUtilities();
 
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 
+		ObservableList<CustomerInfoView> CIV =	VME.customerinfoviewer(ApplicationUser.getApplicationUser().getPersonid());
+		customernamewelcomescreen.setText(CIV.get(0).getFname());
+		
 		/**************************Bind the Data Type to the javaFX Table **************************/
 		iincidentid.setCellValueFactory( c ->
 		new ReadOnlyObjectWrapper<Integer>(c.getValue().getIncidentid()));
@@ -279,22 +301,31 @@ public class CustomerDashaboardController implements Initializable {
 		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getProblem())));
 
 		isolution.setCellValueFactory(c -> 
-		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getSolution())));
+		new ReadOnlyStringWrapper( changenulltoblank(String.valueOf( c.getValue().getSolution()))));
 
 		ichannelid.setCellValueFactory( c ->
-		new ReadOnlyObjectWrapper<Integer>(c.getValue().getChannelid()));		
+		new ReadOnlyStringWrapper( (getChannelName(c.getValue().getChannelid())) ));		
 
 		//		/**************************Bind the Ticket Data to the javaFX Table **************************/	
-				ObservableList<Incident> incidentdata = IME.displayTickets();
+				ObservableList<Incident> incidentdata = IME.displayTickets(ApplicationUser.getApplicationUser().getPersonid(),false);
 				customerservicehistory.setItems(incidentdata);
 		
 		/***************SHOW THE SERVICES OPTIONS ON CREATE INCIDENT SCREEN *******************/
-		service.setItems(FXCollections.observableArrayList(IME.getServices()));
+		ObservableList<String> items =FXCollections.observableArrayList ();
+		
+		ObservableList<CustomerInfoView> customerinfoview = VME.customerinfoviewer(ApplicationUser.getApplicationUser().getPersonid());
+		for(CustomerInfoView c : customerinfoview)
+		{
+			items.add(c.getServicename());
+		}
+		service.setItems(items);
+		
+		//service.setItems(FXCollections.observableArrayList(IME.getServices()));
 
 		/***************SHOW THE PRIORITY OPTIONS ON CREATE INCIDENT SCREEN *******************/
 		priority.setItems(FXCollections.observableArrayList(IME.getPriority()));
 		
-		V_ViewManagementEngine VME = new V_ViewManagementEngine();
+		
 		
 		ObservableList<CustomerInfoView> customerserviceinfo = VME.customerinfoviewer(ApplicationUser.getApplicationUser().getPersonid());
 		if(customerserviceinfo!= null) {
@@ -382,7 +413,6 @@ public class CustomerDashaboardController implements Initializable {
 		 state.setText(customerinfo.getState());
 		 zipcode.setText(customerinfo.getZipcode());
 	}
-	
 	
 	@FXML
 	private JFXTextField fname;

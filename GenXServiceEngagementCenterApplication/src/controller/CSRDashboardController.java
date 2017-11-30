@@ -1,11 +1,11 @@
 package controller;
 
 import java.net.URL;
-import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXListView;
 
+import entities.Channel;
 import entities.Incident;
 import entities.KnowledgeBase;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -18,9 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -51,9 +49,9 @@ public class CSRDashboardController implements Initializable{
 	@FXML
 	private TableColumn<Incident,Integer> iincidentid;
 	@FXML
-	private TableColumn<Incident,Integer> ichannel;
+	private TableColumn<Incident,String> ichannel;
 	@FXML
-	private TableColumn<Incident,Integer> iservice;
+	private TableColumn<Incident,String> iservice;
 	@FXML
 	private TableColumn<Incident,String> ishorttext;
 	@FXML
@@ -134,7 +132,7 @@ public class CSRDashboardController implements Initializable{
 	public void RefreshServiceHistory(ActionEvent event) {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 			
-		ObservableList<Incident> incidentdata = IME.displayTickets();
+		ObservableList<Incident> incidentdata = IME.displayTickets(0,true);
 		iincidentQueue.setItems(incidentdata);
 		firstname.setText("");
 		lastname.setText("");
@@ -146,6 +144,20 @@ public class CSRDashboardController implements Initializable{
    		
 	}
 
+	private String getChannelName(Integer channelid)
+	{
+		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
+		Channel Channelname = IME.displayChannel(channelid);
+		return Channelname.getChannelname();
+	}
+	
+	private String getServiceName(Integer serviceid)
+	{
+		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
+		return IME.getServices(serviceid);
+	}
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -156,10 +168,10 @@ public class CSRDashboardController implements Initializable{
 		new ReadOnlyObjectWrapper<Integer>(c.getValue().getIncidentid()));
 
 		ichannel.setCellValueFactory( c ->
-		new ReadOnlyObjectWrapper<Integer>(c.getValue().getChannelid()));
+		new ReadOnlyStringWrapper(getChannelName(c.getValue().getChannelid())));
 		
 		iservice.setCellValueFactory( c ->
-		new ReadOnlyObjectWrapper<Integer>(c.getValue().getServiceid()));
+		new ReadOnlyStringWrapper(getServiceName(c.getValue().getServiceid())));
 		
 		ishorttext.setCellValueFactory(c -> 
 		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getShorttext())));
@@ -180,7 +192,7 @@ public class CSRDashboardController implements Initializable{
 		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getNotes())));
 		
 		/**************************Bind the Ticket Data to the javaFX Table **************************/	
-		ObservableList<Incident> incidentdata = IME.displayTickets();
+		ObservableList<Incident> incidentdata = IME.displayTickets(0,true);
 		iincidentQueue.setItems(incidentdata);
 		
 

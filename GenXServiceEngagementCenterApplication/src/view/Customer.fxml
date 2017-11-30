@@ -56,7 +56,7 @@
                         <Font name="MS Outlook" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="88.0" layoutY="70.0" text="HARSHIT KUMAR" textFill="#ff6b6b">
+                  <Label fx:id="customernamewelcomescreen" layoutX="88.0" layoutY="70.0" text="HARSHIT KUMAR" textFill="#ff6b6b">
                      <font>
                         <Font name="Material Icons" size="36.0" />
                      </font>
@@ -66,7 +66,7 @@
                         <Font size="6.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="personalinfopane" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #2E3B42;">
+                  <AnchorPane fx:id="personalinfopane" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #2E3B42;" visible="false">
                      <children>
                         <Label layoutX="101.0" layoutY="131.0" text="First Name" textFill="WHITE">
                            <font>
