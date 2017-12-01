@@ -262,7 +262,38 @@ public class A_IncidentManagementEngine {
 		return channeldata;
 	}
 	
-	
+
+
+
+/***************This Function is used to SET the Database columns(String type) to new values*****************/
+public void CommitChanges(String tablename, String columnname, String columnvalue, int incidentid)
+{
+A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+String SQLQuery = "UPDATE " + tablename +
+" SET "+columnname+ "='" + columnvalue+"'" + 
+" WHERE INCIDENTID="+incidentid;
+try {
+DCE.DDLCommandDatabase(SQLQuery);
+} catch (SQLException e) {
+System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
+}	
+}
+
+
+/***************This Function is used to SET the Database columns(Numeric type) to new values*****************/
+public void CommitChanges(String tablename, String columnname, Integer columnvalue, int incidentid)
+{
+A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+String SQLQuery = "UPDATE " + tablename + 
+" SET "+columnname+ "=" + (int)columnvalue+" " + 
+" WHERE INCIDENTID="+incidentid;
+try {
+DCE.DDLCommandDatabase(SQLQuery);
+} catch (SQLException e) {
+System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
+}	
+}	
+}
 	
 	
 
@@ -284,4 +315,4 @@ public class A_IncidentManagementEngine {
 
 
 
-}
+

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -144,7 +144,10 @@
                   <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
                </graphic>
             </JFXButton>
-            <JFXComboBox focusColor="BLACK" layoutX="390.0" layoutY="81.0" prefHeight="25.0" prefWidth="502.0" promptText="SELECT THE ANALYTICS" style="-fx-text-fill: white;" stylesheets="@../css/combobox.css" />
+            <PieChart fx:id="pieChart1" layoutX="22.0" layoutY="71.0" prefHeight="459.0" prefWidth="550.0" />
+            <Label fx:id="totalCount1" layoutX="98.0" layoutY="536.0" prefHeight="47.0" prefWidth="323.0" />
+            <PieChart fx:id="pieChart2" layoutX="576.0" layoutY="85.0" prefHeight="438.0" prefWidth="598.0" />
+            <Label fx:id="totalCount2" layoutX="782.0" layoutY="536.0" prefHeight="49.0" prefWidth="243.0" />
          </children>
       </Pane>
    </children>

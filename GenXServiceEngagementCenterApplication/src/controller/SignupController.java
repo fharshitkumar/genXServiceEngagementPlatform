@@ -212,6 +212,7 @@ public class SignupController implements 	Initializable{
 		A_DatabaseCommunicationEngine DCE_LOGIN = new A_DatabaseCommunicationEngine();
 		A_DatabaseCommunicationEngine DCE_CUSTOMER = new A_DatabaseCommunicationEngine();
 		A_DatabaseCommunicationEngine DCE_PERSON = new A_DatabaseCommunicationEngine();
+		A_DatabaseCommunicationEngine DCE_CUSTOMERSERVICE = new A_DatabaseCommunicationEngine();
 		boolean SignupFlag = true;  
 		try {
 			
@@ -276,16 +277,16 @@ public class SignupController implements 	Initializable{
 				+ (relationship.getSelectionModel().getSelectedIndex() + 1) +"'"
 				+ ")";
 		
-	
-		String FNAME = null;
-		String LNAME = null;
-		Integer CONTACT = null;
-		String ADDRESS = null;
-		String GENDER = null;
+		
+		String FNAME = "'Please Enter your first name'";
+		String LNAME = "'Please enter your last name'";
+		Integer CONTACT = 0;
+		String ADDRESS = "'Please enter your address'";
+		String GENDER = "'M'";
 		Date DATEOFBIRTH = null;
-		String CITY = null;
-		String STATE = null;
-		String ZIPCODE = null;
+		String CITY = "'Please enter your city'";
+		String STATE = "'Please enter your state'";
+		String ZIPCODE = "0";
 		String sqlPERSONINFO = "INSERT INTO PERSONINFO" + 
 				" VALUES("
 				+ personID + ", "
@@ -307,18 +308,29 @@ public class SignupController implements 	Initializable{
 			if(contractnumber.getText() != null)
 			contractID = Integer.getInteger(contractnumber.getText());
 			
+			if(contractID==null)
+				contractID = 0;
 			
 			
 			String sqlCONTRACT = "INSERT INTO CUSTOMER" + 
 				" VALUES("
 				+ personID + ", "
-				+ 0 + ", "
 				+ relationshipID + ", "
 				+ contractID
 				+ ")";
+			
+			String SQLQueryservice = "INSERT INTO CUSTOMERSERVICES " +
+					" VALUES("
+					+ personID + ", "
+					+ 0 + 
+					")";
+				
+			
+			
 			DCE_PERSON.DDLCommandDatabase(sqlPERSONINFO);
 			DCE_CUSTOMER.DDLCommandDatabase(sqlCONTRACT);
 			DCE_LOGIN.DDLCommandDatabase(sql);
+			DCE_CUSTOMERSERVICE.DDLCommandDatabase(SQLQueryservice);
 		}
 		else if (!(relationship.getSelectionModel().getSelectedItem()).contains("ADMIN")) {	
 		}

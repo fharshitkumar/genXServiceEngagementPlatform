@@ -30,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import models.A_IncidentManagementEngine;
+import models.A_InteractionManagementEngine;
 import models.A_PersonInformationEngine;
 import models.ApplicationUser;
 import models.V_ViewManagementEngine;
@@ -84,6 +85,18 @@ public class CustomerDashaboardController implements Initializable {
 
 	@FXML
 	public void serviceOpen(ActionEvent event) {
+		
+		/*********************************************************************************************/
+		/********** -------| GET ALL THE INCIDENTS FROM SOCIAL MEDIA |-------- ***********************/
+		/*********************************************************************************************/ 
+		A_InteractionManagementEngine.FacebookManager();
+		
+		
+		
+		
+		/*********************************************************************************************/
+		/************* -------| GET ALL THE INCIDENTS FROM DATABASE |-------- ***********************/
+		/*********************************************************************************************/ 
 		servicepane.setVisible(true);
 		ObservableList<String> items =FXCollections.observableArrayList ();
 		V_ViewManagementEngine VME = new V_ViewManagementEngine();
@@ -93,6 +106,10 @@ public class CustomerDashaboardController implements Initializable {
 			items.add(c.getServicename());
 		}
 		service.setItems(items);
+		
+		
+		
+		
 	}
 
 
@@ -179,9 +196,14 @@ public class CustomerDashaboardController implements Initializable {
 
 	@FXML
 	public void RefreshServiceHistory(ActionEvent event) {
+		
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
-		/***Facebook API call****/
 
+		/*********************************************************************************************/
+		/********** -------| GET ALL THE INCIDENTS FROM SOCIAL MEDIA |-------- ***********************/
+		/*********************************************************************************************/ 
+		A_InteractionManagementEngine.FacebookManager();
+		
 		ObservableList<Incident> incidentdata = IME.displayTickets(ApplicationUser.getApplicationUser().getPersonid(),false);
 		customerservicehistory.setItems(incidentdata);
 	}
@@ -296,7 +318,10 @@ public class CustomerDashaboardController implements Initializable {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
 
 		ObservableList<CustomerInfoView> CIV =	VME.customerinfoviewer(ApplicationUser.getApplicationUser().getPersonid());
-		customernamewelcomescreen.setText(CIV.get(0).getFname());
+		String WelcomeScreenUSername = CIV.get(0).getFname();
+		if(WelcomeScreenUSername == null)
+			WelcomeScreenUSername = " ";
+		customernamewelcomescreen.setText(WelcomeScreenUSername);
 		
 		/**************************Bind the Data Type to the javaFX Table **************************/
 		iincidentid.setCellValueFactory( c ->

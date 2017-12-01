@@ -147,6 +147,16 @@ public class LoginController  implements Initializable {
 						primaryStage.initStyle(StageStyle.UNDECORATED);
 						primaryStage.centerOnScreen();
 					}
+					else if(guest.getRoleid()==3)
+					{
+						System.out.println("Opening Manager view");
+						/*****************If user is CSR, inflate CSR view***********************/
+						((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+						root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/Manager.fxml"));
+						primaryStage.initStyle(StageStyle.UNDECORATED);
+						primaryStage.centerOnScreen();
+					}
+					
 					else {
 						System.out.println("Opening Customer view");
 						/*****************If user is customer, inflate customer view***********************/

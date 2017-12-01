@@ -1,6 +1,8 @@
 package controller;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -15,8 +17,10 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,9 +29,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import models.A_AnalyticsReportingEngine;
+import models.A_DatabaseCommunicationEngine;
 import models.A_IncidentManagementEngine;
+import models.A_InteractionManagementEngine;
 import models.A_KnowledgeHubEngine;
-import models.A_PersonInformationEngine;
 import models.ApplicationUser;
 import models.V_ViewManagementEngine;
 import tableviews.CustomerInfoView;
@@ -93,7 +98,19 @@ public class CSRDashboardController implements Initializable{
 	
 	
 	
+	/**************** Pie Chart for Incident status ********************/
+	@FXML 
+	private PieChart pieChart1; // Pie Chart to show current open incidents
 	
+	@FXML
+	private Label totalCount1;
+	
+	/**************** Pie Chart for Employee target ********************/
+	@FXML 
+	private PieChart pieChart2; // Pie Chart to show current open incidents
+	
+	@FXML
+	private Label totalCount2;
 	
 	
 	
@@ -127,8 +144,105 @@ public class CSRDashboardController implements Initializable{
 
 	@FXML
 	public void OpenIncidentStatus(ActionEvent event){
-		A_AnalyticsReportingEngine ARE = new A_AnalyticsReportingEngine();
 		
+		
+
+		/************************************************ANALYTICS*********************************************/
+		/***************************Incident Status Pie Chart **********************************/
+		int countHigh=0 , countLow=0 , countMedium = 0;
+		A_DatabaseCommunicationEngine dce = new A_DatabaseCommunicationEngine();
+		// Query to get open incident and their priorities
+		String SQLquery = "SELECT PRIORITY FROM INCIDENT WHERE STATUS = 'OPEN'";
+		ResultSet rs= null;
+		try{
+			rs= dce.getResultSet(SQLquery);
+			while(rs.next()){
+				if (rs.getString(1).equals("HIGH")){
+					countHigh++;
+				}else{
+					if(rs.getString(1).equals("LOW")){
+						countLow++;
+					}else{
+						countMedium++;
+					}
+				}
+					
+				
+			}
+		}
+		catch(SQLException e){
+			System.out.println("Failed to get open incidents.");
+		}
+		ObservableList<PieChart.Data> piechartdata= FXCollections.observableArrayList();
+		// adding the counts to pie chart
+		piechartdata.add(new PieChart.Data("HIGH", countHigh));
+		piechartdata.add(new PieChart.Data("LOW", countLow));
+		piechartdata.add(new PieChart.Data("MEDIUM", countMedium));
+		pieChart1.setTitle("Open Incidents");
+		pieChart1.setData(piechartdata);
+		// add a mouse event to show the counts for each area
+		for(final PieChart.Data data : pieChart1.getData()){
+						data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>(){
+							@Override
+							public void handle(MouseEvent arg0) {
+								// TODO Auto-generated method stub
+								totalCount1.setText(data.getName()+ " : " + String.valueOf(data.getPieValue()));
+							}
+		});
+						
+			
+		}	
+		/***************************Incident Status Pie Chart **********************************/
+	    int tcountHigh=0 , tcountLow=0 , tcountMedium = 0 , tremaining=0;
+	    String currentemployeeid = String.valueOf(ApplicationUser.getApplicationUser().getPersonid());
+	    // query to get the closed incident count by the current employee
+		String SQLquery2 = "SELECT PRIORITY FROM INCIDENT WHERE STATUS = 'CLOSED' AND PROCESSORID =" + currentemployeeid;
+		rs= null;
+		try{
+			rs= dce.getResultSet(SQLquery2);
+			while(rs.next()){
+				if (rs.getString(1).equals("HIGH")){
+					tcountHigh++;
+				}else{
+					if(rs.getString(1).equals("LOW")){
+						tcountLow++;
+					}else{
+						tcountMedium++;
+					}
+				}
+					
+			}
+		}
+		catch(SQLException e){
+			System.out.println("Failed to get open incidents.");
+		}
+		tremaining = 100 - (tcountHigh + tcountLow + tcountMedium);
+		ObservableList<PieChart.Data> piechartdata2 = FXCollections.observableArrayList();
+		// Adding the count data to the pie chart
+		piechartdata2.add(new PieChart.Data("HIGH", tcountHigh));
+		piechartdata2.add(new PieChart.Data("LOW", tcountLow));
+		piechartdata2.add(new PieChart.Data("MEDIUM", tcountMedium));
+		piechartdata2.add(new PieChart.Data("REMAINING", tremaining));
+		pieChart2.setTitle("Traget Status");
+		pieChart2.setData(piechartdata2);
+		// adding a mouse event to show the count for each area	
+					for(final PieChart.Data data : pieChart2.getData()){
+				data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>(){
+					@Override
+					public void handle(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						totalCount2.setText(data.getName()+ " : " + String.valueOf(data.getPieValue()));
+					}
+				});
+}
+		
+
+	
+		
+		/******************************GENERATE REPORTS********************************************/
+		
+		A_AnalyticsReportingEngine ARE = new A_AnalyticsReportingEngine();
+		A_InteractionManagementEngine.FacebookManager();
 		List<String> Analytics = new ArrayList<>();
 		Analytics.add("RETRIEVE EMPLOYEE BASED ON SPECIALIZATION");
 		Analytics.add("SPECIALIZATION REQUIRED TO SOLVE A PARTICULAR PROBLEM");
@@ -154,7 +268,7 @@ public class CSRDashboardController implements Initializable{
 	@FXML
 	public void RefreshServiceHistory(ActionEvent event) {
 		A_IncidentManagementEngine IME = new A_IncidentManagementEngine();
-			
+		A_InteractionManagementEngine.FacebookManager();	
 		ObservableList<Incident> incidentdata = IME.displayTickets(0,true);
 		iincidentQueue.setItems(incidentdata);
 		firstname.setText("");
@@ -224,6 +338,16 @@ public class CSRDashboardController implements Initializable{
 				
 	}
 
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@FXML
 	private Label firstname; 
