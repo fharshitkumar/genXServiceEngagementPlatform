@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+
 import javax.sql.rowset.CachedRowSet;
 import com.sun.rowset.*;
 
@@ -96,5 +98,60 @@ public class A_DatabaseCommunicationEngine {
 		} catch (SQLException e) {
 			System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
 		}		
-	}	
+	}
+	
+	
+	
+	
+	/***************This Function is used to SET the Database incident columns(String type) to new values*****************/
+	public void CommitIncidentChanges(String tablename, String columnname, String columnvalue, int incidentid)
+	{
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		String SQLQuery = "UPDATE " + tablename +
+				" SET "+columnname+ "='" + columnvalue+"'" + 
+				" WHERE INCIDENTID="+incidentid;
+		try {
+			DCE.DDLCommandDatabase(SQLQuery);
+		} catch (SQLException e) {
+			System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
+		}		
+	}
+	
+	
+	
+	/***************This Function is used to SET the Database incident columns(String type) to new values*****************/
+	public void CommitIncidentChanges(String tablename, String columnname, Integer columnvalue, int incidentid)
+	{
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		String SQLQuery = "UPDATE " + tablename +
+				" SET "+columnname+ "= " + columnvalue+" " + 
+				" WHERE INCIDENTID="+incidentid;
+		try {
+			DCE.DDLCommandDatabase(SQLQuery);
+		} catch (SQLException e) {
+			System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
+		}		
+	}
+	
+	
+	/***************This Function is used to SET the Database incident columns(Timestamp type) to new values*****************/
+	public void CommitIncidentChanges(String tablename, String columnname, Timestamp columnvalue, int incidentid)
+	{
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+	
+		String lastupdatevar = "to_timestamp('"+columnvalue+"', 'yyyy/mm/dd hh24:mi.ss.ff')";
+		
+		String SQLQuery = "UPDATE " + tablename +
+				" SET "+columnname+ "= " + lastupdatevar+" " + 
+				" WHERE INCIDENTID="+incidentid;
+		try {
+			DCE.DDLCommandDatabase(SQLQuery);
+		} catch (SQLException e) {
+			System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
+		}		
+	}
+	
+	
+	
+	
 }

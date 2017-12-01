@@ -39,21 +39,172 @@ import utility.ApplicationUtilities;
 
 public class CustomerDashaboardController implements Initializable {
 
+	
+	/***********************************************************************************/
+	/********************ALL THE NAVIGATION PANES IN CUSTOMER SCREEN********************/
+    /***********************************************************************************/
+	
 	@FXML
 	private Pane homepanel;
-
 	@FXML
 	private Pane personalinfopane;
-
 	@FXML
 	private Pane servicepane;
-
 	@FXML
 	private Pane twitterpane;
-
 	@FXML
 	private Pane facebookpanel;
 
+	
+	
+	/***********************************************************************************/
+	/********************ALL THE SERVICES SELECTIONS FLAGS ON UI************************/
+    /***********************************************************************************/
+	@FXML
+	private MaterialDesignIconView selectedflagWord;
+	@FXML
+	private MaterialDesignIconView selectedflagExcel;
+	@FXML
+	private MaterialDesignIconView selectedflagPowerPoint;
+	@FXML
+	private MaterialDesignIconView selectedflagOutlook;
+	@FXML
+	private MaterialDesignIconView selectedflagOneNote;
+	@FXML
+	private MaterialDesignIconView selectedflagOneDrive;
+	@FXML
+	private MaterialDesignIconView selectedflagPublisher;
+	@FXML
+	private MaterialDesignIconView selectedflagAccess;
+	@FXML
+	private MaterialDesignIconView selectedflagPictureMgr;
+	@FXML
+	private MaterialDesignIconView selectedflagSharePoint;
+	@FXML
+	private MaterialDesignIconView selectedflagSkype;
+	@FXML
+	private MaterialDesignIconView selectedflagExchange;
+	@FXML
+	private MaterialDesignIconView selectedflagYammer;
+	@FXML
+	private MaterialDesignIconView selectedflagSway;
+	@FXML
+	private MaterialDesignIconView selectedflagPowerBI;
+	@FXML
+	private MaterialDesignIconView selectedflagVisio;
+	@FXML
+	private MaterialDesignIconView selectedflagProject;
+
+	
+
+	
+	/***********************************************************************************/
+	/**********************************SOCIAL MEDIA POSTS*******************************/
+    /***********************************************************************************/
+	
+	
+
+	/********---------------| FACEBOOK |--------------*********/
+	@FXML
+	private JFXTextArea wallpost;
+	
+	/********---------------| TWITTER |--------------*********/
+	@FXML
+	private JFXTextArea tweetwall;
+	@FXML
+	private ImageView popuptweet;
+	@FXML
+	private JFXButton tweet;
+	@FXML
+	private JFXButton closetwitter;
+	
+	
+
+
+	/***********************************************************************************/
+	/************************CREATE APPLICATION INCICDENT*******************************/
+    /***********************************************************************************/
+	
+	@FXML 
+	private JFXButton createincidentbtn;
+	@FXML 
+	private JFXTextField shorttext;
+	@FXML 
+	private JFXTextField problem;
+	
+	
+
+	
+	
+	
+	/***********************************************************************************/
+	/************************MONITOR APPLICATION INCICDENT******************************/
+    /***********************************************************************************/
+	
+	@FXML
+	private JFXComboBox<String> service;
+	@FXML
+	private JFXComboBox<String> priority;
+	@FXML
+	private TableView<Incident> customerservicehistory;
+	@FXML
+	private TableColumn<Incident,Integer> iincidentid;
+	@FXML
+	private TableColumn<Incident,String> ishorttext;
+	@FXML
+	private TableColumn<Incident,String> iproblem;
+	@FXML
+	private TableColumn<Incident,String> isolution;
+	@FXML
+	private TableColumn<Incident,String> ichannelid;
+	@FXML 
+	private JFXButton personalinfobtn;
+	@FXML 
+	private Label personalinfolabel;
+
+
+
+	/***********************************************************************************/
+	/******************************WELCOME SCREEN NAME**********************************/
+    /***********************************************************************************/
+
+	@FXML
+	private Label customernamewelcomescreen;
+
+
+	
+	
+	
+	/***********************************************************************************/
+	/**********************CUSTOMER PERSONAL INFORMATION********************************/
+    /***********************************************************************************/
+
+	@FXML
+	private JFXTextField fname;
+	@FXML
+	private JFXTextField lname;
+	@FXML
+	private JFXTextField contact;
+	@FXML
+	private JFXTextField dateofbirth;
+	@FXML
+	private JFXTextField address;
+	@FXML
+	private JFXTextField city;
+	@FXML
+	private JFXTextField state;
+	@FXML
+	private JFXTextField zipcode;
+	@FXML
+	private JFXComboBox<String> gender;
+	@FXML
+	private JFXButton serviceOffice;
+	
+	
+	
+	
+	
+	
 	@FXML
 	public void OpenCustomerHomePanel(ActionEvent event) {
 		System.out.println("You clicked Home button");
@@ -115,9 +266,6 @@ public class CustomerDashaboardController implements Initializable {
 
 
 	@FXML
-	private JFXTextArea wallpost;
-
-	@FXML
 	public void FacebookPost(ActionEvent event) {
 
 		System.out.println("You Posted "+ wallpost.getText());
@@ -126,17 +274,7 @@ public class CustomerDashaboardController implements Initializable {
 
 
 
-	@FXML
-	private JFXTextArea tweetwall;
 
-	@FXML
-	private ImageView popuptweet;
-
-	@FXML
-	private JFXButton tweet;
-
-	@FXML
-	private JFXButton closetwitter;
 
 	@FXML
 	public void TwitterPost(ActionEvent event) {
@@ -208,14 +346,7 @@ public class CustomerDashaboardController implements Initializable {
 		customerservicehistory.setItems(incidentdata);
 	}
 
-	@FXML 
-	private JFXButton createincidentbtn;
 
-	@FXML 
-	private JFXTextField shorttext;
-
-	@FXML 
-	private JFXTextField problem;
 
 
 	@FXML
@@ -264,32 +395,6 @@ public class CustomerDashaboardController implements Initializable {
 	}
 
 	ApplicationUtilities util;
-	@FXML
-	private JFXComboBox<String> service;
-	@FXML
-	private JFXComboBox<String> priority;
-
-	@FXML
-	private TableView<Incident> customerservicehistory;
-
-	@FXML
-	private TableColumn<Incident,Integer> iincidentid;
-
-	@FXML
-	private TableColumn<Incident,String> ishorttext;
-
-	@FXML
-	private TableColumn<Incident,String> iproblem;
-
-	@FXML
-	private TableColumn<Incident,String> isolution;
-
-	@FXML
-	private TableColumn<Incident,String> ichannelid;
-
-	@FXML JFXButton personalinfobtn;
-
-	@FXML Label personalinfolabel;
 
 	private String getChannelName(Integer channelid)
 	{
@@ -300,14 +405,12 @@ public class CustomerDashaboardController implements Initializable {
 	
 	private String changenulltoblank(String stringobject)
 	{
-		if(stringobject==null)
-		return "";
+		if(stringobject.equals(null))
+		return "<AWAITING FOR SOLUTION>";
 		else
 			return stringobject;
 	}
 	
-	@FXML
-	private Label customernamewelcomescreen;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -447,36 +550,7 @@ public class CustomerDashaboardController implements Initializable {
 		 zipcode.setText(customerinfo.getZipcode());
 	}
 	
-	@FXML
-	private JFXTextField fname;
-	
-	@FXML
-	private JFXTextField lname;
-	
-	@FXML
-	private JFXTextField contact;
-	
-	@FXML
-	private JFXTextField dateofbirth;
-	
-	@FXML
-	private JFXTextField address;
-	
-	@FXML
-	private JFXTextField city;
-	
-	@FXML
-	private JFXTextField state;
-	
-	@FXML
-	private JFXTextField zipcode;
-	
-	@FXML
-	private JFXComboBox<String> gender;
-	
-	@FXML
-	private JFXButton serviceOffice;
-	
+
 	@FXML
 	public void updatePersonalInfo(ActionEvent event) {
 		
@@ -517,43 +591,6 @@ public class CustomerDashaboardController implements Initializable {
 		
 	}
 
-	/***********************************************************************************/
-	/********************ALL THE SERVICES SELECTIONS FLAGS ON UI************************/
-    /***********************************************************************************/
-	@FXML
-	private MaterialDesignIconView selectedflagWord;
-	@FXML
-	private MaterialDesignIconView selectedflagExcel;
-	@FXML
-	private MaterialDesignIconView selectedflagPowerPoint;
-	@FXML
-	private MaterialDesignIconView selectedflagOutlook;
-	@FXML
-	private MaterialDesignIconView selectedflagOneNote;
-	@FXML
-	private MaterialDesignIconView selectedflagOneDrive;
-	@FXML
-	private MaterialDesignIconView selectedflagPublisher;
-	@FXML
-	private MaterialDesignIconView selectedflagAccess;
-	@FXML
-	private MaterialDesignIconView selectedflagPictureMgr;
-	@FXML
-	private MaterialDesignIconView selectedflagSharePoint;
-	@FXML
-	private MaterialDesignIconView selectedflagSkype;
-	@FXML
-	private MaterialDesignIconView selectedflagExchange;
-	@FXML
-	private MaterialDesignIconView selectedflagYammer;
-	@FXML
-	private MaterialDesignIconView selectedflagSway;
-	@FXML
-	private MaterialDesignIconView selectedflagPowerBI;
-	@FXML
-	private MaterialDesignIconView selectedflagVisio;
-	@FXML
-	private MaterialDesignIconView selectedflagProject;
 
 	
 	

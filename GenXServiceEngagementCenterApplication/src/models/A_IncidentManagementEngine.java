@@ -174,6 +174,126 @@ public class A_IncidentManagementEngine {
 		return incidentdata;
 
 	}
+	
+	
+	
+	
+	public ObservableList<Incident> displayCSRTickets(int dasboardcustomerid, boolean getallstatus){
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		ObservableList<Incident> incidentdata = FXCollections.observableArrayList();
+		String SQLQuery = "SELECT * FROM INCIDENT";
+		ResultSet resultSet = null;
+		ResultSet rs = null;
+		System.out.println("Inside A_IncidentManagementEngine: Function ---> displayTickets");
+		try {
+			resultSet = DCE.getResultSet(SQLQuery);
+			rs = resultSet;
+			Integer incidentid;
+			Integer processorid;
+			Integer customerid;
+			Integer channelid;
+			Integer serviceid;
+			String shorttext;
+			String problem;
+			String priority;
+			Timestamp createdon;
+			String status;
+			String solution;
+			Timestamp lastupdate;
+			Timestamp closedate;
+			String tag;
+			String notes;
+			Boolean escalatedstatus;
+			Integer sentiment;
+			while(rs.next())
+			{
+				incidentid = rs.getInt(1);
+				processorid = rs.getInt(2);
+				customerid = rs.getInt(3);
+				channelid = rs.getInt(4);
+				serviceid = rs.getInt(5);
+				shorttext = (String)rs.getString(6);
+				problem = (String)rs.getString(7);
+				priority = (String)rs.getString(8);
+				createdon = rs.getTimestamp(9);
+				status = (String)rs.getString(10);
+				solution = (String)rs.getString(11);
+				lastupdate = rs.getTimestamp(12);
+				closedate = rs.getTimestamp(13);
+				tag = (String)rs.getString(14);
+				notes = (String)rs.getString(15);
+				escalatedstatus = (Boolean)(rs.getString(16).equals("Y")? true : false);
+				sentiment = rs.getInt(17);
+				if(getallstatus)
+					incidentdata.add(new Incident(
+							incidentid,
+							processorid,
+							customerid,
+							channelid,
+							serviceid,
+							shorttext,
+							problem,
+							priority,
+							createdon,
+							status,
+							solution,
+							lastupdate,
+							closedate,
+							tag,
+							notes,
+							escalatedstatus,
+							sentiment
+							));
+				else if(processorid == dasboardcustomerid && status.equals("OPEN"))
+				incidentdata.add(new Incident(
+						incidentid,
+						processorid,
+						customerid,
+						channelid,
+						serviceid,
+						shorttext,
+						problem,
+						priority,
+						createdon,
+						status,
+						solution,
+						lastupdate,
+						closedate,
+						tag,
+						notes,
+						escalatedstatus,
+						sentiment
+						));
+				
+			}
+			resultSet.close();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("Failed to get CSR Tickets");
+		}	
+
+		return incidentdata;
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public List<String> getPriority() {
 		List<String> priorities = new ArrayList<>();
 		priorities.add("LOW");

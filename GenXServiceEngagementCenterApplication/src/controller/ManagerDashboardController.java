@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXComboBox;
 import entities.ManagerView;
+import entities.PersonalInfo;
 import entities.WorkSchedule;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -33,6 +34,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.converter.IntegerStringConverter;
 import models.A_DatabaseCommunicationEngine;
 import models.A_IncidentManagementEngine;
+import models.A_PersonInformationEngine;
 import models.ApplicationUser;
 import utility.ApplicationUtilities;
 import java.sql.Timestamp;
@@ -52,11 +54,10 @@ public class ManagerDashboardController implements Initializable{
 	 * Declaration of welcome labels
 	 *********************************************************************************************************
 	 */	
-	@FXML
-	private Label label1;
+
 	
 	@FXML
-	private Label label2;
+	private Label managerName;
 	
 	/*********************************************************************************************************
 	 * Declaration of table variables to show the open incidents on manager screen
@@ -164,8 +165,11 @@ public class ManagerDashboardController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to Manager screen");
-		label1.setText("Welcome  " + ApplicationUser.getApplicationUser().getUsername());
-		label2.setText("Welcome  " + ApplicationUser.getApplicationUser().getUsername());
+		
+		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
+		PersonalInfo PI = PIE.displayPersonalInfo(ApplicationUser.getApplicationUser().getPersonid());
+		managerName.setText(PI.getFname());
+		
 		// setting property type for each column
 		mincidentid.setCellValueFactory(c -> 
 		new ReadOnlyObjectWrapper<Integer>(c.getValue().getIncidentid()));
@@ -190,79 +194,8 @@ public class ManagerDashboardController implements Initializable{
 		
 		getServices();
         getPriority();
+        drawGraphs();
 		
-		// Getting data for pie chart
-		int countHigh=0 , countLow=0 , countMedium = 0;
-		A_DatabaseCommunicationEngine dce = new A_DatabaseCommunicationEngine();
-		String SQLquery = "SELECT PRIORITY FROM INCIDENT WHERE STATUS = 'OPEN'";
-		ResultSet rs= null;
-		try{
-			rs= dce.getResultSet(SQLquery);
-			while(rs.next()){
-				if (rs.getString(1).equals("HIGH")){
-					countHigh++;
-				}else{
-					if(rs.getString(1).equals("LOW")){
-						countLow++;
-					}else{
-						countMedium++;
-					}
-				}
-					
-				
-			}
-			rs=null;
-		}
-		catch(SQLException e){
-			System.out.println("Failed to get open incidents.");
-		}
-		System.out.println("Count High: " + countHigh);
-		System.out.println("Count Low: " + countLow);
-		System.out.println("Count Medium: " + countMedium);
-		ObservableList<PieChart.Data> piechartdata= FXCollections.observableArrayList();
-		piechartdata.add(new PieChart.Data("HIGH", countHigh));
-		piechartdata.add(new PieChart.Data("LOW", countLow));
-		piechartdata.add(new PieChart.Data("MEDIUM", countMedium));
-		// binding records to pie chart
-		piechart.setData(piechartdata);
-		// adding mouse move event to show count for  each area in pie chart
-		for(final PieChart.Data data : piechart.getData()){
-			data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>(){
-				@Override
-				public void handle(MouseEvent arg0) {
-					// TODO Auto-generated method stub
-					totalCount.setText(data.getName()+ " : " + String.valueOf(data.getPieValue()));
-				}
-			});
-		}
-
-		// getting data for bar chart
-		// creating x axis
-		CategoryAxis xAxis = new CategoryAxis();
-		xAxis.setLabel("Services");
-		// creating Y axis
-		NumberAxis yAxis = new NumberAxis();
-	    yAxis.setLabel("Incident Count");
-	    // Create a BarChart
-	    barchart.setTitle("Service Open Incident Count");
-	    XYChart.Series<String, Number> dataSeries = new XYChart.Series<String, Number>();
-	    String sqlQuery1 = "SELECT SERVICENAME, COUNT(*) FROM MANAGER_VIEW WHERE STATUS= 'OPEN' GROUP BY SERVICENAME";
-	    rs= null;
-	    String servicename;
-	    int servicecount;
-		try{
-			rs= dce.getResultSet(sqlQuery1);
-			while(rs.next()){
-				servicename= (String)rs.getString(1);
-				servicecount = rs.getInt(2);
-    			dataSeries.getData().add(new Data<String, Number>(servicename, servicecount));
-			}
-			rs.close();
-		} catch (SQLException e) {
-			System.out.println("Failed to get Manager View Data " + e.getMessage());
-		}	
-		dataSeries.setName("Services");
-		barchart.getData().add(dataSeries);
 		
 		
 		// getting data for workschedule table
@@ -332,6 +265,88 @@ public class ManagerDashboardController implements Initializable{
 		return incidentdata;
 	}
 
+	
+	
+	private void drawGraphs() {
+		// Getting data for pie chart
+				int countHigh=0 , countLow=0 , countMedium = 0;
+				A_DatabaseCommunicationEngine dce = new A_DatabaseCommunicationEngine();
+				String SQLquery = "SELECT PRIORITY FROM INCIDENT WHERE STATUS = 'OPEN'";
+				ResultSet rs= null;
+				try{
+					rs= dce.getResultSet(SQLquery);
+					while(rs.next()){
+						if (rs.getString(1).equals("HIGH")){
+							countHigh++;
+						}else{
+							if(rs.getString(1).equals("LOW")){
+								countLow++;
+							}else{
+								countMedium++;
+							}
+						}
+							
+						
+					}
+					rs=null;
+				}
+				catch(SQLException e){
+					System.out.println("Failed to get open incidents.");
+				}
+				System.out.println("Count High: " + countHigh);
+				System.out.println("Count Low: " + countLow);
+				System.out.println("Count Medium: " + countMedium);
+				ObservableList<PieChart.Data> piechartdata= FXCollections.observableArrayList();
+				piechartdata.add(new PieChart.Data("HIGH", countHigh));
+				piechartdata.add(new PieChart.Data("LOW", countLow));
+				piechartdata.add(new PieChart.Data("MEDIUM", countMedium));
+				// binding records to pie chart
+				piechart.setData(piechartdata);
+				// adding mouse move event to show count for  each area in pie chart
+				for(final PieChart.Data data : piechart.getData()){
+					data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>(){
+						@Override
+						public void handle(MouseEvent arg0) {
+							// TODO Auto-generated method stub
+							totalCount.setText(data.getName()+ " : " + String.valueOf(data.getPieValue()));
+						}
+					});
+				}
+
+				// getting data for bar chart
+				// creating x axis
+				CategoryAxis xAxis = new CategoryAxis();
+				xAxis.setLabel("Services");
+				// creating Y axis
+				NumberAxis yAxis = new NumberAxis();
+			    yAxis.setLabel("Incident Count");
+			    // Create a BarChart
+			    barchart.setTitle("Service Open Incident Count");
+			    XYChart.Series<String, Number> dataSeries = new XYChart.Series<String, Number>();
+			    String sqlQuery1 = "SELECT SERVICENAME, COUNT(*) FROM MANAGER_VIEW WHERE STATUS= 'OPEN' GROUP BY SERVICENAME";
+			    rs= null;
+			    String servicename;
+			    int servicecount;
+				try{
+					rs= dce.getResultSet(sqlQuery1);
+					while(rs.next()){
+						servicename= (String)rs.getString(1);
+						servicecount = rs.getInt(2);
+		    			dataSeries.getData().add(new Data<String, Number>(servicename, servicecount));
+					}
+					rs.close();
+				} catch (SQLException e) {
+					System.out.println("Failed to get Manager View Data " + e.getMessage());
+				}	
+				dataSeries.setName("Services");
+				barchart.getData().add(dataSeries);
+	}
+	
+	
+	
+	
+	
+	
 	/*********************************************************************************************************
 	 * function to select work schedule data from workshedule table and return the work schedule details
 	 *********************************************************************************************************
@@ -505,10 +520,9 @@ public class ManagerDashboardController implements Initializable{
 		msearchservice.setItems(null);
 		getServices();
         getPriority();
-		
+
 		//Set the table contents to Login user administration tasks.
 		tableIncident.setItems(getData());	
-		
 	}
 
 	private void getServices() {

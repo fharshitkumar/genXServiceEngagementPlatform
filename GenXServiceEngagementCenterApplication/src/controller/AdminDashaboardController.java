@@ -9,8 +9,6 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-
-import entities.Incident;
 import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
