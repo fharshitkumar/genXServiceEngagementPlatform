@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
@@ -115,15 +116,6 @@
                </font>
             </Label>
          </children></Pane>
-      <Pane fx:id="incidentPane" layoutX="23.0" layoutY="71.0" prefHeight="599.0" prefWidth="1233.0" style="-fx-background-color: #FFD600;" visible="false">
-         <children>
-            <JFXButton fx:id="backBtnCSR" layoutX="14.0" layoutY="9.0" onAction="#backCSR" style="-fx-background-color: black;" stylesheets="@../css/tiles.css" text="BACK" textFill="WHITE">
-               <graphic>
-                  <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
-               </graphic>
-            </JFXButton>
-         </children>
-      </Pane>
       <JFXButton fx:id="closeBtn" contentDisplay="GRAPHIC_ONLY" layoutX="1231.0" layoutY="12.0" onAction="#handleCloseButtonAction" prefHeight="25.0" prefWidth="29.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" stylesheets="@../css/tiles.css">
          <graphic>
             <MaterialDesignIconView fill="#170101" glyphName="CLOSE" size="15" />
@@ -145,5 +137,15 @@
             <Font name="Raleway ExtraBold" size="12.0" />
          </font>
       </JFXButton>
+      <Pane fx:id="incidentPane" layoutX="23.0" layoutY="71.0" opacity="0.98" prefHeight="599.0" prefWidth="1233.0" style="-fx-background-color: #FFD600;">
+         <children>
+            <JFXButton fx:id="backBtnCSR" layoutX="14.0" layoutY="9.0" onAction="#backCSR" style="-fx-background-color: black;" stylesheets="@../css/tiles.css" text="BACK" textFill="WHITE">
+               <graphic>
+                  <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXComboBox focusColor="BLACK" layoutX="390.0" layoutY="81.0" prefHeight="25.0" prefWidth="502.0" promptText="SELECT THE ANALYTICS" style="-fx-text-fill: white;" stylesheets="@../css/combobox.css" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

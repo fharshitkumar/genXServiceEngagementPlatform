@@ -1,6 +1,8 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXListView;
@@ -22,8 +24,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import models.A_AnalyticsReportingEngine;
 import models.A_IncidentManagementEngine;
 import models.A_KnowledgeHubEngine;
+import models.A_PersonInformationEngine;
 import models.ApplicationUser;
 import models.V_ViewManagementEngine;
 import tableviews.CustomerInfoView;
@@ -79,7 +83,7 @@ public class CSRDashboardController implements Initializable{
 	private TableColumn<KnowledgeBase,String> isolutionknowledgebase;
 	
 	@FXML
-	private TableColumn<KnowledgeBase,Integer> iserviceknowledgebase;
+	private TableColumn<KnowledgeBase,String> iserviceknowledgebase;
 	
 	@FXML
 	private TableColumn<KnowledgeBase,String> inotesknowledgebase;
@@ -123,7 +127,26 @@ public class CSRDashboardController implements Initializable{
 
 	@FXML
 	public void OpenIncidentStatus(ActionEvent event){
-
+		A_AnalyticsReportingEngine ARE = new A_AnalyticsReportingEngine();
+		
+		List<String> Analytics = new ArrayList<>();
+		Analytics.add("RETRIEVE EMPLOYEE BASED ON SPECIALIZATION");
+		Analytics.add("SPECIALIZATION REQUIRED TO SOLVE A PARTICULAR PROBLEM");
+		Analytics.add("UNASSIGNED TICKETS");
+		Analytics.add("AGENT WORKLOAD");
+		Analytics.add("TICKETS BASED ON PRIORITY");
+		Analytics.add("AGENT WORKLOAD");
+		Analytics.add("UNASSIGNED TICKETS");
+		Analytics.add("AGENT WORKLOAD");
+		
+		ARE.genenerateReport1();
+		ARE.genenerateReport2();
+		ARE.genenerateReport3();
+		ARE.genenerateReport4();
+		ARE.genenerateReport5();
+		ARE.genenerateReport6();
+		ARE.genenerateReport7();
+		ARE.genenerateReport8();
 		incidentPane.setVisible(true);
 		
 	}
@@ -141,6 +164,7 @@ public class CSRDashboardController implements Initializable{
 		CustomerType.setText("");
    		customerServicesList.setItems(null);
    		knowledgebasetable.setItems(null);
+   		customerservicehistoryCSR.setItems(null);
    		
 	}
 
@@ -221,9 +245,11 @@ public class CSRDashboardController implements Initializable{
 	
     @FXML
     void TableAccessLevel(MouseEvent event) {
-    	Incident selectedincident = iincidentQueue.getSelectionModel().getSelectedItem();
+    	Incident selectedincident = null;
+    	selectedincident = iincidentQueue.getSelectionModel().getSelectedItem();
     	V_ViewManagementEngine VME = new V_ViewManagementEngine();
-    	ObservableList<CustomerInfoView> customerinfoview = VME.customerinfoviewer(selectedincident.getCustomerid());
+    	ObservableList<CustomerInfoView> customerinfoview = null;
+    	customerinfoview = VME.customerinfoviewer(selectedincident.getCustomerid());
     
     	knowledgebasetable.setItems(null);
 		String selectedcustomerincident= null;
@@ -234,7 +260,7 @@ public class CSRDashboardController implements Initializable{
 		A_KnowledgeHubEngine KHE = new A_KnowledgeHubEngine();
 		
 		iserviceknowledgebase.setCellValueFactory( c ->
-		new ReadOnlyObjectWrapper<Integer>(c.getValue().getServiceid()));
+		new ReadOnlyStringWrapper(getServiceName(c.getValue().getServiceid())));
 		
 		ishorttextknowledgebase.setCellValueFactory(c -> 
 		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getShorttext())));

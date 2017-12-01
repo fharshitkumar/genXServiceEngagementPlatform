@@ -21,6 +21,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import models.A_DatabaseCommunicationEngine;
 import utility.ApplicationUtilities;
+import utility.BCrypt;
+import utility.EmailValidator;
+
 
 public class SignupController implements 	Initializable{
 
@@ -125,6 +128,8 @@ public class SignupController implements 	Initializable{
 		}	
 	}
 	
+	private static EmailValidator emailValidator;
+	
 	@SuppressWarnings("unused")
 	public void signup(ActionEvent event){
 		String username = this.username.getText();
@@ -172,7 +177,19 @@ public class SignupController implements 	Initializable{
 		if(email == null || email.trim().equals("")) {
 			lblStatus.setText("email cannot be empty or spaces");
 			lblStatus.setStyle("-fx-text-fill:red");
+			return;
 		}
+		
+		/************Check if email is in correct format*************************/
+		emailValidator = new EmailValidator();
+		 boolean valid = emailValidator.validateEmail(email);
+		 System.out.println("Email ID "+email+" is valid? " + valid);
+		 if(!valid) {
+			 lblStatus.setText("email is not in correct format");
+				lblStatus.setStyle("-fx-text-fill:red");
+				return;
+		 }
+		
 		
 		/******Check if relationship is left blank or empty*******/
 		String selectedRelationship = null;
@@ -236,6 +253,13 @@ public class SignupController implements 	Initializable{
 		while(rs.next())
 			personID = rs.getInt(1)+1;
 		rs.close();
+
+		
+		// Hash a password for the first time
+		String hashpassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+		
+		
 		
 		
 		
@@ -244,7 +268,7 @@ public class SignupController implements 	Initializable{
 				" VALUES('"
 				+ personID + "', '"
 				+ username + "', '"
-				+ password + "', '"
+				+ hashpassword + "', '"
 				+ "N"+"', '"
 				+ secretquestion + "', '"
 				+ secretanswer + "', '"
@@ -311,5 +335,10 @@ public class SignupController implements 	Initializable{
 		lblStatus.setText("Thanks for signing up with us. Please Check mail for more details.");
 		lblStatus.setStyle("-fx-text-fill:green");
 		}
+		
+		
+		
+		
+		
 	}
 }

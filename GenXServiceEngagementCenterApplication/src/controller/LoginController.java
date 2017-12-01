@@ -25,6 +25,7 @@ import javafx.stage.StageStyle;
 import models.A_DatabaseCommunicationEngine;
 import models.ApplicationUser;
 import utility.ApplicationUtilities;
+import utility.BCrypt;
 
 public class LoginController  implements Initializable {
 
@@ -105,10 +106,19 @@ public class LoginController  implements Initializable {
 				return;
 			}
 
-			if(!guest.getPassword().equals(password.trim())) {
+			// Check that an unencrypted password matches one that has
+			// previously been hashed
+			if (BCrypt.checkpw(password.trim(), guest.getPassword()))
+				System.out.println("It matches");
+			else {
 				error.setText("Username and Password dont match");
-				return;
-			} 
+			return;
+			}
+			
+//			if(!guest.getPassword().equals(password.trim())) {
+//				error.setText("Username and Password dont match");
+//				return;
+//			} 
 
 			try {
 				Stage primaryStage = new Stage();

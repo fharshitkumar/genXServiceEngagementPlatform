@@ -85,6 +85,14 @@ public class CustomerDashaboardController implements Initializable {
 	@FXML
 	public void serviceOpen(ActionEvent event) {
 		servicepane.setVisible(true);
+		ObservableList<String> items =FXCollections.observableArrayList ();
+		V_ViewManagementEngine VME = new V_ViewManagementEngine();
+		ObservableList<CustomerInfoView> customerinfoview = VME.customerinfoviewer(ApplicationUser.getApplicationUser().getPersonid());
+		for(CustomerInfoView c : customerinfoview)
+		{
+			items.add(c.getServicename());
+		}
+		service.setItems(items);
 	}
 
 
