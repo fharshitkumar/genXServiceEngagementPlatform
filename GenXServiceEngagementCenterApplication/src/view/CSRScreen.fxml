@@ -180,7 +180,7 @@
                   <Font name="Raleway ExtraLight" size="18.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="solutionprovided" layoutX="179.0" layoutY="13.0" prefHeight="25.0" prefWidth="658.0" />
+            <JFXTextField fx:id="solutionprovided" layoutX="179.0" layoutY="13.0" prefHeight="25.0" prefWidth="658.0" style="-fx-background-color: white;" />
             <Button fx:id="submit" layoutX="854.0" layoutY="11.0" mnemonicParsing="false" onAction="#SubmitSolution" style="-fx-background-color: #3f3f3f;" stylesheets="@../css/tiles.css" text="SUBMIT" textFill="#d1d611" />
          </children>
       </Pane>

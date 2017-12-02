@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXComboBox;
-import entities.ManagerView;
+
 import entities.PersonalInfo;
 import entities.WorkSchedule;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -36,12 +36,13 @@ import models.A_DatabaseCommunicationEngine;
 import models.A_IncidentManagementEngine;
 import models.A_PersonInformationEngine;
 import models.ApplicationUser;
+import tableviews.ManagerView;
 import utility.ApplicationUtilities;
 import java.sql.Timestamp;
 
 /**
  * This is a controller for Manager View which  shows the different panels with open Incidents and 
- * Work schedule table. also the bar chart to show the count od incident from each service area and a 
+ * Work schedule table. also the bar chart to show the count of incident from each service area and a 
  * pie chart to show the percent area for each priority incidents that are open.   
  * @author PRAGYA SHUKLA
  *
@@ -163,7 +164,6 @@ public class ManagerDashboardController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		System.out.println("Welcome to Manager screen");
 		
 		A_PersonInformationEngine PIE = new A_PersonInformationEngine();
@@ -307,7 +307,6 @@ public class ManagerDashboardController implements Initializable{
 					data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>(){
 						@Override
 						public void handle(MouseEvent arg0) {
-							// TODO Auto-generated method stub
 							totalCount.setText(data.getName()+ " : " + String.valueOf(data.getPieValue()));
 						}
 					});

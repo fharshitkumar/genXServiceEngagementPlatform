@@ -36,7 +36,7 @@ import javafx.stage.StageStyle;
  *	....+-----------------------------------------------------------+....						
  *	.....................................................................																				
  * 																								
- * @author HARSHIT KUMAR 			
+ * @author ISHAN KAMAT 			
  * Date			    : 28 November, 2017
  * Source File name	: ApplicationUtilities.java       	
  * 
