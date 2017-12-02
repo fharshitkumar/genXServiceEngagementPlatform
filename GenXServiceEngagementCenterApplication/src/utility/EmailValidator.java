@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
  * Class		: EmailValidator		
- * Description	: Allows the application components to perform generic Application tasks. 
+ * Description	: Allows the application components to perform email validation 
  *
  *
  *	.....................................................................

@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
  * Description	: 
  *  This is an Manager_View view Entity which will represent the incidents details that are needed by the 
  *  manager.
- *  Manager is able to view these incidents and assign to an employee or change priorityts.
+ *  Manager is able to view these incidents and assign to an employee or change priorities.
  *
  *	.....................................................................
  *	....+-----------------------------------------------------------+....						

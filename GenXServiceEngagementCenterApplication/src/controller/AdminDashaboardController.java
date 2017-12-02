@@ -9,7 +9,12 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+
+import entities.Service;
 import entities.User;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -119,6 +124,35 @@ public class AdminDashaboardController implements Initializable{
 		FavouritePanel.setVisible(false);
 		LoginTablePanel.setVisible(true);		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@FXML
+	private TableView<Service> servicesID;
+	@FXML
+	private TableColumn<Service,Integer> iserviceID;
+	@FXML
+	private TableColumn<Service,String> iservicename;
+	@FXML
+	private TableColumn<Service,String> iservicedescription;
+
+	
+	
+	
+
+	
+	
+	
+	
+	
 	/******************************************************************************************************
 	 *  To open the Admin Favorite panel. | Future enhancements can be performed.
 	 * ****************************************************************************************************
@@ -126,6 +160,23 @@ public class AdminDashaboardController implements Initializable{
 	 */
 	@FXML
 	public void OpenFavoritePanel(ActionEvent event) {
+		/***************************MAINTAIN SERVICES***********************************/
+		/*******************************************************************************/
+		iserviceID.setCellValueFactory( c ->
+		new ReadOnlyObjectWrapper<Integer>(c.getValue().getChannelid()));
+		
+		iservicename.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getChannelname())));
+		
+		iservicedescription.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getChanneldesc())));
+		
+		servicesID.setItems(getServiceData());
+		servicesID.setEditable(true);
+		iservicename.setCellFactory(TextFieldTableCell.forTableColumn()); 
+		iservicedescription.setCellFactory(TextFieldTableCell.forTableColumn());
+		
+		
 		System.out.println("You clicked Favourite Home button");
 		FavouritePanel.setVisible(true);
 		LoginTablePanel.setVisible(false);
@@ -184,22 +235,32 @@ public class AdminDashaboardController implements Initializable{
 
 		System.out.println("Welcome to Admin screen Initialization");
 
+		iID.setCellValueFactory( c ->
+		new ReadOnlyObjectWrapper<Integer>(c.getValue().getPersonid()));
 		
-		iID.setCellValueFactory(new PropertyValueFactory<User,Integer>("Personid"));
-
-		iusername.setCellValueFactory(new PropertyValueFactory<User,String>("Username"));
-
-		ipassword.setCellValueFactory(new PropertyValueFactory<User,String>("Password"));
-
-		iadmin.setCellValueFactory(new PropertyValueFactory<User,Boolean>("Admin"));
-
-		iquestion.setCellValueFactory(new PropertyValueFactory<User,String>("Secretquestion"));
-
-		ianswer.setCellValueFactory(new PropertyValueFactory<User,String>("Secretanswer"));
-
-		iemail.setCellValueFactory(new PropertyValueFactory<User,String>("Email"));
-
-		irole.setCellValueFactory(new PropertyValueFactory<User,Integer>("Roleid"));
+		iusername.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getUsername())));
+	
+		iadmin.setCellValueFactory(c -> 
+		new ReadOnlyBooleanWrapper( c.getValue().getAdmin()));
+	
+		iemail.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getEmail())));
+		
+		irole.setCellValueFactory( c ->
+		new ReadOnlyObjectWrapper<Integer>(c.getValue().getRoleid()));
+		
+		/***************************************************************************************************
+		 ********************----------| To Make all fields visible|--------------------********************
+		 ***************************************************************************************************/
+		//iID.setCellValueFactory(new PropertyValueFactory<User,Integer>("Personid"));
+		//iusername.setCellValueFactory(new PropertyValueFactory<User,String>("Username"));
+		//ipassword.setCellValueFactory(new PropertyValueFactory<User,String>("Password"));
+		//iadmin.setCellValueFactory(new PropertyValueFactory<User,Boolean>("Admin"));
+		//iquestion.setCellValueFactory(new PropertyValueFactory<User,String>("Secretquestion"));
+		//ianswer.setCellValueFactory(new PropertyValueFactory<User,String>("Secretanswer"));
+		//iemail.setCellValueFactory(new PropertyValueFactory<User,String>("Email"));
+		//irole.setCellValueFactory(new PropertyValueFactory<User,Integer>("Roleid"));
 
 		//Set the table contents to Login user administration tasks.
 		tableID.setItems(getData());
@@ -207,12 +268,12 @@ public class AdminDashaboardController implements Initializable{
 
 		//Update the table to allow for the changes in username and password by admin
 		tableID.setEditable(true);
-		iusername.setCellFactory(TextFieldTableCell.forTableColumn()); 
-		ipassword.setCellFactory(TextFieldTableCell.forTableColumn());
+		//iusername.setCellFactory(TextFieldTableCell.forTableColumn()); 
+		//ipassword.setCellFactory(TextFieldTableCell.forTableColumn());
 		iadmin.setCellFactory(TextFieldTableCell.<User,Boolean>forTableColumn(new BooleanStringConverter())); 
-		iquestion.setCellFactory(TextFieldTableCell.forTableColumn());
-		ianswer.setCellFactory(TextFieldTableCell.forTableColumn()); 
-		iemail.setCellFactory(TextFieldTableCell.forTableColumn());
+		//iquestion.setCellFactory(TextFieldTableCell.forTableColumn());
+		//ianswer.setCellFactory(TextFieldTableCell.forTableColumn()); 
+		//iemail.setCellFactory(TextFieldTableCell.forTableColumn());
 		irole.setCellFactory(TextFieldTableCell.<User,Integer>forTableColumn(new IntegerStringConverter())); 
 	
 		//Get the Role list from DB for Search
@@ -232,6 +293,21 @@ public class AdminDashaboardController implements Initializable{
 			System.out.println("Failed to get Application Roles");
 		}
 	
+		/***************************MAINTAIN SERVICES***********************************/
+		/*******************************************************************************/
+		iserviceID.setCellValueFactory( c ->
+		new ReadOnlyObjectWrapper<Integer>(c.getValue().getChannelid()));
+		
+		iservicename.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getChannelname())));
+		
+		iservicedescription.setCellValueFactory(c -> 
+		new ReadOnlyStringWrapper( String.valueOf( c.getValue().getChanneldesc())));
+		
+		servicesID.setItems(getServiceData());
+		
+		
+		
 	
 	}
 
@@ -287,6 +363,44 @@ public class AdminDashaboardController implements Initializable{
 		return logindata;
 	}
 
+	
+	
+	private ObservableList<Service> getServiceData(){
+		/****************************************************************************************************
+		 *********************************get table data*****************************************************
+		 ****************************************************************************************************
+		 ***/
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		ObservableList<Service> servicedata = FXCollections.observableArrayList();
+		String SQLQuery = "SELECT * FROM SERVICE";
+		ResultSet resultSet = null;
+		ResultSet rs = null;
+
+		try {
+			resultSet = DCE.getResultSet(SQLQuery);
+			rs = resultSet;
+			Integer serviceid;
+			String servicename;
+			String servicedesc;
+			while(rs.next())
+			{
+				serviceid = rs.getInt(1);
+				servicename= (String)rs.getString(2); 
+				servicedesc = (String)rs.getString(3);
+				servicedata.add(new Service( 
+						serviceid,
+						servicename,
+						servicedesc
+						));
+			}
+			resultSet.close();
+
+		} catch (SQLException e) {
+			System.out.println("Failed to get Application Services Data");
+		}	
+
+		return servicedata;
+	}
 
 	/*****************************************************************************************************
 	 * This function will allow the admin to double click the User name Cell and update the same
@@ -450,6 +564,44 @@ public class AdminDashaboardController implements Initializable{
 		}
 	}	
 
+	
+	/****************************************************************************************************
+	 **This function will allow the admin to double click the service name Cell and update the same
+	 ****************************************************************************************************
+	 */
+	@SuppressWarnings("rawtypes")
+	public void changeServiceNameCellEvent(CellEditEvent edittedCell)
+	{
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		Service Serviceselected = servicesID.getSelectionModel().getSelectedItem();
+		if(util.Commit()){
+			Serviceselected.setChannelname(edittedCell.getNewValue().toString());
+			DCE.CommitServicesChanges("SERVICE","SERVICENAME", Serviceselected.getChannelname(), Serviceselected.getChannelid());
+		}else{
+			servicesID.setItems(getServiceData());
+		}
+	}	
+	
+	
+	/****************************************************************************************************
+	 **This function will allow the admin to double click the service description Cell and update the same
+	 ****************************************************************************************************
+	 */
+	@SuppressWarnings("rawtypes")
+	public void changeServiceDescCellEvent(CellEditEvent edittedCell)
+	{
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		Service Serviceselected = servicesID.getSelectionModel().getSelectedItem();
+		if(util.Commit()){
+			Serviceselected.setChanneldesc(edittedCell.getNewValue().toString());
+			DCE.CommitServicesChanges("SERVICE","SERVICEDESC", Serviceselected.getChanneldesc(), Serviceselected.getChannelid());
+		}else{
+			servicesID.setItems(getServiceData());
+		}
+	}	
+	
+	
+	
 	
 }
 

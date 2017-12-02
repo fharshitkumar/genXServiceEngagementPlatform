@@ -126,6 +126,20 @@ public class A_DatabaseCommunicationEngine {
 		}		
 	}
 	
+	/***************This Function is used to SET the Database columns(Numeric type) to new values*****************/
+	public void CommitServicesChanges(String tablename, String columnname, String columnvalue, int serviceid)
+	{
+		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
+		String SQLQuery = "UPDATE " + tablename + 
+				" SET "+columnname+ "= '" + columnvalue+"' " + 
+				" WHERE SERVICEID="+serviceid;
+		try {
+			DCE.DDLCommandDatabase(SQLQuery);
+		} catch (SQLException e) {
+			System.out.println("Database SET query for field "+columnname+" failed . Check if the changes are made legitimately or not.");
+		}		
+	}
+	
 	
 	
 	

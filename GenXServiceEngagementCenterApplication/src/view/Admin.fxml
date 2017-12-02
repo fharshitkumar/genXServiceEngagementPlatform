@@ -50,19 +50,34 @@
 		</AnchorPane>
 		<AnchorPane layoutX="55.0" prefHeight="500.0" prefWidth="745.0" style="-fx-background-color: #39393E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
-            <Pane fx:id="FavouritePanel" prefHeight="700.0" prefWidth="1233.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="FavouritePanel" prefHeight="700.0" prefWidth="1233.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="servicesID" layoutX="68.0" layoutY="162.0" prefHeight="467.0" prefWidth="1068.0" style="-fx-background-color: #EfEfEf; -fx-text-background-color: #2F2F2F;" stylesheets="@../css/table.css">
+                    <columns>
+                      <TableColumn fx:id="iserviceID" prefWidth="168.33331298828125" style="-fx-background-color: #EFEFEF;" text="serviceID" />
+                      <TableColumn fx:id="iservicename" onEditCommit="#changeServiceNameCellEvent" prefWidth="243.0" style="-fx-background-color: #EFEFEF;" text="Service Name" />
+                        <TableColumn fx:id="iservicedescription" onEditCommit="#changeServiceDescCellEvent" prefWidth="657.0" style="-fx-background-color: #EFEFEF;" text="Service Description" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="82.0" layoutY="48.0" text="MAINTAIN SERVICES" textFill="#eaeaea">
+                     <font>
+                        <Font name="Raleway Light" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="83.0" layoutY="87.0" text="double click to edit the names and description of the services" textFill="#ffd40d" />
+               </children></Pane>
 				<Pane fx:id="LoginTablePanel" prefHeight="700.0" prefWidth="1233.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
 										<TableView fx:id="tableID" layoutX="29.0" layoutY="248.0" prefHeight="374.0" prefWidth="1183.0" style="-fx-background-color: #EfEfEf; -fx-text-background-color: #2F2F2F;" stylesheets="@../css/table.css">
 											<columns>
 												<TableColumn fx:id="iID" prefWidth="75.0" style="-fx-background-color: #EfEfEf;" text="Personid" />
 												<TableColumn fx:id="iusername" onEditCommit="#changeUserUsernameCellEvent" prefWidth="95.0" style="-fx-background-color: #EfEfEf;" text="Username" />
-												<TableColumn fx:id="ipassword" onEditCommit="#changeUserPasswordCellEvent" prefWidth="110.33331298828125" style="-fx-background-color: #EfEfEf;" text="Password" />
+												<TableColumn fx:id="ipassword" onEditCommit="#changeUserPasswordCellEvent" prefWidth="110.33331298828125" style="-fx-background-color: #EfEfEf;" text="Password" visible="false" />
 												<TableColumn fx:id="iadmin" onEditCommit="#changeUserisAdminCellEvent" prefWidth="42.33331298828125" style="-fx-background-color: #EfEfEf;" text="Admin" />
-												<TableColumn fx:id="iquestion" onEditCommit="#changeUserSecretQuestionCellEvent" prefWidth="312.0" style="-fx-background-color: #EfEfEf;" text="Secretquestion" />
-												<TableColumn fx:id="ianswer" minWidth="0.0" onEditCommit="#changeUserSecretAnswerCellEvent" prefWidth="118.0" style="-fx-background-color: #EfEfEf;" text="Secretanswer" />
-												<TableColumn fx:id="iemail" onEditCommit="#changeUseremailCellEvent" prefWidth="236.0" style="-fx-background-color: #EfEfEf; -fx-fill: red;" text="Email" />
-                        <TableColumn fx:id="irole" onEditCommit="#changeUserroleCellEvent" prefWidth="192.0" style="-fx-background-color: #EfEfEf;" text="Roleid" />
+												<TableColumn fx:id="iquestion" onEditCommit="#changeUserSecretQuestionCellEvent" prefWidth="312.0" style="-fx-background-color: #EfEfEf;" text="Secretquestion" visible="false" />
+												<TableColumn fx:id="ianswer" minWidth="0.0" onEditCommit="#changeUserSecretAnswerCellEvent" prefWidth="118.0" style="-fx-background-color: #EfEfEf;" text="Secretanswer" visible="false" />
+												<TableColumn fx:id="iemail" onEditCommit="#changeUseremailCellEvent" prefWidth="710.3333129882812" style="-fx-background-color: #EfEfEf; -fx-fill: red;" text="Email" />
+                        <TableColumn fx:id="irole" onEditCommit="#changeUserroleCellEvent" prefWidth="259.66668701171875" style="-fx-background-color: #EfEfEf;" text="Roleid" />
 											</columns>
 										</TableView>
                   <Label layoutX="76.0" layoutY="185.0" prefHeight="43.0" prefWidth="199.0" text="SEARCH" textFill="#c82f2f">
@@ -98,6 +113,12 @@
                      </font>
                   </Label>
                   <JFXButton layoutX="1136.0" layoutY="195.0" onAction="#RefreshLogininfo" style="-fx-background-color: #0099FF;" text="REFRESH" textFill="WHITE" />
+                  <Label layoutX="62.0" layoutY="52.0" text="WELCOME ADMINISTRATOR" textFill="#f3f3f3">
+                     <font>
+                        <Font name="Raleway Black" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="64.0" layoutY="80.0" text="Maintain the user admin rights and signup information" textFill="#e1e1e1" />
 					</children>
 				</Pane>
 			</children>
