@@ -40,13 +40,22 @@ import tableviews.ManagerView;
 import utility.ApplicationUtilities;
 import java.sql.Timestamp;
 
+
 /**
+ * *************************************************************************************************
+ * Class		: ManagerDashboardController		
+ * Description	: ManagerDashboardController to controller Manager Screen
  * This is a controller for Manager View which  shows the different panels with open Incidents and 
  * Work schedule table. also the bar chart to show the count of incident from each service area and a 
- * pie chart to show the percent area for each priority incidents that are open.   
- * @author PRAGYA SHUKLA
+ * pie chart to show the percent area for each priority incidents that are open.
+ * 								
+ * @author PRAGYA SHUKLA			
+ * Date			    : 30 November, 2017
+ * Source File name	: LoginController.java       	
+ * **************************************************************************************************
  *
- */
+*/
+
 
 public class ManagerDashboardController implements Initializable{
 	

@@ -4,6 +4,17 @@ import java.sql.Timestamp;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Class		: KnowledgeBase		
+ * Description	: KnowledgeBase Entity
+ * This is SLA entity and we can maintain/retrieve Knowledge Base Info details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: KnowledgeBase.java       	
+ * 
+ *
+*/
+
 public class KnowledgeBase {
 
 	

@@ -29,6 +29,20 @@ import models.A_DatabaseCommunicationEngine;
 import models.A_IncidentManagementEngine;
 import utility.ApplicationUtilities;
 
+
+/**
+ * *************************************************************************************************
+ * Class		: AdminDashaboardController		
+ * Description	: AdminDashaboardController to controller Admin Screen
+ *								
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: AdminDashaboardController.java       	
+ * **************************************************************************************************
+ *
+*/
+
+
 public class AdminDashaboardController implements Initializable{
 
 	/*******************      LOGIN TABLE IDENTIFIERS     ******************************************/

@@ -2,13 +2,18 @@ package entities;
 
 import java.sql.Timestamp;
 
+
 /**
+ * Class		: WorkSchedule		
+ * Description	: WorkSchedule Entity
  * This is an Workschedule table Entity which will represent the daily work schedule for employees.
- * Manager is able to view these schedules for the employee under him.
+ * Manager is able to view these schedules for the employee under him.													
+ * @author PRAGYA SHUKLA 			
+ * Date			    : 30 November, 2017
+ * Source File name	: WorkSchedule.java       	
  * 
- * @author PRAGYA SHUKLA
  *
- */
+*/
 
 public class WorkSchedule {
 	

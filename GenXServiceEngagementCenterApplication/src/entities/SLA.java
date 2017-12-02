@@ -2,6 +2,19 @@ package entities;
 
 import javafx.beans.property.SimpleStringProperty;
 
+
+/**
+ * Class		: SLA		
+ * Description	: SLA Entity
+ * This is SLA entity and we can maintain/retrieve comapny's SLA details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: SLA.java       	
+ * 
+ *
+*/
+
+
 public class SLA {
 	private Integer slaid;
 	private SimpleStringProperty slaname;

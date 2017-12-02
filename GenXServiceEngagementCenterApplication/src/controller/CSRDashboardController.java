@@ -46,6 +46,19 @@ import tableviews.CustomerInfoView;
 import tableviews.PastIncidentView;
 import utility.ApplicationUtilities;
 
+/**
+ * *************************************************************************************************
+ * Class		: CSRDashboardController		
+ * Description	: CSRDashboardController to controller Customer service representative Screen
+ *								
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: CSRDashboardController.java       	
+ * **************************************************************************************************
+ *
+*/
+
+
 public class CSRDashboardController implements Initializable{
 
 	@FXML

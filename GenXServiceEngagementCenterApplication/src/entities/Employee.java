@@ -1,5 +1,16 @@
 package entities;
 
+/**
+ * Class		: Employee		
+ * Description	: Employee Entity
+ * This is SLA entity and we can maintain/retrieve Employee details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: Employee.java       	
+ * 
+ *
+*/
+
 public class Employee extends User{
 
 	private Integer employeeid;

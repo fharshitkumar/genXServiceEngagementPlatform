@@ -1,7 +1,11 @@
 package entities;
 
 import javafx.beans.property.SimpleStringProperty;
+
+
 /**
+ * Class		: Service		
+ * Description	: Service Entity
  * This is an Services Entity which will represent the services offered by a company.
  * Service tickets will be created for these services by customers.
  * Currently 17 services are offered by company
@@ -21,10 +25,14 @@ import javafx.beans.property.SimpleStringProperty;
  * Microsoft Sway
  * Microsoft Power BI
  * Microsoft Visio
- * Microsoft Project
- * @author HARSHITKUMAR
+ * Microsoft Project										
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: Service.java       	
+ * 
  *
- */
+*/
+
 public class Service {
 
 	private Integer channelid;

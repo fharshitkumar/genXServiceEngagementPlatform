@@ -24,6 +24,17 @@ import utility.ApplicationUtilities;
 import utility.BCrypt;
 import utility.EmailValidator;
 
+/**
+ * *************************************************************************************************
+ * Class		: SignupController		
+ * Description	: SignupController to controller Sign up Screen
+ *								
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: SignupController.java       	
+ * **************************************************************************************************
+ *
+*/
 
 public class SignupController implements 	Initializable{
 

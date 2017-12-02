@@ -2,6 +2,17 @@ package entities;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Class		: Channel		
+ * Description	: Channel  Entity
+ * This is SLA entity and we can maintain/retrieve Channel  details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: Channel.java       	
+ * 
+ *
+*/
+
 public class Channel {
 
 	private Integer channelid;

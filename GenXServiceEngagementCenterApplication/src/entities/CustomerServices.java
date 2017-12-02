@@ -1,5 +1,16 @@
 package entities;
 
+/**
+ * Class		: CustomerServices		
+ * Description	: Customer Services Entity
+ * This is SLA entity and we can maintain/retrieve Customer Services details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: CustomerServices.java       	
+ * 
+ *
+*/
+
 public class CustomerServices {
 	private Integer customerid;
 	private Integer serviceid;

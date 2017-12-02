@@ -5,6 +5,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import entities.PersonalInfo;
+/**
+ * Class		: A_PersonInformationEngine		
+ * Description	: Perform Personal Information Lifecycle Management
+ *
+ *	..........................................................................
+ *	....+----------------------------------------------------------------+....						
+ *	....|            A_PersonInformationEngine Class                     |....						
+ *	....|             << concrete class >>                               |....	                    
+ *	....+----------------------------------------------------------------+....						
+ *	....+----------------------------------------------------------------+....						
+ *	....| [+] void: updatePerson()                                       |....
+ *	....| [+] PersonalInfo: displayPersonalInfo(int)                     |....
+ *	....| [+] void: updateCustomerServices()                             |....
+ *	....+----------------------------------------------------------------+....						
+ *	..........................................................................																				
+ * 																								
+ * @author ISHAN KAMAT 			
+ * Date			    : 28 November, 2017
+ * Source File name	: A_PersonInformationEngine.java       	
+ * 
+ *
+*/
 
 public class A_PersonInformationEngine {
 
@@ -107,7 +129,14 @@ public class A_PersonInformationEngine {
 	}
 
 	
-	
+	/**
+	 * *************************************************************************************************
+	 * To update Cusotmer's Services preferences realtime
+	 * *************************************************************************************************
+	 * @param customerid
+	 * @param serviceid
+	 * @param insert
+	 */
 	public void updateCustomerServices(Integer customerid, Integer serviceid, Boolean insert) {
 
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();

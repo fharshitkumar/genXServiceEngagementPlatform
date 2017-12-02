@@ -1,4 +1,4 @@
-package models;
+package utility;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,9 +8,43 @@ import java.sql.SQLException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+/**
+ * ********************************************************************************************************
+ * Class		: WriteExcel		
+ * Description	: Allows the application components to access theanalytical reports and export then in excel 
+ *	.............................................................................
+ *	....+-------------------------------------------------------------------+....						
+ *	....|                 WriteExcel Class                            		|....						
+ *	....|               << concrete class >>                         		|....	                    
+ *	....+-------------------------------------------------------------------+....										
+ *	....| [+] PastIncidentView()                                            |....						
+ *	....| [+] void: writeXLSXFile_1(ResultSet)  							|....						
+ *	....| [+] void: writeXLSXFile_2(ResultSet)  							|....						
+ *	....| [+] void: writeXLSXFile_3(ResultSet)  							|....						
+ *	....| [+] void: writeXLSXFile_4(ResultSet)  							|....						
+ *	....| [+] void: writeXLSXFile_5(ResultSet)  							|....						
+ *	....| [+] void: writeXLSXFile_6(ResultSet)  							|....						
+ *	....| [+] void: writeXLSXFile_7(ResultSet)  							|....						
+ *	....+-----------------------------------------------------------+....						
+ *	.....................................................................																				
+ * ********************************************************************************************************																								
+ * @author ISHAN KAMAT 			
+ * Date			    : 28 November, 2017
+ * Source File name	: WriteExcel.java       	
+ * 
+ *
+*/
 
 public class WriteExcel {
 
+	
+	
+ /*****************************************   REPORT 1   ******************************************************
+ * *********************---------|Retrieve Employee based on Specialization|----------************************
+ * ***********************************************************************************************************
+ * @param rs
+ * @throws IOException
+ */
 	@SuppressWarnings("resource")
 	public void writeXLSXFile_1(ResultSet rs) throws IOException {
 
@@ -54,6 +88,12 @@ public class WriteExcel {
 		fileOut.close();
 	}
 
+	 /****************************************   REPORT 2   ******************************************************
+	 * *********---------|Specialization required to solve a particular problem|----------************************
+	 * ***********************************************************************************************************
+	 * @param rs
+	 * @throws IOException
+	 */
 	@SuppressWarnings("resource")
 	public void writeXLSXFile_2(ResultSet rs) throws IOException {
 
@@ -94,6 +134,13 @@ public class WriteExcel {
 		fileOut.flush();
 		fileOut.close();
 	}
+
+	 /****************************************   REPORT 3   ******************************************************
+	 * ***************************---------|Unassigned tickets|----------*****************************************
+	 * ***********************************************************************************************************
+	 * @param rs
+	 * @throws IOException
+	 */
 
 	@SuppressWarnings("resource")
 	public void writeXLSXFile_3(ResultSet rs) throws IOException {
@@ -143,6 +190,15 @@ public class WriteExcel {
 		fileOut.close();
 	}
 
+	
+	 /****************************************   REPORT 4   ******************************************************
+	 * *****************************---------|Agent Workload|----------*******************************************
+	 * ***********************************************************************************************************
+	 * @param rs
+	 * @throws IOException
+	 */
+
+	
 	@SuppressWarnings("resource")
 	public void writeXLSXFile_4(ResultSet rs) throws IOException {
 
@@ -189,6 +245,14 @@ public class WriteExcel {
 		fileOut.close();
 	}
 
+	
+	 /****************************************   REPORT 5   ******************************************************
+	 * ****************---------|Ticket escalation rate by channel|----------*************************************
+	 * ***********************************************************************************************************
+	 * @param rs
+	 * @throws IOException
+	 */
+
 	@SuppressWarnings("resource")
 	public void writeXLSXFile_5(ResultSet rs) throws IOException {
 
@@ -230,6 +294,15 @@ public class WriteExcel {
 		fileOut.close();
 	}
 
+
+	
+	 /****************************************   REPORT 6   ******************************************************
+	 * *****************************---------|Top topics raised|----------****************************************
+	 * ***********************************************************************************************************
+	 * @param rs
+	 * @throws IOException
+	 */
+
 	@SuppressWarnings("resource")
 	public void writeXLSXFile_6(ResultSet rs) throws IOException {
 
@@ -269,6 +342,14 @@ public class WriteExcel {
 		fileOut.close();
 	}
 
+	
+	
+	 /****************************************   REPORT 7   ******************************************************
+	 * *****************************---------|Tickets by region|----------****************************************
+	 * ***********************************************************************************************************
+	 * @param rs
+	 * @throws IOException
+	 */
 	@SuppressWarnings("resource")
 	public void writeXLSXFile_7(ResultSet rs) throws IOException {
 
@@ -308,6 +389,13 @@ public class WriteExcel {
 		fileOut.close();
 	}
 
+	
+	 /****************************************   REPORT 8   ******************************************************
+	 * *****************************---------|Tickets based on Priority|----------********************************
+	 * ***********************************************************************************************************
+	 * @param rs
+	 * @throws IOException
+	 */
 	@SuppressWarnings("resource")
 	public void writeXLSXFile_8(ResultSet rs) throws IOException {
 

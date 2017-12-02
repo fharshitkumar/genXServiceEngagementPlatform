@@ -2,6 +2,16 @@ package entities;
 
 import java.sql.Date;
 import javafx.beans.property.SimpleStringProperty;
+/**
+ * Class		: Person		
+ * Description	: Person Entity
+ * This is SLA entity and we can maintain/retrieve Person  details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: Person.java       	
+ * 
+ *
+*/
 
 public class Person {
 

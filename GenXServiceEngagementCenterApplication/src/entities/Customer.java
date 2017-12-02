@@ -1,5 +1,16 @@
 package entities;
 
+/**
+ * Class		: Customer		
+ * Description	: Customer  Entity
+ * This is SLA entity and we can maintain/retrieve Customer  details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: Customer.java       	
+ * 
+ *
+*/
+
 public class Customer extends User{
 
 	private Integer customerid;

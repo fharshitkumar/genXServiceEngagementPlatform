@@ -27,6 +27,19 @@ import models.ApplicationUser;
 import utility.ApplicationUtilities;
 import utility.BCrypt;
 
+/**
+ * *************************************************************************************************
+ * Class		: LoginController		
+ * Description	: LoginController to controller Login Screen
+ *								
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: LoginController.java       	
+ * **************************************************************************************************
+ *
+*/
+
+
 public class LoginController  implements Initializable {
 
 

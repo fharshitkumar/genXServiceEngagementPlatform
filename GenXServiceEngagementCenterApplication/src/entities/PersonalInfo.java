@@ -5,6 +5,17 @@ import java.sql.Date;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Class		: PersonalInfo		
+ * Description	: PersonalInfo Entity
+ * This is SLA entity and we can maintain/retrieve Personal Info details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: PersonalInfo.java       	
+ * 
+ *
+*/
+
 public class PersonalInfo {
 
 	private Integer personid;

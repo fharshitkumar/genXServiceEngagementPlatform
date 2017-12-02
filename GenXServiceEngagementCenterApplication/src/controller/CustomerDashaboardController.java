@@ -37,6 +37,20 @@ import models.V_ViewManagementEngine;
 import tableviews.CustomerInfoView;
 import utility.ApplicationUtilities;
 
+/**
+ * *************************************************************************************************
+ * Class		: CustomerDashaboardController		
+ * Description	: CustomerDashaboardController to controller Customer  Screen
+ *								
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: CustomerDashaboardController.java       	
+ * **************************************************************************************************
+ *
+*/
+
+
+
 public class CustomerDashaboardController implements Initializable {
 
 	

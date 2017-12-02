@@ -3,6 +3,17 @@ package entities;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Class		: User		
+ * Description	: User Entity
+ * This is users entity and we can maintain/retrieve a users login details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: User.java       	
+ * 
+ *
+*/
+
 public class User {
 	
 	private Integer personid;

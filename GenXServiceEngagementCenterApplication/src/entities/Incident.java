@@ -4,6 +4,16 @@ import java.sql.Timestamp;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Class		: Incident		
+ * Description	: Incident Entity
+ * This is SLA entity and we can maintain/retrieve Incident details.											
+ * @author HARSHIT KUMAR 			
+ * Date			    : 30 November, 2017
+ * Source File name	: Incident.java       	
+ * 
+ *
+*/
 public class Incident {
 
 	private Integer incidentid;

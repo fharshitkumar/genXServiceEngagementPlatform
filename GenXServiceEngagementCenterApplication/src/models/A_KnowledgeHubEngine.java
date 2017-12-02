@@ -8,8 +8,36 @@ import entities.KnowledgeBase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
+/**
+ * Class		: A_KnowledgeHubEngine		
+ * Description	: Perform KnowledgeHub Lifecycle Management
+ *
+ *	..........................................................................
+ *	....+----------------------------------------------------------------+....						
+ *	....|            A_KnowledgeHubEngine Class                          |....						
+ *	....|             << concrete class >>                               |....	                    
+ *	....+----------------------------------------------------------------+....						
+ *	....+----------------------------------------------------------------+....						
+ *	....| [+] ObservableList<KnowledgeBase>: displayKnowledgeHub(String) |....
+ *	....+----------------------------------------------------------------+....						
+ *	..........................................................................																				
+ * 																								
+ * @author ISHAN KAMAT 			
+ * Date			    : 28 November, 2017
+ * Source File name	: A_KnowledgeHubEngine.java       	
+ * 
+ *
+*/
+
 public class A_KnowledgeHubEngine {
 
+	/**************************************************************************************************************
+	 * This function is used to retrieve incidents that closely matches the incident at current being solved by CSR.
+	 * @param selectedcustomerincident
+	 * @return ObservableList<KnowledgeBase>
+	 * ***********************************************************************************************************
+	 */
 	public ObservableList<KnowledgeBase> displayKnowledgeHub(String selectedcustomerincident){
 
 		A_DatabaseCommunicationEngine DCE = new A_DatabaseCommunicationEngine();
