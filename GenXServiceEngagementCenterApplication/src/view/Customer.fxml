@@ -48,7 +48,7 @@
                   </Label>
                   <ImageView fitHeight="51.0" fitWidth="53.0" layoutX="319.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
-                        <Image url="@../../image/female.png" />
+                        <Image url="@../image/female.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="85.0" layoutY="44.0" text="WELCOME" textFill="#d2d0d0">
@@ -156,7 +156,7 @@
                         </JFXTextField>
                         <ImageView fitHeight="280.0" fitWidth="356.0" layoutX="824.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../image/office-suite-material-design-preview.png" />
+                              <Image url="@../image/office-suite-material-design-preview.png" />
                            </image>
                         </ImageView>
                         <JFXButton fx:id="serviceWord" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="894.0" layoutY="145.0" onAction="#serviceselectedserviceWord" opacity="0.77" prefHeight="58.0" prefWidth="52.0" ripplerFill="#2e3b42" style="-fx-border-radius: 0em;" text="Word">
@@ -414,7 +414,7 @@
                         </JFXButton>
                         <ImageView fitHeight="502.0" fitWidth="1108.0" layoutX="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../image/twitter.png" />
+                              <Image url="@../image/twitter.png" />
                            </image>
                         </ImageView>
                         <JFXButton fx:id="createtweet" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="2.0" layoutX="1008.0" layoutY="3.0" onAction="#createTwitterPost" opacity="0.77" prefHeight="29.0" prefWidth="66.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" text="CreateTweet" textFill="WHITE">
@@ -425,7 +425,7 @@
                         </JFXButton>
                         <ImageView fx:id="popuptweet" fitHeight="251.0" fitWidth="733.0" layoutX="357.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
-                              <Image url="@../../image/tweet.png" />
+                              <Image url="@../image/tweet.png" />
                            </image>
                         </ImageView>
                         <JFXButton fx:id="tweet" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="2.0" layoutX="944.0" layoutY="219.0" onAction="#TwitterPost" opacity="0.77" prefHeight="55.0" prefWidth="106.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;" text="Tweet" textFill="WHITE" visible="false">
@@ -447,7 +447,7 @@
                      <children>
                         <ImageView fitHeight="500.0" fitWidth="1136.0" layoutX="72.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../image/facebook.png" />
+                              <Image url="@../image/facebook.png" />
                            </image>
                         </ImageView>
                         <JFXTextArea fx:id="wallpost" focusColor="WHITE" layoutX="320.0" layoutY="298.0" prefHeight="39.0" prefWidth="308.0" promptText="write something on this page..." style="-fx-prompt-text-fill: #8F8F8F;" unFocusColor="WHITE">
@@ -495,7 +495,7 @@
                      <children>
                         <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="9.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../image/genXLogo.png" />
+                              <Image url="@../image/genXLogo.png" />
                            </image>
                         </ImageView>
                      </children>
