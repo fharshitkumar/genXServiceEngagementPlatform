@@ -1,7 +1,5 @@
 package entities;
 
-import java.sql.Timestamp;
-
 import javafx.beans.property.SimpleStringProperty;
 
 /**

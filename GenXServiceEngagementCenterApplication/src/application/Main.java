@@ -31,7 +31,7 @@ public class Main extends Application {
 		try {
 			
 			Image anotherIcon = new Image("http://mypages.iit.edu/~segre/iit-icon.png");
-			Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/SignUpForm.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.initStyle(StageStyle.UNDECORATED);

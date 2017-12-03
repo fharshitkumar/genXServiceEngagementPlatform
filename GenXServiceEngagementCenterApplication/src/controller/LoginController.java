@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -151,7 +153,17 @@ public class LoginController  implements Initializable {
 						return;
 					}
 
-					if(guest.getRoleid()==4)
+					if(guest.getRoleid()==5)
+					{
+						System.out.println("Opening Admin by default view");
+						/*****************If user is CSR, inflate CSR view***********************/
+						((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+						root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/Admin.fxml"));
+						primaryStage.initStyle(StageStyle.UNDECORATED);
+						primaryStage.centerOnScreen();
+					}
+					
+					else if(guest.getRoleid()==4)
 					{
 						System.out.println("Opening CSR view");
 						/*****************If user is CSR, inflate CSR view***********************/
@@ -194,12 +206,12 @@ public class LoginController  implements Initializable {
 	}
 
 /***************************************************************************************************
- * This function is called to naviage user to Sign up Form on the Login Page. 
+ * This function is called to navigate user to Sign up Form on the Login Page. 
  * *************************************************************************************************
  * @param event
  */
 	@FXML
-	public void signup(ActionEvent event){
+	public void signup(ActionEvent event) {
 		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 		try {
 			Stage primaryStage = new Stage();
@@ -211,6 +223,7 @@ public class LoginController  implements Initializable {
 			primaryStage.show();
 		} catch (IOException e) {
 			System.out.println("Unable to open the Sign up Page. More Details:");
+			JOptionPane.showMessageDialog(null, e.getMessage());
 			System.out.println(e.getMessage());
 		}
 	}

@@ -60,12 +60,12 @@
             <Label layoutX="54.0" layoutY="27.0" text="NAME" textFill="#e2e2e2" />
             <ImageView fx:id="customertypeimage" fitHeight="36.0" fitWidth="53.0" layoutX="8.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/premiumcustomer.png" />
+                  <Image url="@../../image/premiumcustomer.png" />
                </image>
             </ImageView>
             <ImageView blendMode="SOFT_LIGHT" fitHeight="39.0" fitWidth="41.0" layoutX="8.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/cusotmer.png" />
+                  <Image url="@../../image/cusotmer.png" />
                </image>
             </ImageView>
             <Label layoutX="4.0" layoutY="146.0" text="SERVICE ENROLLED BY THE CUSTOMER" textFill="#f4f4f4">

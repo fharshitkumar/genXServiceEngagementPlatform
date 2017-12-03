@@ -15,7 +15,7 @@
    <children>
       <ImageView blendMode="SCREEN" fitHeight="150.0" fitWidth="200.0" layoutX="591.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/Illinois_Institute_of_Technology_(emblem).svg.png" />
+            <Image url="@../image/Illinois_Institute_of_Technology_(emblem).svg.png" />
          </image>
       </ImageView>
       <JFXButton fx:id="closeBtn" contentDisplay="GRAPHIC_ONLY" layoutX="767.0" layoutY="2.0" onAction="#handleCloseButtonAction" prefHeight="25.0" prefWidth="29.0" ripplerFill="WHITE" style="-fx-border-radius: 0em;">
@@ -25,18 +25,18 @@
       </JFXButton>
       <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="6.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/iitlogo.png" />
+            <Image url="@../image/iitlogo.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="129.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
          <image>
-            <Image url="@../../images/userloginicon.png" />
+            <Image url="@../image/userloginicon.png" />
          </image>
       </ImageView>
       <Label layoutX="161.0" layoutY="108.0" text="USERNAME" textFill="#a9a9a9" />
       <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="129.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
          <image>
-            <Image url="@../../images/passwordKey.png" />
+            <Image url="@../image/passwordKey.png" />
          </image>
       </ImageView>
       <Label layoutX="161.0" layoutY="152.0" text="PASSWORD" textFill="#a9a9a9" />
@@ -50,13 +50,13 @@
       </Label>
       <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
          <image>
-            <Image url="@../../images/repasswordicon.png" />
+            <Image url="@../image/repasswordicon.png" />
          </image>
       </ImageView>
       <Label layoutX="162.0" layoutY="192.0" text="CONFIRM PASSWORD" textFill="#a9a9a9" />
       <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
          <image>
-            <Image url="@../../images/securequestion.png" />
+            <Image url="@../image/securequestion.png" />
          </image>
       </ImageView>
       <Label layoutX="162.0" layoutY="236.0" text="SECRET QUESTION" textFill="#a9a9a9" />
@@ -64,19 +64,19 @@
       <JFXTextField fx:id="secretquestion" layoutX="307.0" layoutY="224.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
       <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
          <image>
-            <Image url="@../../images/answer.png" />
+            <Image url="@../image/secureanswer.png" />
          </image>
       </ImageView>
       <Label layoutX="162.0" layoutY="276.0" text="SECRET ANSWER" textFill="#a9a9a9" />
       <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
          <image>
-            <Image url="@../../images/securequestion.png" />
+            <Image url="@../image/securequestion.png" />
          </image>
       </ImageView>
       <Label layoutX="162.0" layoutY="354.0" text="RELATIONSHIP WITH US?" textFill="#a9a9a9" />
       <JFXComboBox fx:id="relationship" layoutX="305.0" layoutY="348.0" onAction="#checkifpremiumcustomer" prefHeight="25.0" prefWidth="300.0" stylesheets="@../css/combobox.css" />
       <JFXTextField fx:id="secretanswer" layoutX="307.0" layoutY="264.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" />
-      <JFXButton fx:id="backBtn" layoutX="69.0" layoutY="47.0" onAction="#back" text="BACK" textFill="#ababab">
+      <JFXButton fx:id="backBtn" layoutX="69.0" layoutY="47.0" onAction="#back" text="SIGN IN" textFill="#ababab">
          <graphic>
             <MaterialDesignIconView fill="#bdbdbd" glyphName="CHEVRON_LEFT" size="22.0" text="" />
          </graphic>
@@ -84,7 +84,7 @@
       <Label fx:id="lblStatus" layoutX="131.0" layoutY="413.0" prefHeight="17.0" prefWidth="469.0" textFill="WHITE" />
       <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
          <image>
-            <Image url="@../../images/emailicon.png" />
+            <Image url="@../image/emailicon.png" />
          </image>
       </ImageView>
       <Label layoutX="163.0" layoutY="315.0" text="EMAIL" textFill="#a9a9a9" />
@@ -92,9 +92,19 @@
       <Label fx:id="contractlabel" layoutX="161.0" layoutY="391.0" text="CONTRACT NUMBER" textFill="#a9a9a9" visible="false" />
       <ImageView fx:id="contractimage" fitHeight="34.0" fitWidth="22.0" layoutX="130.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;" visible="false">
          <image>
-            <Image url="@../../images/contract.png" />
+            <Image url="@../image/contract.png" />
          </image>
       </ImageView>
       <JFXTextField fx:id="contractnumber" layoutX="305.0" layoutY="387.0" prefHeight="25.0" prefWidth="294.0" style="-fx-text-fill: white;" visible="false" />
+      <Label layoutX="176.0" layoutY="21.0" text="WELCOME TO GENX SERVICE ENGAGEMENT CENTER" textFill="WHITE">
+         <font>
+            <Font name="Raleway" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="513.0" layoutY="40.0" text="FIRST TIME USER? SIGN UP " textFill="#d6d6d6">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
