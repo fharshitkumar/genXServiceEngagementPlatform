@@ -60,12 +60,12 @@
             <Label layoutX="54.0" layoutY="27.0" text="NAME" textFill="#e2e2e2" />
             <ImageView fx:id="customertypeimage" fitHeight="36.0" fitWidth="53.0" layoutX="8.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/premiumcustomer.png" />
+                  <Image url="@../image/premiumcustomer.png" />
                </image>
             </ImageView>
             <ImageView blendMode="SOFT_LIGHT" fitHeight="39.0" fitWidth="41.0" layoutX="8.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/cusotmer.png" />
+                  <Image url="@../image/cusotmer.png" />
                </image>
             </ImageView>
             <Label layoutX="4.0" layoutY="146.0" text="SERVICE ENROLLED BY THE CUSTOMER" textFill="#f4f4f4">
@@ -173,7 +173,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="solutionArea" blendMode="SCREEN" layoutX="294.0" layoutY="16.0" prefHeight="46.0" prefWidth="932.0" style="-fx-background-color: #3f3f3f;">
+      <Pane fx:id="solutionArea" blendMode="SCREEN" layoutX="294.0" layoutY="16.0" prefHeight="46.0" prefWidth="932.0" style="-fx-background-color: #3f3f3f;" visible="false">
          <children>
             <Label layoutX="21.0" layoutY="18.0" text="ENTER SOLUTION" textFill="WHITE">
                <font>
